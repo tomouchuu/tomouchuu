@@ -8,7 +8,6 @@ var LatestInstagram = require('./LatestInstagram.jsx');
 var Intro = React.createClass({
 
 	componentWillReceiveProps: function(nextProps) {
-		console.log(nextProps);
 		if (nextProps.videos.length > 0) {
 			React.render(
 				<DriveIn
