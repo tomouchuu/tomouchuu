@@ -20,10 +20,7 @@ var App = React.createClass({
 			instagramData: {
 				photos: []
 			},
-			videos: [
-				'https://scontent.cdninstagram.com/hphotos-xaf1/t50.2886-16/11424276_455445524629132_41364281_n.mp4',
-				'https://scontent.cdninstagram.com/hphotos-xaf1/t50.2886-16/11394769_379144165622374_2128849627_n.mp4'
-			]
+			videos: []
 		};
 	},
 

@@ -33,6 +33,7 @@
     "jquery": "^2.1.4",
     "moment": "^2.10.3",
     "react": "^0.13.3",
-    "react-drive-in": "^1.4.1"
+    "react-drive-in": "^1.4.1",
+    "twitter-text": "^1.12.0"
   }
 }

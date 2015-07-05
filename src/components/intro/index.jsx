@@ -7,15 +7,25 @@ var LatestInstagram = require('./LatestInstagram.jsx');
 
 var Intro = React.createClass({
 
-	render: function() {
-		return (
-			<div id="intro">
+	componentWillReceiveProps: function(nextProps) {
+		console.log(nextProps);
+		if (nextProps.videos.length > 0) {
+			React.render(
 				<DriveIn
-					showPlaylist={ this.props.videos }
+					showPlaylist={ nextProps.videos }
 					loop={true}
 					slideshow={false}
 					mute={true}
-				/>
+				/>,
+				document.getElementById('intro-videos')
+			);
+		}
+	},
+
+	render: function() {
+		return (
+			<div id="intro">
+				<div id="intro-videos"></div>
 				<div className="intro-content">
 					<div className="intro-row">
 						<div className="intro-title">
