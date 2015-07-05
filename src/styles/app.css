@@ -138,3 +138,39 @@ a {
 	lost-center: 980px;
 	padding: 15px;
 }
+
+#code {
+	background-color: #ACE1AF;
+}
+#code-area {
+	lost-center: 980px;
+	padding: 15px;
+}
+.code-title { lost-column: 1/1; }
+.github-area { lost-column: 1/3; }
+.projects-area { lost-column: 2/3; }
+
+.mega-octicon {
+	color: #FFF;
+	position: absolute;
+}
+.mega-octicon.octicon-repo-push {
+	margin-left: -39px;
+	margin-top: 33px;
+}
+.mega-octicon.octicon-comment {
+	margin-left: -41px;
+	margin-top: 32px;
+}
+.mega-octicon.octicon-issue-closed {
+	margin-left: -43px;
+	margin-top: 31px;
+}
+.mega-octicon.octicon-trashcan {
+	margin-left: -41px;
+	margin-top: 31px;
+}
+
+.github-type { text-align: center; }
+.github-content { margin-top: -30px; }
+.github-commits { list-style: none; }

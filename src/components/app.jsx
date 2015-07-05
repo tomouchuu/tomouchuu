@@ -5,6 +5,7 @@ var $ = require('jquery');
 
 var Intro = require('./intro/index.jsx');
 var About = require('./about/index.jsx');
+var Code = require('./code/index.jsx');
 
 var App = React.createClass({
 
@@ -20,6 +21,7 @@ var App = React.createClass({
 			instagramData: {
 				photos: []
 			},
+			githubData: {},
 			videos: []
 		};
 	},
@@ -85,6 +87,26 @@ var App = React.createClass({
 				console.error(this.props.url, status, err.toString());
 			}.bind(this)
 		});
+
+		// Get my Github Data
+		$.ajax({
+			url: config.api + '/github',
+			dataType: 'json',
+			cache: true,
+			success: function(data) {
+
+				var githubData = data.slice(0, 5);
+
+				if (this.isMounted()) {
+					this.setState({
+						githubData: githubData
+					});
+				}
+			}.bind(this),
+			error: function(xhr, status, err) {
+				console.error(this.props.url, status, err.toString());
+			}.bind(this)
+		});
 	},
 
 	render: function() {
@@ -97,6 +119,7 @@ var App = React.createClass({
 					videos={ this.state.videos }
 				/>
 				<About me={ this.state.me } />
+				<Code githubData={ this.state.githubData } />
 			</div>
 		);
 	}
