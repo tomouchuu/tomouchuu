@@ -17,6 +17,7 @@ a {
 }
 
 #intro {
+	background: url('../images/bg.jpg') 0 / cover scroll no-repeat #AA201D;
 	height: 550px;
 	lost-align: center;
 	overflow: hidden;

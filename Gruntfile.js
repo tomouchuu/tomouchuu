@@ -43,6 +43,17 @@ module.exports = function(grunt) {
 			}
 		},
 
+		imagemin: {
+			assets: {
+				files: [{
+					expand: true,
+					cwd: 'src/images',
+					src: ['**/*.{png,jpg,gif}'],
+					dest: 'assets/images'
+				}]
+			}
+		},
+
 		watch: {
 			javascript: {
 				files: [
@@ -50,6 +61,12 @@ module.exports = function(grunt) {
 					'src/components/**/*.jsx'
 				],
 				tasks: ['webpack']
+			},
+			images: {
+				files: [
+					'src/images/**/*'
+				],
+				tasks: ['imagemin']
 			},
 			styles: {
 				files: ['src/styles/app.css'],
