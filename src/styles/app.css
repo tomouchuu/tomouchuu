@@ -182,3 +182,5 @@ a {
 .github-type { text-align: center; }
 .github-content { margin-top: -30px; }
 .github-commits { list-style: none; }
+
+.project img { max-width: 100%; }

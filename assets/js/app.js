@@ -44073,6 +44073,7 @@
 	var React = __webpack_require__(2);
 
 	var GithubEvent = __webpack_require__(258);
+	var Project = __webpack_require__(259);
 
 	var Code = React.createClass({
 		displayName: 'Code',
@@ -44127,11 +44128,12 @@
 							null,
 							'Projects'
 						),
-						React.createElement(
-							'p',
-							null,
-							'COMING SOON'
-						)
+						React.createElement(Project, {
+							ptitle: 'Doujin Release Tracker',
+							pimage: 'assets/images/projects/doujin-release-tracker.png',
+							pdesc: 'On it\'s 5th version, the doujin release tracker is built using Laravel with MongoDB for it\'s Database store. It uses Jquery Datatables heavily to allow users to filter and search for specific releases and runs atop a public API I created for it.',
+							plink: 'http://doujinreleas.es'
+						})
 					)
 				)
 			);
@@ -44161,6 +44163,10 @@
 			this.props.data.type === 'PushEvent' ? eventType = 'octicon-repo-push' : '';
 			this.props.data.type === 'IssueCommentEvent' ? eventType = 'octicon-comment' : '';
 			this.props.data.type === 'DeleteEvent' ? eventType = 'octicon-trashcan' : '';
+			if (this.props.data.type === 'WatchEvent') {
+				this.props.data.payload.action === 'watched' ? eventType = 'octicon-eye' : '';
+				this.props.data.payload.action === 'started' ? eventType = 'octicon-star' : '';
+			}
 			if (this.props.data.type === 'IssuesEvent') {
 				this.props.data.payload.action === 'opened' ? eventType = 'octicon-issue-opened' : '';
 				this.props.data.payload.action === 'reopened' ? eventType = 'octicon-issue-reopened' : '';
@@ -44236,6 +44242,45 @@
 	});
 
 	module.exports = GithubEvent;
+
+/***/ },
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(2);
+
+	var Project = React.createClass({
+		displayName: 'Project',
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'project' },
+				React.createElement('img', { src: this.props.pimage, alt: this.props.ptitle }),
+				React.createElement(
+					'h4',
+					null,
+					this.props.ptitle
+				),
+				React.createElement(
+					'p',
+					null,
+					this.props.pdesc,
+					'  ',
+					React.createElement(
+						'a',
+						{ href: this.props.plink, title: 'Go to ' + this.props.ptitle, target: '_blank' },
+						'View Project'
+					)
+				)
+			);
+		}
+
+	});
+
+	module.exports = Project;
 
 /***/ }
 /******/ ]);
