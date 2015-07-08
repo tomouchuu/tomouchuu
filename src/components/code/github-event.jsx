@@ -11,6 +11,10 @@ var GithubEvent = React.createClass({
 		(this.props.data.type === 'PushEvent') ? eventType = 'octicon-repo-push' : '';
 		(this.props.data.type === 'IssueCommentEvent') ? eventType = 'octicon-comment' : '';
 		(this.props.data.type === 'DeleteEvent') ? eventType = 'octicon-trashcan' : '';
+		if (this.props.data.type === 'WatchEvent') {
+			(this.props.data.payload.action === 'watched') ? eventType = 'octicon-eye' : '';
+			(this.props.data.payload.action === 'started') ? eventType = 'octicon-star' : '';
+		}
 		if (this.props.data.type === 'IssuesEvent') {
 			(this.props.data.payload.action === 'opened') ? eventType = 'octicon-issue-opened' : '';
 			(this.props.data.payload.action === 'reopened') ? eventType = 'octicon-issue-reopened' : '';

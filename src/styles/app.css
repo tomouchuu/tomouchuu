@@ -170,6 +170,14 @@ a {
 	margin-left: -41px;
 	margin-top: 31px;
 }
+.mega-octicon.octicon-eye {
+	margin-left: -41px;
+	margin-top: 31px;
+}
+.mega-octicon.octicon-star {
+	margin-left: -42px;
+	margin-top: 31px;
+}
 
 .github-type { text-align: center; }
 .github-content { margin-top: -30px; }
