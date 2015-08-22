@@ -178,6 +178,10 @@ a {
 	margin-left: -42px;
 	margin-top: 31px;
 }
+.mega-octicon.octicon-issue-opened {
+	margin-left: -41px;
+	margin-top: 31px;
+}
 
 .github-type { text-align: center; }
 .github-content { margin-top: -30px; }
