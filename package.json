@@ -10,6 +10,9 @@
   "bugs": {
     "url": "https://github.com/Tomo-san/personal/issues"
   },
+  "scripts": {
+    "start": "node node_modules/.bin/http-server -p 5000"
+  },
   "homepage": "http://tomo.pagu.co",
   "devDependencies": {
     "autoprefixer-core": "^5.2.0",
