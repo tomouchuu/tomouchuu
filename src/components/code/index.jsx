@@ -44,7 +44,7 @@ var Code = React.createClass({
 						/>
 						<Project
 							ptitle="Start (スタート)"
-							pimage="http://anoxy.se/uploads/2015/08/3jfgoc2h80r17la.png"
+							pimage="assets/images/projects/start.png"
 							pdesc="This start page replaces your browser's new tab page and is a nice looking alternative which can be customisable with a few changes to the config file."
 							plink="https://github.com/tomopagu/start"
 						/>
