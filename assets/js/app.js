@@ -44129,16 +44129,22 @@
 							'Projects'
 						),
 						React.createElement(Project, {
+							ptitle: 'Disbott',
+							pimage: 'assets/images/projects/disbott.png',
+							pdesc: 'Disbott is a bot for Discord. It\'s written in node and is primarily in use for some fun commands on mine and friends\' discord servers.',
+							plink: 'http://disbott.pagu.co'
+						}),
+						React.createElement(Project, {
+							ptitle: 'Start (スタート)',
+							pimage: 'assets/images/projects/start.png',
+							pdesc: 'This start page replaces your browser\'s new tab page and is a nice looking alternative which can be customisable with a few changes to the config file.',
+							plink: 'https://github.com/tomopagu/start'
+						}),
+						React.createElement(Project, {
 							ptitle: 'Doujin Release Tracker',
 							pimage: 'assets/images/projects/doujin-release-tracker.png',
 							pdesc: 'On it\'s 5th version, the doujin release tracker is built using Laravel with MongoDB for it\'s Database store. It uses Jquery Datatables heavily to allow users to filter and search for specific releases and runs atop a public API I created for it.',
 							plink: 'http://doujinreleas.es'
-						}),
-						React.createElement(Project, {
-							ptitle: 'Start (スタート)',
-							pimage: 'http://anoxy.se/uploads/2015/08/3jfgoc2h80r17la.png',
-							pdesc: 'This start page replaces your browser\'s new tab page and is a nice looking alternative which can be customisable with a few changes to the config file.',
-							plink: 'https://github.com/tomopagu/start'
 						})
 					)
 				)
@@ -44159,91 +44165,124 @@
 	var moment = __webpack_require__(166);
 
 	var GithubEvent = React.createClass({
-		displayName: 'GithubEvent',
+	  displayName: 'GithubEvent',
 
-		render: function render() {
+	  render: function render() {
 
-			var relativeTimeCreated = moment(this.props.data.created_at).fromNow();
+	    var relativeTimeCreated = moment(this.props.data.created_at).fromNow();
 
-			var eventType = '';
-			this.props.data.type === 'PushEvent' ? eventType = 'octicon-repo-push' : '';
-			this.props.data.type === 'IssueCommentEvent' ? eventType = 'octicon-comment' : '';
-			this.props.data.type === 'DeleteEvent' ? eventType = 'octicon-trashcan' : '';
-			if (this.props.data.type === 'WatchEvent') {
-				this.props.data.payload.action === 'watched' ? eventType = 'octicon-eye' : '';
-				this.props.data.payload.action === 'started' ? eventType = 'octicon-star' : '';
-			}
-			if (this.props.data.type === 'IssuesEvent') {
-				this.props.data.payload.action === 'opened' ? eventType = 'octicon-issue-opened' : '';
-				this.props.data.payload.action === 'reopened' ? eventType = 'octicon-issue-reopened' : '';
-				this.props.data.payload.action === 'closed' ? eventType = 'octicon-issue-closed' : '';
-			}
+	    var eventType = '';
+	    var eventMessage = '';
+	    if (this.props.data.type === 'PushEvent') {
+	      eventType = 'octicon-repo-push';
+	      eventMessage = 'Pushed to repo';
+	    } else if (this.props.data.type === 'IssueCommentEvent') {
+	      eventType = 'octicon-comment';
+	      eventMessage = 'Commented on Issue';
+	    } else if (this.props.data.type === 'DeleteEvent') {
+	      eventType = 'octicon-trashcan';
+	      eventMessage = 'Deleted';
+	    } else if (this.props.data.type === 'WatchEvent') {
+	      if (this.props.data.payload.action === 'watched') {
+	        eventType = 'octicon-eye';
+	        eventMessage = 'Watched repo';
+	      } else if (this.props.data.payload.action === 'started') {
+	        eventType = 'octicon-star';
+	        eventMessage = 'Stared repo';
+	      }
+	    } else if (this.props.data.type === 'IssuesEvent') {
+	      if (this.props.data.payload.action === 'opened') {
+	        eventType = 'octicon-issue-opened';
+	        eventMessage = 'Opened issue';
+	      } else if (this.props.data.payload.action === 'reopened') {
+	        eventType = 'octicon-issue-reopened';
+	        eventMessage = 'Reopened issue';
+	      } else if (this.props.data.payload.action === 'closed') {
+	        eventType = 'octicon-issue-closed';
+	        eventMessage = 'Closed issue';
+	      }
+	    } else if (this.props.data.type === 'CreateEvent') {
+	      if (this.props.data.payload.ref_type === 'tag') {
+	        eventType = 'octicon-tag';
+	        eventMessage = 'Tagged repo';
+	      }
+	    } else if (this.props.data.type === 'MemberEvent') {
+	      if (this.props.data.payload.action === 'added') {
+	        eventType = 'octicon-organization';
+	        eventMessage = 'Added collaborator';
+	      }
+	    }
 
-			var Commits;
-			if (typeof this.props.data.payload.commits != 'undefined') {
-				Commits = this.props.data.payload.commits.map(function (commit) {
-					return React.createElement(
-						'li',
-						null,
-						React.createElement('span', { className: 'octicon octicon-git-commit' }),
-						' ',
-						commit.message,
-						' ',
-						React.createElement(
-							'small',
-							null,
-							React.createElement(
-								'a',
-								{ href: commit.url, title: 'View Commit' },
-								'View Commit'
-							)
-						)
-					);
-				});
-			}
+	    var Commits;
+	    if (typeof this.props.data.payload.commits != 'undefined') {
+	      Commits = this.props.data.payload.commits.map(function (commit) {
+	        return React.createElement(
+	          'li',
+	          null,
+	          React.createElement('span', { className: 'octicon octicon-git-commit' }),
+	          ' ',
+	          commit.message,
+	          ' ',
+	          React.createElement(
+	            'small',
+	            null,
+	            React.createElement(
+	              'a',
+	              { href: commit.url, title: 'View Commit' },
+	              'View Commit'
+	            )
+	          )
+	        );
+	      });
+	    }
 
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'div',
-					{ className: 'github-type' },
-					React.createElement(
-						'span',
-						{ className: 'fa-stack fa-3x' },
-						React.createElement('i', { className: 'fa fa-circle fa-lg' }),
-						React.createElement('span', { className: 'mega-octicon ' + eventType })
-					)
-				),
-				React.createElement(
-					'div',
-					{ className: 'github-content' },
-					React.createElement(
-						'h4',
-						null,
-						React.createElement(
-							'a',
-							{ href: this.props.data.repo.url, title: 'View Repo' },
-							this.props.data.repo.name
-						)
-					),
-					React.createElement(
-						'ul',
-						{ className: 'github-commits' },
-						{ Commits: Commits }
-					),
-					React.createElement(
-						'p',
-						null,
-						React.createElement(
-							'small',
-							null,
-							relativeTimeCreated
-						)
-					)
-				)
-			);
-		}
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'div',
+	        { className: 'github-type' },
+	        React.createElement(
+	          'span',
+	          { className: 'fa-stack fa-3x' },
+	          React.createElement('i', { className: 'fa fa-circle fa-lg' }),
+	          React.createElement('span', { className: 'mega-octicon ' + eventType })
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'github-content' },
+	        React.createElement(
+	          'h4',
+	          null,
+	          React.createElement(
+	            'a',
+	            { href: this.props.data.repo.url, title: 'View Repo' },
+	            this.props.data.repo.name
+	          )
+	        ),
+	        React.createElement(
+	          'p',
+	          null,
+	          eventMessage
+	        ),
+	        React.createElement(
+	          'ul',
+	          { className: 'github-commits' },
+	          { Commits: Commits }
+	        ),
+	        React.createElement(
+	          'p',
+	          null,
+	          React.createElement(
+	            'small',
+	            null,
+	            relativeTimeCreated
+	          )
+	        )
+	      )
+	    );
+	  }
 
 	});
 

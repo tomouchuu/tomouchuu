@@ -158,6 +158,14 @@ a {
 	margin-left: -39px;
 	margin-top: 33px;
 }
+.mega-octicon.octicon-tag {
+    margin-left: -40px;
+    margin-top: 33px;
+}
+.mega-octicon.octicon-organization {
+    margin-left: -41px;
+    margin-top: 31px;
+}
 .mega-octicon.octicon-comment {
 	margin-left: -41px;
 	margin-top: 32px;
@@ -185,7 +193,10 @@ a {
 
 .github-type { text-align: center; }
 .github-content { margin-top: -30px; }
-.github-commits { list-style: none; }
+.github-commits {
+    list-style: none;
+    padding-left: 20px;
+}
 
 .project img { max-width: 100%; }
 .project h4 { margin-top: -15px; }
