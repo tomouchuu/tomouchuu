@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var DriveIn = require('react-drive-in');
 
@@ -9,7 +10,7 @@ var Intro = React.createClass({
 
 	componentWillReceiveProps: function(nextProps) {
 		if (nextProps.videos.length > 0) {
-			React.render(
+			ReactDOM.render(
 				<DriveIn
 					showPlaylist={ nextProps.videos }
 					loop={true}

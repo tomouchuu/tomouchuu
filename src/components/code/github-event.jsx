@@ -1,4 +1,6 @@
 var React = require('react');
+var createFragment = require('react-addons-create-fragment');
+
 var moment = require('moment');
 
 var GithubEvent = React.createClass({
@@ -51,9 +53,9 @@ var GithubEvent = React.createClass({
 
 		var Commits;
 		if (typeof this.props.data.payload.commits != 'undefined') {
-			Commits = this.props.data.payload.commits.map(function(commit) {
+			Commits = this.props.data.payload.commits.map(function(commit, i) {
 				return (
-					<li><span className="octicon octicon-git-commit"></span> { commit.message } <small><a href={ commit.url } title="View Commit">View Commit</a></small></li>
+					<li key={i}><span className="octicon octicon-git-commit"></span> { commit.message } <small><a href={ commit.url } title="View Commit">View Commit</a></small></li>
 				);
 			});
 		}
@@ -69,7 +71,7 @@ var GithubEvent = React.createClass({
 				<div className="github-content">
 					<h4><a href={ this.props.data.repo.url } title="View Repo">{ this.props.data.repo.name }</a></h4>
                     <p>{ eventMessage }</p>
-					<ul className="github-commits">{{ Commits }}</ul>
+					<ul className="github-commits">{ Commits }</ul>
 					<p><small>{ relativeTimeCreated }</small></p>
 				</div>
 			</div>

@@ -1,6 +1,7 @@
 var config = require('../../config.js');
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var $ = require('jquery');
 
 var Intro = require('./intro/index.jsx');
@@ -126,7 +127,7 @@ var App = React.createClass({
 
 });
 
-React.render(
+ReactDOM.render(
 	<App />,
 	document.getElementById('app')
 );
