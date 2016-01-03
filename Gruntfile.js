@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 					require('postcss-nested'),
 					require('postcss-import'),
 					require('postcss-brand-colors'),
-					require('autoprefixer-core')({browsers: 'last 1 version'}),
+					require('autoprefixer')({browsers: 'last 1 version'}),
 					require('csswring')
 				]
 			},
