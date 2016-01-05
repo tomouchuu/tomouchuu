@@ -45081,7 +45081,7 @@
 							ptitle: 'Disbott',
 							pimage: 'assets/images/projects/disbott.png',
 							pdesc: 'Disbott is a bot for Discord. It\'s written in node and is primarily in use for some fun commands on mine and friends\' discord servers.',
-							plink: 'http://disbott.pagu.co'
+							plink: 'https://disbott.pagu.co'
 						}),
 						React.createElement(Project, {
 							ptitle: 'Start (スタート)',
