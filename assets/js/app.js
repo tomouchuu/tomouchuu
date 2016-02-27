@@ -45040,7 +45040,7 @@
 
 			var snippet = paragraphs[0] + '</p>';
 			snippet += paragraphs[1] + '</p>';
-			snippet += '<a href="http://localhost:8081/show/' + url + '" title="Read ' + title + '">Read More...</a>';
+			snippet += '<a href="http://blog-tomo.pagu.co/show/' + url + '" title="Read ' + title + '">Read More...</a>';
 
 			this.setState({
 				title: title,
