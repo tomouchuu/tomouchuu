@@ -6,6 +6,9 @@
     "type": "git",
     "url": "https://tomopagu@github.com/tomopagu/personal.git"
   },
+  "engines": {
+    "node": "5.2.0"
+  },
   "author": "tomo@pagu",
   "bugs": {
     "url": "https://github.com/tomopagu/personal/issues"
