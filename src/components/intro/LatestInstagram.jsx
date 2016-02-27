@@ -3,27 +3,27 @@ var moment = require('moment');
 
 var LatestInstagram = React.createClass({
 
-	getInitialState: function() {
+	getInitialState: function () {
 		return {
 			link: '',
 			image: {},
 			caption: '',
-			createdAt: ''
+			createdAt: '',
 		};
 	},
 
-	componentWillReceiveProps: function(update) {
+	componentWillReceiveProps: function (update) {
 		var lastPhoto = update.instagramData.photos[0];
 		var relativeTimeCreated = moment.unix(lastPhoto.created_time).fromNow();
 		this.setState({
 			link: lastPhoto.link,
 			image: lastPhoto.images.thumbnail,
 			caption: lastPhoto.caption.text,
-			createdAt: relativeTimeCreated
-		})
+			createdAt: relativeTimeCreated,
+		});
 	},
 
-	render: function() {
+	render: function () {
 		return (
 			<div className="lastInstagrammed">
 				<p className="instagram-title">I last instagramed...</p>
@@ -32,7 +32,7 @@ var LatestInstagram = React.createClass({
 				</a>
 			</div>
 		);
-	}
+	},
 
 });
 

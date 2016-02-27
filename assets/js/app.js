@@ -54,146 +54,164 @@
 
 	var Intro = __webpack_require__(161);
 	var About = __webpack_require__(267);
-	var Code = __webpack_require__(268);
+	var Blog = __webpack_require__(268);
+	var Code = __webpack_require__(269);
 
 	var App = React.createClass({
-	    displayName: 'App',
+		displayName: 'App',
 
-	    getInitialState: function getInitialState() {
-	        return {
-	            me: {
-	                name: '',
-	                contact: {}
-	            },
-	            twitterData: {
-	                tweets: []
-	            },
-	            instagramData: {
-	                photos: []
-	            },
-	            githubData: {},
-	            videos: []
-	        };
-	    },
+		getInitialState: function getInitialState() {
+			return {
+				me: {
+					name: '',
+					contact: {}
+				},
+				blogpost: {},
+				twitterData: {
+					tweets: []
+				},
+				instagramData: {
+					photos: []
+				},
+				githubData: {},
+				videos: []
+			};
+		},
 
-	    componentDidMount: function componentDidMount() {
-	        $.ajax({
-	            url: config.api,
-	            dataType: 'json',
-	            cache: true,
-	            success: (function (data) {
-	                if (this.isMounted()) {
-	                    this.setState({
-	                        me: data.me
-	                    });
-	                }
-	            }).bind(this),
-	            error: (function (xhr, status, err) {
-	                console.error(this.props.url, status, err.toString());
-	            }).bind(this)
-	        });
+		componentDidMount: function componentDidMount() {
+			$.ajax({
+				url: config.api,
+				dataType: 'json',
+				cache: true,
+				success: (function (data) {
+					if (this.isMounted()) {
+						this.setState({
+							me: data.me
+						});
+					}
+				}).bind(this),
+				error: (function (xhr, status, err) {
+					console.error(this.props.url, status, err.toString());
+				}).bind(this)
+			});
 
-	        // Get my Instagram Data
-	        $.ajax({
-	            url: config.api + '/instagram',
-	            dataType: 'json',
-	            cache: true,
-	            success: (function (data) {
-	                var instagramData = data.photos;
-	                var item;
-	                var videos = [];
+			$.ajax({
+				url: 'http://blog-tomo.pagu.co/api/latest',
+				dataType: 'json',
+				cache: true,
+				success: (function (data) {
+					if (this.isMounted()) {
+						this.setState({
+							blogpost: data.blogpost
+						});
+					}
+				}).bind(this),
+				error: (function (xhr, status, err) {
+					console.error(this.props.url, status, err.toString());
+				}).bind(this)
+			});
 
-	                var _iteratorNormalCompletion = true;
-	                var _didIteratorError = false;
-	                var _iteratorError = undefined;
+			// Get my Instagram Data
+			$.ajax({
+				url: config.api + '/instagram',
+				dataType: 'json',
+				cache: true,
+				success: (function (data) {
+					var instagramData = data.photos;
+					var item;
+					var videos = [];
 
-	                try {
-	                    for (var _iterator = instagramData[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	                        item = _step.value;
+					var _iteratorNormalCompletion = true;
+					var _didIteratorError = false;
+					var _iteratorError = undefined;
 
-	                        if (item.type === 'video') {
-	                            videos.push(item.videos.standard_resolution.url);
-	                        }
-	                    }
-	                } catch (err) {
-	                    _didIteratorError = true;
-	                    _iteratorError = err;
-	                } finally {
-	                    try {
-	                        if (!_iteratorNormalCompletion && _iterator['return']) {
-	                            _iterator['return']();
-	                        }
-	                    } finally {
-	                        if (_didIteratorError) {
-	                            throw _iteratorError;
-	                        }
-	                    }
-	                }
+					try {
+						for (var _iterator = instagramData[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+							item = _step.value;
 
-	                if (this.isMounted()) {
-	                    this.setState({
-	                        instagramData: data,
-	                        videos: videos
-	                    });
-	                }
-	            }).bind(this),
-	            error: (function (xhr, status, err) {
-	                console.error(this.props.url, status, err.toString());
-	            }).bind(this)
-	        });
+							if (item.type === 'video') {
+								videos.push(item.videos.standard_resolution.url);
+							}
+						}
+					} catch (err) {
+						_didIteratorError = true;
+						_iteratorError = err;
+					} finally {
+						try {
+							if (!_iteratorNormalCompletion && _iterator['return']) {
+								_iterator['return']();
+							}
+						} finally {
+							if (_didIteratorError) {
+								throw _iteratorError;
+							}
+						}
+					}
 
-	        // Get my Twitter Data
-	        $.ajax({
-	            url: config.api + '/twitter',
-	            dataType: 'json',
-	            cache: true,
-	            success: (function (data) {
-	                if (this.isMounted()) {
-	                    this.setState({
-	                        twitterData: data
-	                    });
-	                }
-	            }).bind(this),
-	            error: (function (xhr, status, err) {
-	                console.error(this.props.url, status, err.toString());
-	            }).bind(this)
-	        });
+					if (this.isMounted()) {
+						this.setState({
+							instagramData: data,
+							videos: videos
+						});
+					}
+				}).bind(this),
+				error: (function (xhr, status, err) {
+					console.error(this.props.url, status, err.toString());
+				}).bind(this)
+			});
 
-	        // Get my Github Data
-	        $.ajax({
-	            url: config.api + '/github',
-	            dataType: 'json',
-	            cache: true,
-	            success: (function (data) {
+			// Get my Twitter Data
+			$.ajax({
+				url: config.api + '/twitter',
+				dataType: 'json',
+				cache: true,
+				success: (function (data) {
+					if (this.isMounted()) {
+						this.setState({
+							twitterData: data
+						});
+					}
+				}).bind(this),
+				error: (function (xhr, status, err) {
+					console.error(this.props.url, status, err.toString());
+				}).bind(this)
+			});
 
-	                var githubData = data.slice(0, 10);
+			// Get my Github Data
+			$.ajax({
+				url: config.api + '/github',
+				dataType: 'json',
+				cache: true,
+				success: (function (data) {
+					var githubData = data.slice(0, 10);
 
-	                if (this.isMounted()) {
-	                    this.setState({
-	                        githubData: githubData
-	                    });
-	                }
-	            }).bind(this),
-	            error: (function (xhr, status, err) {
-	                console.error(this.props.url, status, err.toString());
-	            }).bind(this)
-	        });
-	    },
+					if (this.isMounted()) {
+						this.setState({
+							githubData: githubData
+						});
+					}
+				}).bind(this),
+				error: (function (xhr, status, err) {
+					console.error(this.props.url, status, err.toString());
+				}).bind(this)
+			});
+		},
 
-	    render: function render() {
-	        return React.createElement(
-	            'div',
-	            { className: 'react-app' },
-	            React.createElement(Intro, {
-	                me: this.state.me,
-	                instagramData: this.state.instagramData,
-	                twitterData: this.state.twitterData,
-	                videos: this.state.videos
-	            }),
-	            React.createElement(About, { me: this.state.me }),
-	            React.createElement(Code, { githubData: this.state.githubData })
-	        );
-	    }
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'react-app' },
+				React.createElement(Intro, {
+					me: this.state.me,
+					instagramData: this.state.instagramData,
+					twitterData: this.state.twitterData,
+					videos: this.state.videos
+				}),
+				React.createElement(About, { me: this.state.me }),
+				React.createElement(Blog, { post: this.state.blogpost }),
+				React.createElement(Code, { githubData: this.state.githubData })
+			);
+		}
 
 	});
 
@@ -29096,32 +29114,12 @@
 						),
 						React.createElement(
 							'a',
-							{ href: this.props.me.contact.lastfm, title: 'Follow me on LastFM', className: 'lastfm-logo' },
-							React.createElement(
-								'span',
-								{ className: 'fa-stack fa-lg' },
-								React.createElement('i', { className: 'fa fa-square fa-stack-2x' }),
-								React.createElement('i', { className: 'fa fa-stack-1x fa-inverse fa-lastfm' })
-							)
-						),
-						React.createElement(
-							'a',
 							{ href: this.props.me.contact.github, title: 'Follow me on Github', className: 'github-logo' },
 							React.createElement(
 								'span',
 								{ className: 'fa-stack fa-lg' },
 								React.createElement('i', { className: 'fa fa-square fa-stack-2x' }),
 								React.createElement('i', { className: 'fa fa-stack-1x fa-inverse fa-github' })
-							)
-						),
-						React.createElement(
-							'a',
-							{ href: this.props.me.contact.blog, title: 'Follow me on Tumblr', className: 'tumblr-logo' },
-							React.createElement(
-								'span',
-								{ className: 'fa-stack fa-lg' },
-								React.createElement('i', { className: 'fa fa-square fa-stack-2x' }),
-								React.createElement('i', { className: 'fa fa-stack-1x fa-inverse fa-tumblr' })
 							)
 						),
 						React.createElement(
@@ -30712,6 +30710,7 @@
 				var tweet = twitter.autoLink(tweetData.text);
 
 				var relativeTimeCreated = moment(tweetData.created_at, 'dd MMM DD HH:mm:ss ZZ YYYY').fromNow();
+
 				this.setState({
 					tweet: tweet,
 					user: tweetData.user.screen_name,
@@ -45020,95 +45019,71 @@
 	'use strict';
 
 	var React = __webpack_require__(2);
+	var moment = __webpack_require__(166);
 
-	var GithubEvent = __webpack_require__(269);
-	var Project = __webpack_require__(270);
+	var Blog = React.createClass({
+		displayName: 'Blog',
 
-	var Code = React.createClass({
-	    displayName: 'Code',
+		getInitialState: function getInitialState() {
+			return {
+				content: 'Loading...'
+			};
+		},
 
-	    getInitialState: function getInitialState() {
-	        return {
-	            events: []
-	        };
-	    },
+		componentWillReceiveProps: function componentWillReceiveProps(update) {
+			var title = update.post.title;
+			var date = update.post.date;
+			var content = update.post.content;
+			var url = update.post.file;
 
-	    componentWillReceiveProps: function componentWillReceiveProps(update) {
-	        this.setState({
-	            events: update.githubData
-	        });
-	    },
+			var paragraphs = content.split('</p>');
 
-	    render: function render() {
-	        var GithubEvents = this.state.events.map(function (eventData) {
-	            return React.createElement(GithubEvent, { data: eventData, key: eventData.id });
-	        });
+			var snippet = paragraphs[0] + '</p>';
+			snippet += paragraphs[1] + '</p>';
+			snippet += '<a href="http://localhost:8081/show/' + url + '" title="Read ' + title + '">Read More...</a>';
 
-	        return React.createElement(
-	            'div',
-	            { id: 'code' },
-	            React.createElement(
-	                'div',
-	                { id: 'code-area' },
-	                React.createElement(
-	                    'div',
-	                    { className: 'code-title' },
-	                    React.createElement(
-	                        'h1',
-	                        null,
-	                        'Code'
-	                    )
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'github-area' },
-	                    React.createElement(
-	                        'h2',
-	                        null,
-	                        'Github'
-	                    ),
-	                    GithubEvents
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'projects-area' },
-	                    React.createElement(
-	                        'h2',
-	                        null,
-	                        'Projects'
-	                    ),
-	                    React.createElement(Project, {
-	                        ptitle: 'Oshimen',
-	                        pimage: 'assets/images/projects/oshimen.png',
-	                        pdesc: 'Oshimen is a webapp to easily showcase the idols that a user supports. For example instead of just listing the idols, oshimen gives a nice page you can link to.',
-	                        plink: 'https://oshimen.pagu.co'
-	                    }),
-	                    React.createElement(Project, {
-	                        ptitle: 'Disbott',
-	                        pimage: 'assets/images/projects/disbott.png',
-	                        pdesc: 'Disbott is a bot for Discord. It\'s written in node and is primarily in use for some fun commands on mine and friends\' discord servers.',
-	                        plink: 'https://disbott.pagu.co'
-	                    }),
-	                    React.createElement(Project, {
-	                        ptitle: 'Start (スタート)',
-	                        pimage: 'assets/images/projects/start.png',
-	                        pdesc: 'This start page replaces your browser\'s new tab page and is a nice looking alternative which can be customisable with a few changes to the config file.',
-	                        plink: 'https://github.com/tomopagu/start'
-	                    }),
-	                    React.createElement(Project, {
-	                        ptitle: 'Doujin Release Tracker',
-	                        pimage: 'assets/images/projects/doujin-release-tracker.png',
-	                        pdesc: 'On it\'s 5th version, the doujin release tracker is built using Laravel with MongoDB for it\'s Database store. It uses Jquery Datatables heavily to allow users to filter and search for specific releases and runs atop a public API I created for it.',
-	                        plink: 'http://doujinreleas.es'
-	                    })
-	                )
-	            )
-	        );
-	    }
+			this.setState({
+				title: title,
+				date: date,
+				snippet: snippet,
+				url: url
+			});
+		},
+
+		render: function render() {
+			return React.createElement(
+				'div',
+				{ id: 'blog' },
+				React.createElement(
+					'div',
+					{ id: 'blog-area' },
+					React.createElement(
+						'div',
+						{ className: 'blog-title' },
+						React.createElement(
+							'h3',
+							null,
+							'Latest Blog Post - ',
+							this.state.title
+						),
+						React.createElement(
+							'h4',
+							null,
+							this.state.date
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'blog-snippet' },
+						React.createElement('span', { dangerouslySetInnerHTML: { __html: this.state.snippet } })
+					)
+				)
+			);
+		}
 
 	});
 
-	module.exports = Code;
+	module.exports = Blog;
 
 /***/ },
 /* 269 */
@@ -45118,139 +45093,236 @@
 
 	var React = __webpack_require__(2);
 
+	var GithubEvent = __webpack_require__(270);
+	var Project = __webpack_require__(271);
+
+	var Code = React.createClass({
+		displayName: 'Code',
+
+		getInitialState: function getInitialState() {
+			return {
+				events: []
+			};
+		},
+
+		componentWillReceiveProps: function componentWillReceiveProps(update) {
+			this.setState({
+				events: update.githubData
+			});
+		},
+
+		render: function render() {
+			var GithubEvents = this.state.events.map(function (eventData) {
+				return React.createElement(GithubEvent, { data: eventData, key: eventData.id });
+			});
+
+			return React.createElement(
+				'div',
+				{ id: 'code' },
+				React.createElement(
+					'div',
+					{ id: 'code-area' },
+					React.createElement(
+						'div',
+						{ className: 'code-title' },
+						React.createElement(
+							'h1',
+							null,
+							'Code'
+						)
+					),
+					React.createElement(
+						'div',
+						{ className: 'github-area' },
+						React.createElement(
+							'h2',
+							null,
+							'Github'
+						),
+						GithubEvents
+					),
+					React.createElement(
+						'div',
+						{ className: 'projects-area' },
+						React.createElement(
+							'h2',
+							null,
+							'Projects'
+						),
+						React.createElement(Project, {
+							ptitle: 'Oshimen',
+							pimage: 'assets/images/projects/oshimen.png',
+							pdesc: 'Oshimen is a webapp to easily showcase the idols that a user supports. For example instead of just listing the idols, oshimen gives a nice page you can link to.',
+							plink: 'https://oshimen.pagu.co'
+						}),
+						React.createElement(Project, {
+							ptitle: 'Disbott',
+							pimage: 'assets/images/projects/disbott.png',
+							pdesc: 'Disbott is a bot for Discord. It\'s written in node and is primarily in use for some fun commands on mine and friends\' discord servers.',
+							plink: 'https://disbott.pagu.co'
+						}),
+						React.createElement(Project, {
+							ptitle: 'Start (スタート)',
+							pimage: 'assets/images/projects/start.png',
+							pdesc: 'This start page replaces your browser\'s new tab page and is a nice looking alternative which can be customisable with a few changes to the config file.',
+							plink: 'https://github.com/tomopagu/start'
+						}),
+						React.createElement(Project, {
+							ptitle: 'Doujin Release Tracker',
+							pimage: 'assets/images/projects/doujin-release-tracker.png',
+							pdesc: 'On it\'s 5th version, the doujin release tracker is built using Laravel with MongoDB for it\'s Database store. It uses Jquery Datatables heavily to allow users to filter and search for specific releases and runs atop a public API I created for it.',
+							plink: 'http://doujinreleas.es'
+						})
+					)
+				)
+			);
+		}
+
+	});
+
+	module.exports = Code;
+
+/***/ },
+/* 270 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(2);
+
 	var moment = __webpack_require__(166);
 
 	var GithubEvent = React.createClass({
-	    displayName: 'GithubEvent',
+		displayName: 'GithubEvent',
 
-	    render: function render() {
+		render: function render() {
 
-	        var relativeTimeCreated = moment(this.props.data.created_at).fromNow();
+			var relativeTimeCreated = moment(this.props.data.created_at).fromNow();
 
-	        var eventType = '';
-	        var eventMessage = '';
-	        if (this.props.data.type === 'PushEvent') {
-	            eventType = 'octicon-repo-push';
-	            eventMessage = 'Pushed to repo';
-	        } else if (this.props.data.type === 'IssueCommentEvent') {
-	            eventType = 'octicon-comment';
-	            eventMessage = 'Commented on Issue';
-	        } else if (this.props.data.type === 'DeleteEvent') {
-	            eventType = 'octicon-trashcan';
-	            eventMessage = 'Deleted';
-	        } else if (this.props.data.type === 'WatchEvent') {
-	            if (this.props.data.payload.action === 'watched') {
-	                eventType = 'octicon-eye';
-	                eventMessage = 'Watched repo';
-	            } else if (this.props.data.payload.action === 'started') {
-	                eventType = 'octicon-star';
-	                eventMessage = 'Stared repo';
-	            }
-	        } else if (this.props.data.type === 'IssuesEvent') {
-	            if (this.props.data.payload.action === 'opened') {
-	                eventType = 'octicon-issue-opened';
-	                eventMessage = 'Opened issue';
-	            } else if (this.props.data.payload.action === 'reopened') {
-	                eventType = 'octicon-issue-reopened';
-	                eventMessage = 'Reopened issue';
-	            } else if (this.props.data.payload.action === 'closed') {
-	                eventType = 'octicon-issue-closed';
-	                eventMessage = 'Closed issue';
-	            }
-	        } else if (this.props.data.type === 'CreateEvent') {
-	            if (this.props.data.payload.ref_type === 'tag') {
-	                eventType = 'octicon-tag';
-	                eventMessage = 'Tagged repo';
-	            }
-	        } else if (this.props.data.type === 'MemberEvent') {
-	            if (this.props.data.payload.action === 'added') {
-	                eventType = 'octicon-organization';
-	                eventMessage = 'Added collaborator';
-	            }
-	        } else if (this.props.data.type === 'PublicEvent') {
-	            eventType = 'octicon-rocket';
-	            eventMessage = 'Made Public';
-	        } else {
-	            console.log(this.props.data.type);
-	        }
+			var eventType = '';
+			var eventMessage = '';
+			if (this.props.data.type === 'PushEvent') {
+				eventType = 'octicon-repo-push';
+				eventMessage = 'Pushed to repo';
+			} else if (this.props.data.type === 'IssueCommentEvent') {
+				eventType = 'octicon-comment';
+				eventMessage = 'Commented on Issue';
+			} else if (this.props.data.type === 'DeleteEvent') {
+				eventType = 'octicon-trashcan';
+				eventMessage = 'Deleted';
+			} else if (this.props.data.type === 'WatchEvent') {
+				if (this.props.data.payload.action === 'watched') {
+					eventType = 'octicon-eye';
+					eventMessage = 'Watched repo';
+				} else if (this.props.data.payload.action === 'started') {
+					eventType = 'octicon-star';
+					eventMessage = 'Stared repo';
+				}
+			} else if (this.props.data.type === 'IssuesEvent') {
+				if (this.props.data.payload.action === 'opened') {
+					eventType = 'octicon-issue-opened';
+					eventMessage = 'Opened issue';
+				} else if (this.props.data.payload.action === 'reopened') {
+					eventType = 'octicon-issue-reopened';
+					eventMessage = 'Reopened issue';
+				} else if (this.props.data.payload.action === 'closed') {
+					eventType = 'octicon-issue-closed';
+					eventMessage = 'Closed issue';
+				}
+			} else if (this.props.data.type === 'CreateEvent') {
+				if (this.props.data.payload.ref_type === 'tag') {
+					eventType = 'octicon-tag';
+					eventMessage = 'Tagged repo';
+				}
+			} else if (this.props.data.type === 'MemberEvent') {
+				if (this.props.data.payload.action === 'added') {
+					eventType = 'octicon-organization';
+					eventMessage = 'Added collaborator';
+				}
+			} else if (this.props.data.type === 'PublicEvent') {
+				eventType = 'octicon-rocket';
+				eventMessage = 'Made Public';
+			} else {
+				console.log(this.props.data.type);
+			}
 
-	        var Commits;
-	        if (typeof this.props.data.payload.commits != 'undefined') {
-	            Commits = this.props.data.payload.commits.map(function (commit, i) {
-	                return React.createElement(
-	                    'li',
-	                    { key: i },
-	                    React.createElement('span', { className: 'octicon octicon-git-commit' }),
-	                    ' ',
-	                    commit.message,
-	                    ' ',
-	                    React.createElement(
-	                        'small',
-	                        null,
-	                        React.createElement(
-	                            'a',
-	                            { href: commit.url, title: 'View Commit' },
-	                            'View Commit'
-	                        )
-	                    )
-	                );
-	            });
-	        }
+			var Commits;
+			if (typeof this.props.data.payload.commits != 'undefined') {
+				Commits = this.props.data.payload.commits.map(function (commit, i) {
+					return React.createElement(
+						'li',
+						{ key: i },
+						React.createElement('span', { className: 'octicon octicon-git-commit' }),
+						' ',
+						commit.message,
+						' ',
+						React.createElement(
+							'small',
+							null,
+							React.createElement(
+								'a',
+								{ href: commit.url, title: 'View Commit' },
+								'View Commit'
+							)
+						)
+					);
+				});
+			}
 
-	        return React.createElement(
-	            'div',
-	            null,
-	            React.createElement(
-	                'div',
-	                { className: 'github-type' },
-	                React.createElement(
-	                    'span',
-	                    { className: 'fa-stack fa-3x' },
-	                    React.createElement('i', { className: 'fa fa-circle fa-lg' }),
-	                    React.createElement('span', { className: 'mega-octicon ' + eventType })
-	                )
-	            ),
-	            React.createElement(
-	                'div',
-	                { className: 'github-content' },
-	                React.createElement(
-	                    'h4',
-	                    null,
-	                    React.createElement(
-	                        'a',
-	                        { href: this.props.data.repo.url, title: 'View Repo' },
-	                        this.props.data.repo.name
-	                    )
-	                ),
-	                React.createElement(
-	                    'p',
-	                    null,
-	                    eventMessage
-	                ),
-	                React.createElement(
-	                    'ul',
-	                    { className: 'github-commits' },
-	                    Commits
-	                ),
-	                React.createElement(
-	                    'p',
-	                    null,
-	                    React.createElement(
-	                        'small',
-	                        null,
-	                        relativeTimeCreated
-	                    )
-	                )
-	            )
-	        );
-	    }
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'div',
+					{ className: 'github-type' },
+					React.createElement(
+						'span',
+						{ className: 'fa-stack fa-3x' },
+						React.createElement('i', { className: 'fa fa-circle fa-lg' }),
+						React.createElement('span', { className: 'mega-octicon ' + eventType })
+					)
+				),
+				React.createElement(
+					'div',
+					{ className: 'github-content' },
+					React.createElement(
+						'h4',
+						null,
+						React.createElement(
+							'a',
+							{ href: this.props.data.repo.url, title: 'View Repo' },
+							this.props.data.repo.name
+						)
+					),
+					React.createElement(
+						'p',
+						null,
+						eventMessage
+					),
+					React.createElement(
+						'ul',
+						{ className: 'github-commits' },
+						Commits
+					),
+					React.createElement(
+						'p',
+						null,
+						React.createElement(
+							'small',
+							null,
+							relativeTimeCreated
+						)
+					)
+				)
+			);
+		}
 
 	});
 
 	module.exports = GithubEvent;
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

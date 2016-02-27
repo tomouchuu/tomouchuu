@@ -3,18 +3,18 @@ var moment = require('moment');
 
 var About = React.createClass({
 
-	getInitialState: function() {
+	getInitialState: function () {
 		return {
 			age: '21',
 			name: 'Thomas Moore',
 			work: {
 				company: 'Ahead4',
-				description: 'I make websites.'
-			}
+				description: 'I make websites.',
+			},
 		};
 	},
 
-	componentWillReceiveProps: function(update) {
+	componentWillReceiveProps: function (update) {
 		var name = update.me.name;
 		var birthday = moment(update.me.birthday, 'DD-MM-YYYY');
 		var age = moment().diff(birthday, 'years');
@@ -25,12 +25,12 @@ var About = React.createClass({
 			name: name,
 			work: {
 				company: employment.company,
-				description: employment.description
-			}
-		})
+				description: employment.description,
+			},
+		});
 	},
 
-	render: function() {
+	render: function () {
 		return (
 			<div id="about">
 				<div className="about-title">
@@ -44,7 +44,7 @@ var About = React.createClass({
 				</div>
 			</div>
 		);
-	}
+	},
 
 });
 

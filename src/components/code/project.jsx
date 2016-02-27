@@ -2,7 +2,7 @@ var React = require('react');
 
 var Project = React.createClass({
 
-	render: function() {
+	render: function () {
 		return (
 			<div className="project">
 				<img src={ this.props.pimage } alt={ this.props.ptitle } />
@@ -12,7 +12,7 @@ var Project = React.createClass({
 				</p>
 			</div>
 		);
-	}
+	},
 
 });
 

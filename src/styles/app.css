@@ -2,216 +2,227 @@
 @lost flexbox flex;
 
 body {
-    background-color: #fff;
-    font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, Roboto, "Droid Sans", "ãƒ’ãƒ©ã‚®ãƒŽè§’ã‚´ ProN W3", "Hiragino Kaku Gothic ProN", "ãƒ¡ã‚¤ãƒªã‚ª", Meiryo, sans-serif;
+	background-color: #fff;
+	font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, Roboto, "Droid Sans", "ãƒ’ãƒ©ã‚®ãƒŽè§’ã‚´ ProN W3", "Hiragino Kaku Gothic ProN", "ãƒ¡ã‚¤ãƒªã‚ª", Meiryo, sans-serif;
 }
 
 a {
-    color: #aa201d;
-    transition: all 0.2s;
-    &:hover {
+	color: #aa201d;
+	transition: all 0.2s;
+	&:hover {
 
-        transition: all 0.2s;
-    }
+		transition: all 0.2s;
+	}
 }
 
 #intro {
-    background: url("../images/bg.jpg") 0 / cover scroll no-repeat #aa201d;
-    height: 550px;
-    lost-align: center;
-    overflow: hidden;
+	background: url("../images/bg.jpg") 0 / cover scroll no-repeat #aa201d;
+	height: 550px;
+	lost-align: center;
+	overflow: hidden;
 }
 
 .intro-content {
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    color: #fff;
-    lost-center: 500px;
-    padding: 15px;
-    position: relative;
-    z-index: 100;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	color: #fff;
+	lost-center: 500px;
+	padding: 15px;
+	position: relative;
+	z-index: 100;
 
-    .intro-row {
-        lost-center: 500px;
-        width: 100%;
-    }
-    .intro-title {
-        border-right: 1px dashed #fff;
-        font-size: 2.5em;
-        lost-column: 1/4;
-        text-align: center;
+	.intro-row {
+		lost-center: 500px;
+		width: 100%;
+	}
+	.intro-title {
+		border-right: 1px dashed #fff;
+		font-size: 2.5em;
+		lost-column: 1/4;
+		text-align: center;
 
-        /* This allows us to have that border */
-        width: calc(99.99% * 1 / 4 - (31px - 30px * 1 / 4)) !important;
-    }
-    .latest-happenings { lost-column: 3/4; }
+		/* This allows us to have that border */
+		width: calc(99.99% * 1 / 4 - (31px - 30px * 1 / 4)) !important;
+	}
+	.latest-happenings { lost-column: 3/4; }
 }
 
 .lastTweeted {
-    p.twitter-title {
-        font-size: 18px;
-        font-weight: 300;
-    }
-    a img {
-        margin: 0 auto;
-        width: 150px;
-    }
+	p.twitter-title {
+		font-size: 18px;
+		font-weight: 300;
+	}
+	a img {
+		margin: 0 auto;
+		width: 150px;
+	}
 }
 
 .lastInstagrammed {
-    p.instagram-title {
-        font-size: 18px;
-        font-weight: 300;
-    }
-    a {
-        display: block;
-        text-align: center;
-        img {
-            border-radius: 10px;
-        }
-    }
+	p.instagram-title {
+		font-size: 18px;
+		font-weight: 300;
+	}
+	a {
+		display: block;
+		text-align: center;
+		img {
+			border-radius: 10px;
+		}
+	}
 }
 
 .social-media {
-    lost-column: 1;
-    margin-top: 15px;
-    text-align: center;
+	lost-column: 1;
+	margin-top: 15px;
+	text-align: center;
 
-    [class*="fa-"] { transition: all 0.2s; }
+	[class*="fa-"] { transition: all 0.2s; }
 
-    .twitter-logo {
-        .fa-square { color: twitter-color; }
-        .fa-twitter { color: #fff; }
-        &:hover {
-            .fa-square { color: #fff; }
-            .fa-twitter { color: twitter-color; }
-        }
-    }
+	.twitter-logo {
+		.fa-square { color: twitter-color; }
+		.fa-twitter { color: #fff; }
+		&:hover {
+			.fa-square { color: #fff; }
+			.fa-twitter { color: twitter-color; }
+		}
+	}
 
-    .instagram-logo {
-        .fa-square { color: instagram-color; }
-        .fa-instagram { color: #fff; }
-        &:hover {
-            .fa-square { color: #fff; }
-            .fa-instagram { color: instagram-color; }
-        }
-    }
+	.instagram-logo {
+		.fa-square { color: instagram-color; }
+		.fa-instagram { color: #fff; }
+		&:hover {
+			.fa-square { color: #fff; }
+			.fa-instagram { color: instagram-color; }
+		}
+	}
 
-    .lastfm-logo {
-        .fa-square { color: lastfm-color; }
-        .fa-lastfm { color: #fff; }
-        &:hover {
-            .fa-square { color: #fff; }
-            .fa-lastfm { color: lastfm-color; }
-        }
-    }
+	.lastfm-logo {
+		.fa-square { color: lastfm-color; }
+		.fa-lastfm { color: #fff; }
+		&:hover {
+			.fa-square { color: #fff; }
+			.fa-lastfm { color: lastfm-color; }
+		}
+	}
 
-    .github-logo {
-        .fa-square { color: github-color; }
-        .fa-github { color: #fff; }
-        &:hover {
-            .fa-square { color: #fff; }
-            .fa-github { color: github-color; }
-        }
-    }
+	.github-logo {
+		.fa-square { color: github-color; }
+		.fa-github { color: #fff; }
+		&:hover {
+			.fa-square { color: #fff; }
+			.fa-github { color: github-color; }
+		}
+	}
 
-    .tumblr-logo {
-        .fa-square { color: tumblr-color; }
-        .fa-tumblr { color: #fff; }
-        &:hover {
-            .fa-square { color: #fff; }
-            .fa-tumblr { color: tumblr-color; }
-        }
-    }
+	.tumblr-logo {
+		.fa-square { color: tumblr-color; }
+		.fa-tumblr { color: #fff; }
+		&:hover {
+			.fa-square { color: #fff; }
+			.fa-tumblr { color: tumblr-color; }
+		}
+	}
 
-    .email-logo {
-        .fa-square { color: google-2-color; }
-        .fa-envelope { color: #fff; }
-        &:hover {
-            .fa-square { color: #fff; }
-            .fa-envelope { color: google-2-color; }
-        }
-    }
+	.email-logo {
+		.fa-square { color: google-2-color; }
+		.fa-envelope { color: #fff; }
+		&:hover {
+			.fa-square { color: #fff; }
+			.fa-envelope { color: google-2-color; }
+		}
+	}
 }
 
 #about {
-    lost-center: 980px;
-    padding: 15px;
+	lost-center: 980px;
+	padding: 15px;
 }
 
+#blog {
+	background-color: #e8b00c;
+	color: #fff;
+}
+
+#blog-area {
+	lost-center: 980px;
+	padding: 15px;
+}
+.blog-title h4 { margin-bottom: 0; }
+
 #code {
-    background-color: #ace1af;
+	background-color: #ace1af;
 }
 
 #code-area {
-    lost-center: 980px;
-    padding: 15px;
+	lost-center: 980px;
+	padding: 15px;
 }
 .code-title { lost-column: 1/1; }
 .github-area { lost-column: 1/3; }
 .projects-area { lost-column: 2/3; }
 
 .mega-octicon {
-    color: #fff;
-    position: absolute;
+	color: #fff;
+	position: absolute;
 }
 
 .mega-octicon.octicon-repo-push {
-    margin-left: -39px;
-    margin-top: 33px;
+	margin-left: -39px;
+	margin-top: 33px;
 }
 
 .mega-octicon.octicon-tag {
-    margin-left: -40px;
-    margin-top: 33px;
+	margin-left: -40px;
+	margin-top: 33px;
 }
 
 .mega-octicon.octicon-organization {
-    margin-left: -41px;
-    margin-top: 31px;
+	margin-left: -41px;
+	margin-top: 31px;
 }
 
 .mega-octicon.octicon-comment {
-    margin-left: -41px;
-    margin-top: 32px;
+	margin-left: -41px;
+	margin-top: 32px;
 }
 
 .mega-octicon.octicon-issue-closed {
-    margin-left: -43px;
-    margin-top: 31px;
+	margin-left: -43px;
+	margin-top: 31px;
 }
 
 .mega-octicon.octicon-trashcan {
-    margin-left: -41px;
-    margin-top: 31px;
+	margin-left: -41px;
+	margin-top: 31px;
 }
 
 .mega-octicon.octicon-eye {
-    margin-left: -41px;
-    margin-top: 31px;
+	margin-left: -41px;
+	margin-top: 31px;
 }
 
 .mega-octicon.octicon-star {
-    margin-left: -42px;
-    margin-top: 31px;
+	margin-left: -42px;
+	margin-top: 31px;
 }
 
 .mega-octicon.octicon-issue-opened {
-    margin-left: -41px;
-    margin-top: 31px;
+	margin-left: -41px;
+	margin-top: 31px;
 }
 
 .mega-octicon.octicon-rocket {
-    margin-left: -45px;
-    margin-top: 32px;
+	margin-left: -45px;
+	margin-top: 32px;
 }
 
 .github-type { text-align: center; }
 .github-content { margin-top: -30px; }
 
 .github-commits {
-    list-style: none;
-    padding-left: 20px;
+	list-style: none;
+	padding-left: 20px;
 }
 
 .project img { max-width: 100%; }
