@@ -96,7 +96,7 @@
 			});
 
 			$.ajax({
-				url: 'http://blog-tomo.pagu.co/api/latest',
+				url: 'https://blog.tomo.pagu.co/api/latest',
 				dataType: 'json',
 				cache: true,
 				success: (function (data) {
@@ -45040,7 +45040,7 @@
 
 			var snippet = paragraphs[0] + '</p>';
 			snippet += paragraphs[1] + '</p>';
-			snippet += '<a href="http://blog-tomo.pagu.co/show/' + url + '" title="Read ' + title + '">Read More...</a>';
+			snippet += '<a href="https://blog.tomo.pagu.co/show/' + url + '" title="Read ' + title + '">Read More...</a>';
 
 			this.setState({
 				title: title,

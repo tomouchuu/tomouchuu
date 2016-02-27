@@ -19,7 +19,7 @@ var Blog = React.createClass({
 
 		var snippet = paragraphs[0] + '</p>';
 		snippet += paragraphs[1] + '</p>';
-		snippet += '<a href="http://blog-tomo.pagu.co/show/' + url + '" title="Read ' + title + '">Read More...</a>';
+		snippet += '<a href="https://blog.tomo.pagu.co/show/' + url + '" title="Read ' + title + '">Read More...</a>';
 
 		this.setState({
 			title: title,

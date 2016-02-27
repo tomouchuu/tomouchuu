@@ -47,7 +47,7 @@ var App = React.createClass({
 		});
 
 		$.ajax({
-			url: 'http://blog-tomo.pagu.co/api/latest',
+			url: 'https://blog.tomo.pagu.co/api/latest',
 			dataType: 'json',
 			cache: true,
 			success: function (data) {
