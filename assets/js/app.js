@@ -45003,7 +45003,7 @@
 					React.createElement(
 						'p',
 						null,
-						'My language of choice personally would be an Koa/Express / Laravel Backend and then either a Laravel/React/Angular frontend using LESS/PostCSS for my CSS.'
+						'My language of choice personally would be an Express / Laravel Backend and then either a Laravel / React frontend using SCSS/PostCSS for my CSS.'
 					),
 					React.createElement(
 						'p',
