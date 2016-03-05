@@ -29094,7 +29094,7 @@
 						{ className: 'social-media' },
 						React.createElement(
 							'a',
-							{ href: this.props.me.contact.twitter, title: 'Follow me on Twitter', className: 'twitter-logo' },
+							{ href: this.props.me.contact.twitter, title: 'Follow me on Twitter', className: 'twitter-logo', target: '_blank' },
 							React.createElement(
 								'span',
 								{ className: 'fa-stack fa-lg' },
@@ -29104,7 +29104,7 @@
 						),
 						React.createElement(
 							'a',
-							{ href: this.props.me.contact.instagram, title: 'Follow me on Instagram', className: 'instagram-logo' },
+							{ href: this.props.me.contact.instagram, title: 'Follow me on Instagram', className: 'instagram-logo', target: '_blank' },
 							React.createElement(
 								'span',
 								{ className: 'fa-stack fa-lg' },
@@ -29114,7 +29114,7 @@
 						),
 						React.createElement(
 							'a',
-							{ href: this.props.me.contact.github, title: 'Follow me on Github', className: 'github-logo' },
+							{ href: this.props.me.contact.github, title: 'Follow me on Github', className: 'github-logo', target: '_blank' },
 							React.createElement(
 								'span',
 								{ className: 'fa-stack fa-lg' },
