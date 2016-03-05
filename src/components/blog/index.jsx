@@ -5,6 +5,7 @@ var Blog = React.createClass({
 
 	getInitialState: function () {
 		return {
+			enabled: false,
 			content: 'Loading...',
 		};
 	},
@@ -22,6 +23,7 @@ var Blog = React.createClass({
 		snippet += '<a href="https://blog.tomo.pagu.co/show/' + url + '" title="Read ' + title + '">Read More...</a>';
 
 		this.setState({
+			enabled: true,
 			title: title,
 			date: date,
 			snippet: snippet,
@@ -30,19 +32,25 @@ var Blog = React.createClass({
 	},
 
 	render: function () {
-		return (
-			<div id="blog">
-				<div id="blog-area">
-					<div className="blog-title">
-						<h3>Latest Blog Post - { this.state.title }</h3>
-						<h4>{ this.state.date }</h4>
-					</div>
-					<div className="blog-snippet">
-						<span dangerouslySetInnerHTML={{ __html: this.state.snippet }} />
+		if (this.state.enabled === true) {
+			return (
+				<div id="blog">
+					<div id="blog-area">
+						<div className="blog-title">
+							<h3>Latest Blog Post - { this.state.title }</h3>
+							<h4>{ this.state.date }</h4>
+						</div>
+						<div className="blog-snippet">
+							<span dangerouslySetInnerHTML={{ __html: this.state.snippet }} />
+						</div>
 					</div>
 				</div>
-			</div>
-		);
+			);
+		} else {
+			return (
+				<div id="no-blog"></div>
+			);
+		}
 	},
 
 });

@@ -91,7 +91,7 @@
 					}
 				}).bind(this),
 				error: (function (xhr, status, err) {
-					console.error(this.props.url, status, err.toString());
+					console.log(this.props.url, status, err.toString());
 				}).bind(this)
 			});
 
@@ -106,8 +106,8 @@
 						});
 					}
 				}).bind(this),
-				error: (function (xhr, status, err) {
-					console.error(this.props.url, status, err.toString());
+				error: (function (xhr, status) {
+					console.log('https://blog.tomo.pagu.co/api/latest', status);
 				}).bind(this)
 			});
 
@@ -156,7 +156,7 @@
 					}
 				}).bind(this),
 				error: (function (xhr, status, err) {
-					console.error(this.props.url, status, err.toString());
+					console.log(this.props.url, status, err.toString());
 				}).bind(this)
 			});
 
@@ -173,7 +173,7 @@
 					}
 				}).bind(this),
 				error: (function (xhr, status, err) {
-					console.error(this.props.url, status, err.toString());
+					console.log(this.props.url, status, err.toString());
 				}).bind(this)
 			});
 
@@ -192,7 +192,7 @@
 					}
 				}).bind(this),
 				error: (function (xhr, status, err) {
-					console.error(this.props.url, status, err.toString());
+					console.log(this.props.url, status, err.toString());
 				}).bind(this)
 			});
 		},
@@ -30696,6 +30696,7 @@
 
 		getInitialState: function getInitialState() {
 			return {
+				enabled: false,
 				tweet: '',
 				user: '',
 				tweetId: '',
@@ -30712,6 +30713,7 @@
 				var relativeTimeCreated = moment(tweetData.created_at, 'dd MMM DD HH:mm:ss ZZ YYYY').fromNow();
 
 				this.setState({
+					enabled: true,
 					tweet: tweet,
 					user: tweetData.user.screen_name,
 					tweetId: tweetData.id_str,
@@ -30721,30 +30723,42 @@
 		},
 
 		render: function render() {
-			return React.createElement(
-				'div',
-				{ className: 'lastTweeted' },
-				React.createElement(
-					'p',
-					{ className: 'twitter-title' },
-					'I last tweeted...'
-				),
-				React.createElement(
-					'p',
-					{ className: 'tweet' },
-					React.createElement('span', { dangerouslySetInnerHTML: { __html: this.state.tweet } }),
-					' ',
+			if (this.state.enabled === true) {
+				return React.createElement(
+					'div',
+					{ className: 'lastTweeted' },
 					React.createElement(
-						'small',
-						null,
+						'p',
+						{ className: 'twitter-title' },
+						'I last tweeted...'
+					),
+					React.createElement(
+						'p',
+						{ className: 'tweet' },
+						React.createElement('span', { dangerouslySetInnerHTML: { __html: this.state.tweet } }),
+						' ',
 						React.createElement(
-							'a',
-							{ href: 'https://twitter.com/' + this.state.user + '/status/' + this.state.tweetId },
-							this.state.createdAt
+							'small',
+							null,
+							React.createElement(
+								'a',
+								{ href: 'https://twitter.com/' + this.state.user + '/status/' + this.state.tweetId },
+								this.state.createdAt
+							)
 						)
 					)
-				)
-			);
+				);
+			} else {
+				return React.createElement(
+					'div',
+					{ className: 'lastTweeted' },
+					React.createElement(
+						'p',
+						null,
+						'Loading Tweet...'
+					)
+				);
+			}
 		}
 
 	});
@@ -45026,6 +45040,7 @@
 
 		getInitialState: function getInitialState() {
 			return {
+				enabled: false,
 				content: 'Loading...'
 			};
 		},
@@ -45043,6 +45058,7 @@
 			snippet += '<a href="https://blog.tomo.pagu.co/show/' + url + '" title="Read ' + title + '">Read More...</a>';
 
 			this.setState({
+				enabled: true,
 				title: title,
 				date: date,
 				snippet: snippet,
@@ -45051,34 +45067,38 @@
 		},
 
 		render: function render() {
-			return React.createElement(
-				'div',
-				{ id: 'blog' },
-				React.createElement(
+			if (this.state.enabled === true) {
+				return React.createElement(
 					'div',
-					{ id: 'blog-area' },
+					{ id: 'blog' },
 					React.createElement(
 						'div',
-						{ className: 'blog-title' },
+						{ id: 'blog-area' },
 						React.createElement(
-							'h3',
-							null,
-							'Latest Blog Post - ',
-							this.state.title
+							'div',
+							{ className: 'blog-title' },
+							React.createElement(
+								'h3',
+								null,
+								'Latest Blog Post - ',
+								this.state.title
+							),
+							React.createElement(
+								'h4',
+								null,
+								this.state.date
+							)
 						),
 						React.createElement(
-							'h4',
-							null,
-							this.state.date
+							'div',
+							{ className: 'blog-snippet' },
+							React.createElement('span', { dangerouslySetInnerHTML: { __html: this.state.snippet } })
 						)
-					),
-					React.createElement(
-						'div',
-						{ className: 'blog-snippet' },
-						React.createElement('span', { dangerouslySetInnerHTML: { __html: this.state.snippet } })
 					)
-				)
-			);
+				);
+			} else {
+				return React.createElement('div', { id: 'no-blog' });
+			}
 		}
 
 	});

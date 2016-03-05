@@ -6,6 +6,7 @@ var LatestTweet = React.createClass({
 
 	getInitialState: function () {
 		return {
+			enabled: false,
 			tweet: '',
 			user: '',
 			tweetId: '',
@@ -25,6 +26,7 @@ var LatestTweet = React.createClass({
 			).fromNow();
 
 			this.setState({
+				enabled: true,
 				tweet: tweet,
 				user: tweetData.user.screen_name,
 				tweetId: tweetData.id_str,
@@ -34,12 +36,20 @@ var LatestTweet = React.createClass({
 	},
 
 	render: function () {
-		return (
-			<div className="lastTweeted">
-				<p className="twitter-title">I last tweeted...</p>
-				<p className="tweet"><span dangerouslySetInnerHTML={{__html: this.state.tweet}} /> <small><a href={ 'https://twitter.com/' + this.state.user + '/status/' + this.state.tweetId }>{ this.state.createdAt }</a></small></p>
-			</div>
-		);
+		if (this.state.enabled === true) {
+			return (
+				<div className="lastTweeted">
+					<p className="twitter-title">I last tweeted...</p>
+					<p className="tweet"><span dangerouslySetInnerHTML={{ __html: this.state.tweet }} /> <small><a href={ 'https://twitter.com/' + this.state.user + '/status/' + this.state.tweetId }>{ this.state.createdAt }</a></small></p>
+				</div>
+			);
+		} else {
+			return (
+				<div className="lastTweeted">
+					<p>Loading Tweet...</p>
+				</div>
+			);
+		}
 	},
 
 });
