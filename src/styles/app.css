@@ -56,6 +56,9 @@ a {
 		margin: 0 auto;
 		width: 150px;
 	}
+	p.tweet {
+		max-width: 300px;
+	}
 }
 
 .lastInstagrammed {
@@ -215,6 +218,11 @@ a {
 .mega-octicon.octicon-rocket {
 	margin-left: -45px;
 	margin-top: 32px;
+}
+
+.octicon-git-pull-request {
+	margin-left: -39px;
+	margin-top: 31px;
 }
 
 .github-type { text-align: center; }

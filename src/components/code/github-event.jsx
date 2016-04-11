@@ -51,6 +51,9 @@ var GithubEvent = React.createClass({
 		} else if (this.props.data.type === 'PublicEvent') {
 			eventType = 'octicon-rocket';
 			eventMessage = 'Made Public';
+		} else if (this.props.data.type === 'PullRequestEvent') {
+			eventType = 'octicon-git-pull-request';
+			eventMessage = 'Pull Request';
 		} else {
 			console.log(this.props.data.type);
 		}
