@@ -3,9 +3,11 @@ import { config } from './../../config';
 import React from 'react';
 import { render } from 'react-dom';
 
+import Color from 'color';
+const color = Color;
+
 import { Style } from 'radium';
 // import normalize from 'radium-normalize';
-import radiumObject from './app.css';
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -29,6 +31,23 @@ const state = {
 	},
 	githubData: {},
 	videos: [],
+};
+
+const fontFamily = '"Avenir Next", "Helvetica Neue", Helvetica, Arial, Roboto, "Droid Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif'; // eslint-disable-line
+const styles = {
+	body: {
+		backgroundColor: '#fff',
+		fontFamily,
+		color: '#111',
+	},
+	a: {
+		color: '#aa201d',
+		transition: 'all 0.2s',
+	},
+	'a:hover': {
+		color: color('#aa201d').lighten(0.5).rgbString(),
+		transition: 'all 0.2s',
+	},
 };
 
 class App extends React.Component {
@@ -96,7 +115,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<Style rules={radiumObject} />
+				<Style rules={ styles } />
 				<Intro
 					me={ this.state.me }
 					instagramData={ this.state.instagramData }

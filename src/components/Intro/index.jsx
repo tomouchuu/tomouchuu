@@ -1,17 +1,58 @@
 import React from 'react';
 
+import { Flex, Box } from 'reflexbox';
+
 import LatestTweet from './LatestTweet/index.jsx';
 import LatestInstagram from './LatestInstagram/index.jsx';
 import SocialMedia from './SocialMedia/index.jsx';
 
 import { Style } from 'radium';
-import radiumObject from './Intro.css';
 
 const propTypes = {
 	me: React.PropTypes.object.isRequired,
 	twitterData: React.PropTypes.object.isRequired,
 	instagramData: React.PropTypes.object.isRequired,
 };
+
+const styles = {
+	'.intro': {
+		background: 'url("/assets/images/bg.jpg") 0 0 scroll no-repeat #aa201d',
+		backgroundSize: 'cover',
+		backgroundPosition: 'center',
+		height: 550,
+		overflow: 'hidden',
+	},
+	'.intro--content': {
+		background: 'rgba(0, 0, 0, 0.5)',
+		borderRadius: 10,
+		color: '#fff',
+		// padding: 15,
+		// position: 'relative',
+		zIndex: 100,
+		// width: '40%',
+		// margin: '0 auto',
+		// top: '50%',
+		// transform: 'translateY(-50%)',
+	},
+	'.intro--content__title': {
+		borderRight: '1px dashed #fff',
+		fontSize: '2.5em',
+		textAlign: 'center',
+		float: 'left',
+		marginRight: 10,
+		paddingRight: 15,
+	},
+	'.intro--content__social-media': {
+		textAlign: 'center',
+		paddingTop: 16,
+	},
+};
+
+// const mobileIntroContentStyle = {
+// 	'@media (min-width: 768px)': {
+// 		width: '90%',
+// 	},
+// };
 
 class Intro extends React.Component {
 	componentWillReceiveProps(nextProps) {
@@ -30,19 +71,19 @@ class Intro extends React.Component {
 
 	render() {
 		return (
-			<div className="intro">
-				<Style rules={ radiumObject } />
+			<Flex align="center" justify="center" className="intro">
+				<Style rules={ styles } />
 				<div id="intro--videos"></div>
-				<div className="intro--content">
-					<div className="intro--row">
-						<div className="intro--content__title">
+				<Box className="intro--content" p={2} sm={11} md={5}>
+					<Flex align="center">
+						<Box px={2} className="intro--content__title">
 							<h1>とも</h1>
-						</div>
-						<div className="intro--content__latest-happenings">
+						</Box>
+						<Box px={2} auto className="intro--content__latest-happenings">
 							<LatestTweet twitterData={ this.props.twitterData } />
 							<LatestInstagram instagramData={ this.props.instagramData } />
-						</div>
-					</div>
+						</Box>
+					</Flex>
 					<div className="intro--content__social-media">
 						<SocialMedia
 							link={ this.props.me.contact.twitter }
@@ -65,8 +106,8 @@ class Intro extends React.Component {
 							color="#db4437"
 						/>
 					</div>
-				</div>
-			</div>
+				</Box>
+			</Flex>
 		);
 	}
 }

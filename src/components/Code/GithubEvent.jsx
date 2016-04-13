@@ -1,8 +1,75 @@
 import React from 'react';
 import moment from 'moment';
 
+import { Style } from 'radium';
+
 const propTypes = {
 	data: React.PropTypes.object.isRequired,
+};
+
+const styles = {
+	'.mega-octicon': {
+		color: '#fff',
+		position: 'absolute',
+	},
+	'.mega-octicon.octicon-repo-push': {
+		marginLeft: -39,
+		marginTop: 33,
+	},
+	'.mega-octicon.octicon-tag': {
+		marginLeft: -40,
+		marginTop: 33,
+	},
+	'.mega-octicon.octicon-git-branch': {
+		marginLeft: -34,
+		marginTop: 31,
+	},
+	'.mega-octicon.octicon-organization': {
+		marginLeft: -41,
+		marginTop: 31,
+	},
+	'.mega-octicon.octicon-comment': {
+		marginLeft: -41,
+		marginTop: 32,
+	},
+	'.mega-octicon.octicon-issue-closed': {
+		marginLeft: -43,
+		marginTop: 31,
+	},
+	'.mega-octicon.octicon-trashcan': {
+		marginLeft: -41,
+		marginTop: 31,
+	},
+	'.mega-octicon.octicon-eye': {
+		marginLeft: -41,
+		marginTop: 31,
+	},
+	'.mega-octicon.octicon-star': {
+		marginLeft: -42,
+		marginTop: 31,
+	},
+	'.mega-octicon.octicon-issue-opened': {
+		marginLeft: -41,
+		marginTop: 31,
+	},
+	'.mega-octicon.octicon-rocket': {
+		marginLeft: -45,
+		marginTop: 32,
+	},
+	'.octicon-git-pull-request': {
+		marginLeft: -39,
+		marginTop: 31,
+	},
+	'.github-type': {
+		textAlign: 'center',
+	},
+	'.github-content': {
+		marginTop: -30,
+	},
+	'.github-commits': {
+		listStyle: 'none',
+		paddingLeft: 20,
+	},
 };
 
 function GithubEvent({ data }) {
@@ -42,6 +109,9 @@ function GithubEvent({ data }) {
 		if (data.payload.ref_type === 'tag') {
 			eventType = 'octicon-tag';
 			eventMessage = 'Tagged repo';
+		} else if (data.payload.ref_type === 'branch') {
+			eventType = 'octicon-git-branch';
+			eventMessage = `Created Branch ${data.payload.ref}`;
 		}
 	} else if (data.type === 'MemberEvent') {
 		if (data.payload.action === 'added') {
@@ -63,7 +133,7 @@ function GithubEvent({ data }) {
 		Commits = data.payload.commits.map((commit, i) => (
 			<li key={i}>
 				<span className="octicon octicon-git-commit"></span>
-				{ commit.message }
+				{` ${commit.message} `}
 				<small><a href={ commit.url } title="View Commit">View Commit</a></small>
 			</li>
 		));
@@ -71,6 +141,7 @@ function GithubEvent({ data }) {
 
 	return (
 		<div>
+			<Style rules={ styles } />
 			<div className="github-type">
 				<span className="fa-stack fa-3x">
 					<i className="fa fa-circle fa-lg"></i>

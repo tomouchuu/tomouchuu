@@ -1,6 +1,8 @@
 import React from 'react';
 import Radium from 'radium';
 
+import FitterHappierText from 'react-fitter-happier-text';
+
 const state = {
 	enabled: false,
 	content: 'Loading...',
@@ -47,8 +49,8 @@ class Blog extends React.Component {
 				<div id="blog" style={styles.base}>
 					<div id="blog-area">
 						<div className="blog-title">
-							<h3>Latest Blog Post - { this.state.title }</h3>
-							<h4>{ this.state.date }</h4>
+							<FitterHappierText text="Latest Blog Post" />
+							<h3>{ this.state.title } - { this.state.date }</h3>
 						</div>
 						<div className="blog-snippet">
 							<span dangerouslySetInnerHTML={{ __html: this.state.snippet }} />

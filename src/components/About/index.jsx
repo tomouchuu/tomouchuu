@@ -2,6 +2,8 @@ import React from 'react';
 import Radium from 'radium';
 import moment from 'moment';
 
+import FitterHappierText from 'react-fitter-happier-text';
+
 const state = {
 	age: '22',
 	name: 'Thomas Moore',
@@ -43,7 +45,7 @@ class About extends React.Component {
 		return (
 			<div id="about" style={styles.base}>
 				<div className="about-title">
-					<h1>Hello! I'm { this.state.name }</h1>
+					<FitterHappierText text={`Hello! I'm ${this.state.name}`} />
 				</div>
 				<div className="about-content">
 					<p>

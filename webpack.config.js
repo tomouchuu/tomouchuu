@@ -1,9 +1,18 @@
+const webpack = require('webpack');
+
 module.exports = {
 	entry: './src/components/app.jsx',
+
 	output: {
 		path: `${__dirname}/assets/js`,
 		filename: 'bundle.js',
 	},
+
+	plugins: [
+		new webpack.DefinePlugin({
+			NODE_ENV: 'production',
+		}),
+	],
 
 	module: {
 		preLoaders: [
@@ -17,11 +26,6 @@ module.exports = {
 			{
 				test: /\.(js|jsx)$/,
 				loader: 'babel-loader',
-				exclude: /node_modules/,
-			},
-			{
-				test: /\.css$/,
-				loader: 'radium-loader!css-loader',
 				exclude: /node_modules/,
 			},
 			{

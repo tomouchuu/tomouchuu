@@ -11,6 +11,8 @@
     "url": "https://github.com/tomopagu/personal/issues"
   },
   "scripts": {
+    "run": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --inline",
+    "build": "export NODE_ENV=production && ./node_modules/webpack/bin/webpack.js -p --config webpack.config.js",
     "start": "node node_modules/http-server/bin/http-server -p 5000"
   },
   "homepage": "http://tomo.pagu.co",
@@ -28,17 +30,20 @@
     "file-loader": "^0.8.5",
     "http-server": "^0.9.0",
     "radium": "^0.17.1",
-    "radium-loader": "^1.0.9",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "style-loader": "^0.13.1",
-    "webpack": "^1.12.15"
+    "webpack": "^1.12.15",
+    "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "color": "^0.11.1",
     "es6-promise": "^3.1.2",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.12.0",
     "radium-normalize": "^2.0.0",
+    "react-fitter-happier-text": "^1.0.2",
+    "reflexbox": "^1.1.0",
     "twitter-text": "^1.13.4"
   }
 }

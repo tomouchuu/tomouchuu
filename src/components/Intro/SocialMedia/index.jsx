@@ -2,12 +2,6 @@ import React from 'react';
 
 import Radium from 'radium';
 
-// const propTypes = {
-// 	link: React.PropTypes.string,
-// 	network: React.PropTypes.string.isRequired,
-// 	color: React.PropTypes.string.isRequired,
-// };
-
 const state = {
 	link: '',
 	network: 'user',
@@ -106,8 +100,6 @@ class SocialMedia extends React.Component {
 		);
 	}
 }
-
-// SocialMedia.propTypes = propTypes;
 
 SocialMedia = Radium(SocialMedia); // eslint-disable-line
 
