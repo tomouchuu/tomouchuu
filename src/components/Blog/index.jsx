@@ -1,8 +1,17 @@
 import React from 'react';
+import Radium from 'radium';
 
 const state = {
 	enabled: false,
 	content: 'Loading...',
+};
+
+const styles = {
+	base: {
+		background: '#e8b00c',
+		color: '#fff',
+		padding: 15,
+	},
 };
 
 class Blog extends React.Component {
@@ -35,7 +44,7 @@ class Blog extends React.Component {
 	render() {
 		if (this.state.enabled === true) {
 			return (
-				<div id="blog">
+				<div id="blog" style={styles.base}>
 					<div id="blog-area">
 						<div className="blog-title">
 							<h3>Latest Blog Post - { this.state.title }</h3>
@@ -54,5 +63,7 @@ class Blog extends React.Component {
 		);
 	}
 }
+
+Blog = Radium(Blog); //eslint-disable-line
 
 export default Blog;

@@ -1,4 +1,5 @@
 import React from 'react';
+import Radium from 'radium';
 import moment from 'moment';
 
 const state = {
@@ -7,6 +8,12 @@ const state = {
 	work: {
 		company: 'Ahead4',
 		description: 'I make websites.',
+	},
+};
+
+const styles = {
+	base: {
+		padding: 15,
 	},
 };
 
@@ -34,7 +41,7 @@ class About extends React.Component {
 
 	render() {
 		return (
-			<div id="about">
+			<div id="about" style={styles.base}>
 				<div className="about-title">
 					<h1>Hello! I'm { this.state.name }</h1>
 				</div>
@@ -64,5 +71,7 @@ class About extends React.Component {
 		);
 	}
 }
+
+About = Radium(About); //eslint-disable-line
 
 export default About;

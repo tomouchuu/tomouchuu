@@ -1,7 +1,11 @@
 import React from 'react';
 
-import LatestTweet from './LatestTweet.jsx';
-import LatestInstagram from './LatestInstagram.jsx';
+import LatestTweet from './LatestTweet/index.jsx';
+import LatestInstagram from './LatestInstagram/index.jsx';
+import SocialMedia from './SocialMedia/index.jsx';
+
+import { Style } from 'radium';
+import radiumObject from './Intro.css';
 
 const propTypes = {
 	me: React.PropTypes.object.isRequired,
@@ -24,10 +28,10 @@ class Intro extends React.Component {
 		}
 	}
 
-
 	render() {
 		return (
-			<div id="intro">
+			<div className="intro">
+				<Style rules={ radiumObject } />
 				<div id="intro--videos"></div>
 				<div className="intro--content">
 					<div className="intro--row">
@@ -40,49 +44,26 @@ class Intro extends React.Component {
 						</div>
 					</div>
 					<div className="intro--content__social-media">
-						<a
-							href={ this.props.me.contact.twitter }
-							title="Follow me on Twitter"
-							className="twitter-logo"
-							target="_blank"
-						>
-							<span className="fa-stack fa-lg">
-								<i className="fa fa-square fa-stack-2x"></i>
-								<i className="fa fa-stack-1x fa-inverse fa-twitter"></i>
-							</span>
-						</a>
-						<a
-							href={ this.props.me.contact.instagram }
-							title="Follow me on Instagram"
-							className="instagram-logo"
-							target="_blank"
-						>
-							<span className="fa-stack fa-lg">
-								<i className="fa fa-square fa-stack-2x"></i>
-								<i className="fa fa-stack-1x fa-inverse fa-instagram"></i>
-							</span>
-						</a>
-						<a
-							href={ this.props.me.contact.github }
-							title="Follow me on Github"
-							className="github-logo"
-							target="_blank"
-						>
-							<span className="fa-stack fa-lg">
-								<i className="fa fa-square fa-stack-2x"></i>
-								<i className="fa fa-stack-1x fa-inverse fa-github"></i>
-							</span>
-						</a>
-						<a
-							href={`mailto:${this.props.me.contact.email}`}
-							title="Email Me"
-							className="email-logo"
-						>
-							<span className="fa-stack fa-lg">
-								<i className="fa fa-square fa-stack-2x"></i>
-								<i className="fa fa-stack-1x fa-inverse fa-envelope"></i>
-							</span>
-						</a>
+						<SocialMedia
+							link={ this.props.me.contact.twitter }
+							network="twitter"
+							color="#55acee"
+						/>
+						<SocialMedia
+							link={ this.props.me.contact.instagram }
+							network="instagram"
+							color="#3f729b"
+						/>
+						<SocialMedia
+							link={ this.props.me.contact.github }
+							network="github"
+							color="#333333"
+						/>
+						<SocialMedia
+							link={`mailto:${this.props.me.contact.email}`}
+							network="envelope"
+							color="#db4437"
+						/>
 					</div>
 				</div>
 			</div>

@@ -42,7 +42,10 @@ class LatestTweet extends React.Component {
 			return (
 				<div className="lastTweeted">
 					<p className="twitter-title">I last tweeted...</p>
-					<p className="tweet"><span dangerouslySetInnerHTML={{ __html: this.state.tweet }} /> <small><a href={`https://twitter.com/${this.state.user}/status/${this.state.tweetId}`}>{ this.state.createdAt }</a></small></p>
+					<p className="tweet">
+						<span dangerouslySetInnerHTML={{ __html: this.state.tweet }} /><br />
+						<small><a href={`https://twitter.com/${this.state.user}/status/${this.state.tweetId}`}>{ this.state.createdAt }</a></small>
+					</p>
 				</div>
 			);
 		}

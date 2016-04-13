@@ -19,6 +19,15 @@ module.exports = {
 				loader: 'babel-loader',
 				exclude: /node_modules/,
 			},
+			{
+				test: /\.css$/,
+				loader: 'radium-loader!css-loader',
+				exclude: /node_modules/,
+			},
+			{
+				test: /\.jpg$/,
+				loader: 'file-loader',
+			},
 		],
 	},
 };

@@ -3,6 +3,10 @@ import { config } from './../../config';
 import React from 'react';
 import { render } from 'react-dom';
 
+import { Style } from 'radium';
+// import normalize from 'radium-normalize';
+import radiumObject from './app.css';
+
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -87,9 +91,12 @@ class App extends React.Component {
 			});
 	}
 
+	// <Style rules={[normalize, radiumObject]} />
+
 	render() {
 		return (
-			<div className="app">
+			<div>
+				<Style rules={radiumObject} />
 				<Intro
 					me={ this.state.me }
 					instagramData={ this.state.instagramData }
