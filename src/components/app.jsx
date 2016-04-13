@@ -1,76 +1,84 @@
-var config = require('../../config.js');
+import { config } from './../../config';
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-var $ = require('jquery');
+import React from 'react';
+import { render } from 'react-dom';
 
-var Intro = require('./intro/index.jsx');
-var About = require('./about/index.jsx');
-var Blog = require('./blog/index.jsx');
-var Code = require('./code/index.jsx');
+import Color from 'color';
+const color = Color;
 
-var App = React.createClass({
+import { Style } from 'radium';
+// import normalize from 'radium-normalize';
 
-	getInitialState: function () {
-		return {
-			me: {
-				name: '',
-				contact: {},
-			},
-			blogpost: {},
-			twitterData: {
-				tweets: [],
-			},
-			instagramData: {
-				photos: [],
-			},
-			githubData: {},
-			videos: [],
-		};
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
+
+import Intro from './Intro/index.jsx';
+import About from './About/index.jsx';
+import Blog from './Blog/index.jsx';
+import Code from './Code/index.jsx';
+
+const state = {
+	me: {
+		name: '',
+		contact: {},
 	},
+	blogpost: {},
+	twitterData: {
+		tweets: [],
+	},
+	instagramData: {
+		photos: [],
+	},
+	githubData: {},
+	videos: [],
+};
 
-	componentDidMount: function () {
-		$.ajax({
-			url: config.api,
-			dataType: 'json',
-			cache: true,
-			success: function (data) {
-				if (this.isMounted()) {
-					this.setState({
-						me: data.me,
-					});
-				}
-			}.bind(this),
-			error: function (xhr, status, err) {
-				console.log(this.props.url, status, err.toString());
-			}.bind(this),
-		});
+const fontFamily = '"Avenir Next", "Helvetica Neue", Helvetica, Arial, Roboto, "Droid Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif'; // eslint-disable-line
+const styles = {
+	body: {
+		backgroundColor: '#fff',
+		fontFamily,
+		color: '#111',
+	},
+	a: {
+		color: '#aa201d',
+		transition: 'all 0.2s',
+	},
+	'a:hover': {
+		color: color('#aa201d').lighten(0.5).rgbString(),
+		transition: 'all 0.2s',
+	},
+};
 
-		$.ajax({
-			url: 'https://blog.tomo.pagu.co/api/latest',
-			dataType: 'json',
-			cache: true,
-			success: function (data) {
-				if (this.isMounted()) {
-					this.setState({
-						blogpost: data.blogpost,
-					});
-				}
-			}.bind(this),
-			error: function (xhr, status) {
-				console.log('https://blog.tomo.pagu.co/api/latest', status);
-			}.bind(this),
-		});
+class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = state;
+	}
 
-		// Get my Instagram Data
-		$.ajax({
-			url: config.api + '/instagram',
-			dataType: 'json',
-			cache: true,
-			success: function (data) {
-				var instagramData = data.photos;
-				var item;
-				var videos = [];
+	componentDidMount() {
+		fetch(config.api)
+			.then((response) => response.json())
+			.then((data) => {
+				this.setState({
+					me: data.me,
+				});
+			});
+
+		fetch('https://blog.tomo.pagu.co/api/latest')
+			.then((response) => response.json())
+			.then((data) => {
+				this.setState({
+					blogpost: data.blogpost,
+				});
+			});
+
+		fetch(`${config.api}/instagram`)
+			.then((response) => response.json())
+			.then((data) => {
+				const instagramData = data.photos;
+				let item;
+				const videos = [];
 
 				for (item of instagramData) {
 					if (item.type === 'video') {
@@ -78,58 +86,36 @@ var App = React.createClass({
 					}
 				}
 
-				if (this.isMounted()) {
-					this.setState({
-						instagramData: data,
-						videos: videos,
-					});
-				}
-			}.bind(this),
-			error: function (xhr, status, err) {
-				console.log(this.props.url, status, err.toString());
-			}.bind(this),
-		});
+				this.setState({
+					instagramData: data,
+					videos,
+				});
+			});
 
-		// Get my Twitter Data
-		$.ajax({
-			url: config.api + '/twitter',
-			dataType: 'json',
-			cache: true,
-			success: function (data) {
-				if (this.isMounted()) {
-					this.setState({
-						twitterData: data,
-					});
-				}
-			}.bind(this),
-			error: function (xhr, status, err) {
-				console.log(this.props.url, status, err.toString());
-			}.bind(this),
-		});
+		fetch(`${config.api}/twitter`)
+			.then((response) => response.json())
+			.then((data) => {
+				this.setState({
+					twitterData: data,
+				});
+			});
 
-		// Get my Github Data
-		$.ajax({
-			url: config.api + '/github',
-			dataType: 'json',
-			cache: true,
-			success: function (data) {
-				var githubData = data.slice(0, 10);
+		fetch(`${config.api}/github`)
+			.then((response) => response.json())
+			.then((data) => {
+				const githubData = data.slice(0, 10);
+				this.setState({
+					githubData,
+				});
+			});
+	}
 
-				if (this.isMounted()) {
-					this.setState({
-						githubData: githubData,
-					});
-				}
-			}.bind(this),
-			error: function (xhr, status, err) {
-				console.log(this.props.url, status, err.toString());
-			}.bind(this),
-		});
-	},
+	// <Style rules={[normalize, radiumObject]} />
 
-	render: function () {
+	render() {
 		return (
-			<div className="react-app">
+			<div>
+				<Style rules={ styles } />
 				<Intro
 					me={ this.state.me }
 					instagramData={ this.state.instagramData }
@@ -141,11 +127,7 @@ var App = React.createClass({
 				<Code githubData={ this.state.githubData } />
 			</div>
 		);
-	},
+	}
+}
 
-});
-
-ReactDOM.render(
-	<App />,
-	document.getElementById('app')
-);
+render(<App />, document.getElementById('app'));
