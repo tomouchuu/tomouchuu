@@ -37,13 +37,7 @@ const styles = {
 		background: 'rgba(0, 0, 0, 0.5)',
 		borderRadius: 10,
 		color: '#fff',
-		// padding: 15,
-		// position: 'relative',
 		zIndex: 100,
-		// width: '40%',
-		// margin: '0 auto',
-		// top: '50%',
-		// transform: 'translateY(-50%)',
 	},
 	'.intro--content__title': {
 		borderRight: '1px dashed #fff',
