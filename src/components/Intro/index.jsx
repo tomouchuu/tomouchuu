@@ -1,4 +1,7 @@
 import React from 'react';
+import { render } from 'react-dom';
+
+import ReactDriveIn from 'react-drive-in';
 
 import { Flex, Box } from 'reflexbox';
 
@@ -21,6 +24,14 @@ const styles = {
 		backgroundPosition: 'center',
 		height: 550,
 		overflow: 'hidden',
+	},
+	'#intro--videos': {
+		height: 550,
+		overflow: 'hidden',
+		position: 'absolute',
+		left: 0,
+		top: 0,
+		width: '100%',
 	},
 	'.intro--content': {
 		background: 'rgba(0, 0, 0, 0.5)',
@@ -48,24 +59,14 @@ const styles = {
 	},
 };
 
-// const mobileIntroContentStyle = {
-// 	'@media (min-width: 768px)': {
-// 		width: '90%',
-// 	},
-// };
-
 class Intro extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.videos.length > 0) {
-			// ReactDOM.render(
-			// 	<DriveIn
-			// 		showPlaylist={ nextProps.videos }
-			// 		loop={true}
-			// 		slideshow={false}
-			// 		mute={true}
-			// 	/>,
-			// 	document.getElementById('intro-videos')
-			// );
+			render(<ReactDriveIn
+				showPlaylist={ nextProps.videos }
+				loop
+				mute
+			/>, document.getElementById('intro--videos'));
 		}
 	}
 
