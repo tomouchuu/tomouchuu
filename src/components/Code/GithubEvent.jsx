@@ -65,6 +65,7 @@ const styles = {
 	},
 	'.github-content': {
 		marginTop: -30,
+		wordBreak: 'break-word',
 	},
 	'.github-commits': {
 		listStyle: 'none',

@@ -43,8 +43,8 @@ class Code extends React.Component {
 					<div className="code-title">
 						<FitterHappierText text="Code" />
 					</div>
-					<Flex md>
-						<Box px={2} className="projects-area">
+					<Flex sm wrap>
+						<Box px={2} sm={6} md={9} className="projects-area">
 							<h3>Projects</h3>
 							<Project
 								ptitle="Oshimen"
@@ -77,7 +77,7 @@ class Code extends React.Component {
 								plink="https://github.com/tomopagu/start"
 							/>
 						</Box>
-						<Box px={2} md={4} className="github-area">
+						<Box px={2} sm={6} md={3} className="github-area">
 							<h3>Github</h3>
 							{ GithubEvents }
 						</Box>

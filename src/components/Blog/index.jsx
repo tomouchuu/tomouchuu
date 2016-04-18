@@ -14,6 +14,9 @@ const styles = {
 		color: '#fff',
 		padding: 15,
 	},
+	blogPost: {
+		wordBreak: 'break-word',
+	},
 };
 
 class Blog extends React.Component {
@@ -52,7 +55,7 @@ class Blog extends React.Component {
 							<FitterHappierText text="Latest Blog Post" />
 							<h3>{ this.state.title } - { this.state.date }</h3>
 						</div>
-						<div className="blog-snippet">
+						<div className="blog-snippet" style={styles.blogPost}>
 							<span dangerouslySetInnerHTML={{ __html: this.state.snippet }} />
 						</div>
 					</div>
