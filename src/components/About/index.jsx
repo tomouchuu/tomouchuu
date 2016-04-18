@@ -51,12 +51,12 @@ class About extends React.Component {
 					<p>
 						I'm a web developer from a sleepy village in Essex, England.
 						I'm { this.state.age } years old and I love making websites with a good handle
-						of front end technologies like HTML, CSS (&amp; some pre-processors like LESS,
+						of front end technologies like HTML, CSS (&amp; pre-processors like LESS,
 						SCSS, Stylus &amp; PostCSS) &amp; JS.
 					</p>
 					<p>
 						My language of choice personally would be an Express / Laravel Backend
-						and then either a Laravel / React frontend using SCSS/PostCSS for my CSS.
+						and then either a ReactJS / Laravel frontend using SCSS/PostCSS for my CSS.
 					</p>
 					<p>
 						I'm currently employed at { this.state.work.company }
