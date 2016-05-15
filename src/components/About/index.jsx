@@ -60,7 +60,7 @@ class About extends React.Component {
 					</p>
 					<p>
 						I'm currently employed at { this.state.work.company }
-						where { this.state.work.description }
+						&nbsp;where { this.state.work.description }
 					</p>
 					<p>
 						Outside of coding, you can find me on a Drum Kit banging away and
