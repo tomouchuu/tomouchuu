@@ -47,34 +47,24 @@ class Code extends React.Component {
 						<Box px={2} sm={6} md={9} className="projects-area">
 							<h3>Projects</h3>
 							<Project
-								ptitle="Oshimen"
-								pimage="assets/images/projects/oshimen.png"
+								ptitle="Start (スタート)"
+								pimage="assets/images/projects/start.png"
 								pdesc="
-									Oshimen is a webapp to easily showcase the idols that a user supports.
-									For example instead of just listing the idols,
-									oshimen gives a nice page you can link to.
+								This start page replaces your browser's new tab page
+								and is a nice looking alternative which can be customisable
+								with a few changes to the config file.
 								"
-								plink="https://oshimen.pagu.co"
+								plink="https://github.com/tomopagu/start"
 							/>
 							<Project
 								ptitle="Disbott"
 								pimage="assets/images/projects/disbott.png"
 								pdesc="
-									Disbott is a bot for Discord.
-									It's written in node and is primarily in use for some fun commands on mine
-									and friends' discord servers.
+								Disbott is a bot for Discord.
+								It's written in node and is primarily in use for some fun commands on mine
+								and friends' discord servers.
 								"
 								plink="https://disbott.pagu.co"
-							/>
-							<Project
-								ptitle="Start (スタート)"
-								pimage="assets/images/projects/start.png"
-								pdesc="
-									This start page replaces your browser's new tab page
-									and is a nice looking alternative which can be customisable
-									with a few changes to the config file.
-								"
-								plink="https://github.com/tomopagu/start"
 							/>
 						</Box>
 						<Box px={2} sm={6} md={3} className="github-area">
