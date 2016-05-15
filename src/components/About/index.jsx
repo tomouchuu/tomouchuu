@@ -68,6 +68,7 @@ class About extends React.Component {
 						playing video games with friends or
 						with my headphones in listening to the latest music coming out of Japan.
 					</p>
+					<p>You can find my CV on <a href="https://represent.io/tomo" target="_blank">Represent.io</a> and in <a href="https://represent.io/tomo.pdf" target="_blank">PDF form</a></p>
 				</div>
 			</div>
 		);
