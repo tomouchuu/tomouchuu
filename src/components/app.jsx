@@ -103,7 +103,7 @@ class App extends React.Component {
 		fetch(`${config.api}/github`)
 			.then((response) => response.json())
 			.then((data) => {
-				const githubData = data.slice(0, 10);
+				const githubData = data.slice(0, 7);
 				this.setState({
 					githubData,
 				});
