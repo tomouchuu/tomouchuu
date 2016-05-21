@@ -18,22 +18,24 @@ class LatestTweet extends React.Component {
 
 	componentWillReceiveProps(update) {
 		if (typeof update.twitterData.tweets !== 'undefined') {
-			const tweetData = update.twitterData.tweets[0];
+			if (update.twitterData.tweets.length > 0) {
+				const tweetData = update.twitterData.tweets[0];
 
-			const tweet = twitter.autoLink(tweetData.text);
+				const tweet = twitter.autoLink(tweetData.text);
 
-			const relativeTimeCreated = moment(
-				tweetData.created_at,
-				'dd MMM DD HH:mm:ss ZZ YYYY'
-			).fromNow();
+				const relativeTimeCreated = moment(
+					tweetData.created_at,
+					'dd MMM DD HH:mm:ss ZZ YYYY'
+				).fromNow();
 
-			this.setState({
-				enabled: true,
-				tweet,
-				user: tweetData.user.screen_name,
-				tweetId: tweetData.id_str,
-				createdAt: relativeTimeCreated,
-			});
+				this.setState({
+					enabled: true,
+					tweet,
+					user: tweetData.user.screen_name,
+					tweetId: tweetData.id_str,
+					createdAt: relativeTimeCreated,
+				});
+			}
 		}
 	}
 

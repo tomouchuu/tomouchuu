@@ -15,14 +15,16 @@ class LatestInstagram extends React.Component {
 	}
 
 	componentWillReceiveProps(update) {
-		const lastPhoto = update.instagramData.photos[0];
-		const relativeTimeCreated = moment.unix(lastPhoto.created_time).fromNow();
-		this.setState({
-			link: lastPhoto.link,
-			image: lastPhoto.images.thumbnail,
-			caption: lastPhoto.caption.text,
-			createdAt: relativeTimeCreated,
-		});
+		if (update.instagramData.photos.length > 0) {
+			const lastPhoto = update.instagramData.photos[0];
+			const relativeTimeCreated = moment.unix(lastPhoto.created_time).fromNow();
+			this.setState({
+				link: lastPhoto.link,
+				image: lastPhoto.images.thumbnail,
+				caption: lastPhoto.caption.text,
+				createdAt: relativeTimeCreated,
+			});
+		}
 	}
 
 	render() {

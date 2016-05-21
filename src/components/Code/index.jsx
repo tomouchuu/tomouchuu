@@ -27,9 +27,11 @@ class Code extends React.Component {
 	}
 
 	componentWillReceiveProps(update) {
-		this.setState({
-			events: update.githubData,
-		});
+		if (Object.getOwnPropertyNames(update.githubData).length > 0) {
+			this.setState({
+				events: update.githubData,
+			});
+		}
 	}
 
 	render() {

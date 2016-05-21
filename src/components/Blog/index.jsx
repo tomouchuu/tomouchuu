@@ -31,19 +31,21 @@ class Blog extends React.Component {
 		const content = update.post.content;
 		const url = update.post.file;
 
-		const paragraphs = content.split('</p>');
+		if (Object.getOwnPropertyNames(update.post).length > 0) {
+			const paragraphs = content.split('</p>');
 
-		let snippet = `${paragraphs[0]}</p>`;
-		snippet += `${paragraphs[1]}</p>`;
-		snippet += `<a href="https://blog.tomo.pagu.co/show/${url}" title="Read ${title}">Read More...</a>`;
+			let snippet = `${paragraphs[0]}</p>`;
+			snippet += `${paragraphs[1]}</p>`;
+			snippet += `<a href="https://blog.tomo.pagu.co/show/${url}" title="Read ${title}">Read More...</a>`;
 
-		this.setState({
-			enabled: true,
-			title,
-			date,
-			snippet,
-			url,
-		});
+			this.setState({
+				enabled: true,
+				title,
+				date,
+				snippet,
+				url,
+			});
+		}
 	}
 
 	render() {
