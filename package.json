@@ -12,7 +12,7 @@
   },
   "scripts": {
     "run": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --inline",
-    "build": "export NODE_ENV=production && ./node_modules/webpack/bin/webpack.js -p --config webpack.config.js",
+    "build": "./node_modules/webpack/bin/webpack.js -p --config webpack.config.js",
     "start": "node node_modules/http-server/bin/http-server -p 5000"
   },
   "homepage": "http://tomo.pagu.co",
@@ -37,9 +37,9 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "http-server": "^0.9.0",
     "color": "^0.11.1",
     "es6-promise": "^3.1.2",
+    "http-server": "^0.9.0",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.12.0",
     "radium-normalize": "^2.0.0",
