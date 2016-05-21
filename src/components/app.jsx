@@ -110,8 +110,6 @@ class App extends React.Component {
 			});
 	}
 
-	// <Style rules={[normalize, radiumObject]} />
-
 	render() {
 		return (
 			<div>
