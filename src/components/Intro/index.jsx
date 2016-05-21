@@ -19,7 +19,7 @@ const propTypes = {
 
 const styles = {
 	'.intro': {
-		background: 'url("/assets/images/bg.jpg") 0 0 scroll no-repeat #aa201d',
+		background: 'url("/assets/images/bg.jpeg") 0 0 scroll no-repeat #aa201d',
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
 		height: 550,
