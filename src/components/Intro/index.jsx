@@ -47,6 +47,10 @@ const styles = {
 		marginRight: 10,
 		paddingRight: 15,
 	},
+	'.intro--content__title__fullwidth': {
+		borderRight: 'none',
+		width: '100%',
+	},
 	'.intro--content__social-media': {
 		textAlign: 'center',
 		paddingTop: 16,
@@ -65,21 +69,25 @@ class Intro extends React.Component {
 	}
 
 	render() {
+		const titleFullWidth = (this.props.twitterData.enabled === false && this.props.instagramData.enabled === false) ? 'intro--content__title__fullwidth' : ''; //eslint-disable-line
+		const hideHappenings = (this.props.twitterData.enabled === false && this.props.instagramData.enabled === false) ? 'hide' : ''; //eslint-disable-line
+		const hideSocial = (this.props.me.contact.twitter === undefined && this.props.me.contact.instagram === undefined && this.props.me.contact.github === undefined && this.props.me.contact.email === undefined) ? 'hide' : ''; //eslint-disable-line
+
 		return (
 			<Flex align="center" justify="center" className="intro">
 				<Style rules={ styles } />
 				<div id="intro--videos"></div>
 				<Box className="intro--content" p={2} sm={11} md={5}>
 					<Flex align="center">
-						<Box px={2} className="intro--content__title">
+						<Box px={2} className={ `intro--content__title ${titleFullWidth}` }>
 							<h1>とも</h1>
 						</Box>
-						<Box px={2} auto className="intro--content__latest-happenings">
+						<Box px={2} auto className={ `intro--content__latest-happenings ${hideHappenings}` }>
 							<LatestTweet twitterData={ this.props.twitterData } />
 							<LatestInstagram instagramData={ this.props.instagramData } />
 						</Box>
 					</Flex>
-					<div className="intro--content__social-media">
+					<div className={ `intro--content__social-media ${hideSocial}` }>
 						<SocialMedia
 							link={ this.props.me.contact.twitter }
 							network="twitter"

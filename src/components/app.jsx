@@ -24,12 +24,17 @@ const state = {
 	},
 	blogpost: {},
 	twitterData: {
+		enabled: false,
 		tweets: [],
 	},
 	instagramData: {
+		enabled: false,
 		photos: [],
 	},
-	githubData: {},
+	githubData: {
+		enabled: false,
+		data: {},
+	},
 	videos: [],
 };
 
@@ -48,6 +53,9 @@ const styles = {
 		color: color('#aa201d').lighten(0.5).rgbString(),
 		transition: 'all 0.2s',
 	},
+	'.hide': {
+		display: 'none',
+	},
 };
 
 class App extends React.Component {
@@ -57,7 +65,24 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
+		function handleErrors(response, area = null) {
+			if (!response.ok) {
+				console.log(response.statusText); //eslint-disable-line
+			} else {
+				console.log(area); //eslint-disable-line
+				if (area !== null) {
+					this.setState({
+						[area]: {
+							enabled: true,
+						},
+					});
+				}
+			}
+			return response;
+		}
+
 		fetch(config.api)
+			.then(handleErrors)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -66,6 +91,7 @@ class App extends React.Component {
 			});
 
 		fetch('https://blog.tomo.pagu.co/api/latest')
+			.then(handleErrors)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -74,6 +100,7 @@ class App extends React.Component {
 			});
 
 		fetch(`${config.api}/instagram`)
+			.then(handleErrors, 'instagramData')
 			.then((response) => response.json())
 			.then((data) => {
 				const instagramData = data.photos;
@@ -93,6 +120,7 @@ class App extends React.Component {
 			});
 
 		fetch(`${config.api}/twitter`)
+			.then(handleErrors, 'twitterData')
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -101,6 +129,7 @@ class App extends React.Component {
 			});
 
 		fetch(`${config.api}/github`)
+			.then(handleErrors, 'githubData')
 			.then((response) => response.json())
 			.then((data) => {
 				const githubData = data.slice(0, 7);

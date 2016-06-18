@@ -7,6 +7,10 @@ import { Flex, Box } from 'reflexbox';
 import GithubEvent from './GithubEvent.jsx';
 import Project from './Project.jsx';
 
+const propTypes = {
+	githubData: React.PropTypes.object.isRequired,
+};
+
 const state = {
 	events: [],
 };
@@ -17,6 +21,9 @@ const style = {
 	},
 	area: {
 		padding: 15,
+	},
+	fullwidth: {
+		width: '100%',
 	},
 };
 
@@ -39,6 +46,9 @@ class Code extends React.Component {
 			<GithubEvent data={ eventData } key={ eventData.id } />
 		));
 
+		const githubEnabledProjects = (this.props.githubData.enabled === false) ? 12 : 9; //eslint-disable-line
+		const githubEnabledCode = (this.props.githubData.enabled === false) ? 'hide' : '';
+
 		return (
 			<div id="code" style={ style.base }>
 				<div id="code-area" style={ style.area }>
@@ -46,7 +56,7 @@ class Code extends React.Component {
 						<FitterHappierText text="Code" />
 					</div>
 					<Flex sm wrap>
-						<Box px={2} sm={6} md={9} className="projects-area">
+						<Box px={2} sm={githubEnabledProjects}>
 							<h3>Projects</h3>
 							<Project
 								ptitle="Start (スタート)"
@@ -69,7 +79,7 @@ class Code extends React.Component {
 								plink="https://disbott.pagu.co"
 							/>
 						</Box>
-						<Box px={2} sm={6} md={3} className="github-area">
+						<Box px={2} sm={3} className={ `github-area ${githubEnabledCode}` }>
 							<h3>Github</h3>
 							{ GithubEvents }
 						</Box>
@@ -81,5 +91,7 @@ class Code extends React.Component {
 }
 
 Code = Radium(Code); //eslint-disable-line
+
+Code.propTypes = propTypes;
 
 export default Code;
