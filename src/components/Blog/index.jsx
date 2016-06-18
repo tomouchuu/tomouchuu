@@ -1,3 +1,5 @@
+import { config } from './../../../config';
+
 import React from 'react';
 import Radium from 'radium';
 
@@ -36,7 +38,7 @@ class Blog extends React.Component {
 
 			let snippet = `${paragraphs[0]}</p>`;
 			snippet += `${paragraphs[1]}</p>`;
-			snippet += `<a href="https://blog.tomo.pagu.co/show/${url}" title="Read ${title}">Read More...</a>`;
+			snippet += `<a href="${config.blog}/show/${url}" title="Read ${title}">Read More...</a>`;
 
 			this.setState({
 				enabled: true,

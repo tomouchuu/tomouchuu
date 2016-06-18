@@ -90,7 +90,7 @@ class App extends React.Component {
 				});
 			});
 
-		fetch('https://blog.tomo.pagu.co/api/latest')
+		fetch(`${config.blog}/api/latest`)
 			.then(handleErrors)
 			.then((response) => response.json())
 			.then((data) => {
