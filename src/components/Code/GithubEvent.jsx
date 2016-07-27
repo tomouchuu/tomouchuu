@@ -135,7 +135,7 @@ function GithubEvent({ data }) {
 			<li key={i}>
 				<span className="octicon octicon-git-commit"></span>
 				{` ${commit.message} `}
-				<small><a href={ commit.url } title="View Commit">View Commit</a></small>
+				<small><a href={`https://github.com/${data.repo.name}/commit/${commit.sha}`} title="View Commit">View Commit</a></small>
 			</li>
 		));
 	}
@@ -151,7 +151,7 @@ function GithubEvent({ data }) {
 			</div>
 			<div className="github-content">
 				<h4>
-					<a href={ data.repo.url } title="View Repo">
+					<a href={`https://github.com/${data.repo.name}`} title="View Repo">
 						{ data.repo.name }
 					</a>
 				</h4>
