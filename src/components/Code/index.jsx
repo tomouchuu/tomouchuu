@@ -61,6 +61,16 @@ class Code extends React.Component {
 						<Box px={2} sm={githubEnabledProjects}>
 							<h3>Projects</h3>
 							<Project
+								ptitle="Disbott"
+								pimage="assets/images/projects/disbott.png"
+								pdesc="
+								Disbott is a bot for Discord.
+								It's written in node and is primarily in use for some fun commands on mine
+								and friends' discord servers.
+								"
+								plink="https://disbott.pagu.co"
+							/>
+							<Project
 								ptitle="Start (スタート)"
 								pimage="assets/images/projects/start.png"
 								pdesc="
@@ -71,14 +81,13 @@ class Code extends React.Component {
 								plink="https://github.com/tomopagu/start"
 							/>
 							<Project
-								ptitle="Disbott"
-								pimage="assets/images/projects/disbott.png"
+								ptitle="Z E N"
+								pimage="assets/images/projects/zen.png"
 								pdesc="
-								Disbott is a bot for Discord.
-								It's written in node and is primarily in use for some fun commands on mine
-								and friends' discord servers.
+								A webpage to display a thoughtful message everyday. It also exposes an API.
+								Uses express & handlebars.
 								"
-								plink="https://disbott.pagu.co"
+								plink="https://github.com/tomopagu/zen"
 							/>
 						</Box>
 						<Box px={2} sm={3} className={ `github-area ${githubEnabledCode}` }>
