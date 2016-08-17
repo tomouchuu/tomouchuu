@@ -10,6 +10,7 @@ import LatestInstagram from './LatestInstagram/index.jsx';
 import SocialMedia from './SocialMedia/index.jsx';
 
 import { Style } from 'radium';
+import clrs from './../../styles/clrs';
 
 const propTypes = {
 	me: React.PropTypes.object.isRequired,
@@ -19,7 +20,7 @@ const propTypes = {
 
 const styles = {
 	'.intro': {
-		background: 'url("/assets/images/bg.jpeg") 0 0 scroll no-repeat #aa201d',
+		background: `url("/assets/images/bg.jpeg") 0 0 scroll no-repeat ${clrs.red}`,
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
 		height: 550,
@@ -36,11 +37,11 @@ const styles = {
 	'.intro--content': {
 		background: 'rgba(0, 0, 0, 0.5)',
 		borderRadius: 10,
-		color: '#fff',
+		color: clrs.white,
 		zIndex: 100,
 	},
 	'.intro--content__title': {
-		borderRight: '1px dashed #fff',
+		borderRight: `1px dashed ${clrs.white}`,
 		fontSize: '2.5em',
 		textAlign: 'center',
 		float: 'left',

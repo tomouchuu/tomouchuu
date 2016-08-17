@@ -7,7 +7,7 @@ import Color from 'color';
 const color = Color;
 
 import { Style } from 'radium';
-// import normalize from 'radium-normalize';
+import clrs from './../styles/clrs';
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -41,16 +41,16 @@ const state = {
 const fontFamily = '"Avenir Next", "Helvetica Neue", Helvetica, Arial, Roboto, "Droid Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif'; // eslint-disable-line
 const styles = {
 	body: {
-		backgroundColor: '#fff',
+		backgroundColor: clrs.white,
 		fontFamily,
-		color: '#111',
+		color: clrs.black,
 	},
 	a: {
-		color: '#aa201d',
+		color: clrs.red,
 		transition: 'all 0.2s',
 	},
 	'a:hover': {
-		color: color('#aa201d').lighten(0.5).rgbString(),
+		color: color(clrs.red).lighten(0.5).rgbString(),
 		transition: 'all 0.2s',
 	},
 	'.hide': {

@@ -3,6 +3,8 @@ import { config } from './../../../config';
 import React from 'react';
 import Radium from 'radium';
 
+import clrs from './../../styles/clrs';
+
 import FitterHappierText from 'react-fitter-happier-text';
 
 const state = {
@@ -12,8 +14,7 @@ const state = {
 
 const styles = {
 	base: {
-		background: '#e8b00c',
-		color: '#fff',
+		background: clrs.aqua,
 		padding: 15,
 	},
 	blogPost: {

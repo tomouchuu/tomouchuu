@@ -1,6 +1,8 @@
 import React from 'react';
 import Radium from 'radium';
 
+import clrs from './../../styles/clrs';
+
 import FitterHappierText from 'react-fitter-happier-text';
 import { Flex, Box } from 'reflexbox';
 
@@ -17,7 +19,7 @@ const state = {
 
 const style = {
 	base: {
-		backgroundColor: '#ace1af',
+		backgroundColor: clrs.teal,
 	},
 	area: {
 		padding: 15,
