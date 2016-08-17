@@ -20,6 +20,10 @@ const styles = {
 		marginLeft: -40,
 		marginTop: 33,
 	},
+	'.mega-octicon.octicon-repo': {
+		marginLeft: -39,
+		marginTop: 34,
+	},
 	'.mega-octicon.octicon-git-branch': {
 		marginLeft: -34,
 		marginTop: 31,
@@ -113,6 +117,9 @@ function GithubEvent({ data }) {
 		} else if (data.payload.ref_type === 'branch') {
 			eventType = 'octicon-git-branch';
 			eventMessage = `Created Branch ${data.payload.ref}`;
+		} else if (data.payload.ref_type === 'repository') {
+			eventType = 'octicon-repo';
+			eventMessage = `Created ${data.payload.ref_type}`;
 		}
 	} else if (data.type === 'MemberEvent') {
 		if (data.payload.action === 'added') {
