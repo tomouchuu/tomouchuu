@@ -38,7 +38,8 @@ const state = {
 	videos: [],
 };
 
-const fontFamily = '"Avenir Next", "Helvetica Neue", Helvetica, Arial, Roboto, "Droid Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif'; // eslint-disable-line
+const fontFamily = '"-apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif'; // eslint-disable-line
+
 const styles = {
 	body: {
 		backgroundColor: clrs.white,
@@ -95,7 +96,7 @@ class App extends React.Component {
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
-					blogpost: data.blogpost,
+					blogpost: data,
 				});
 			});
 
