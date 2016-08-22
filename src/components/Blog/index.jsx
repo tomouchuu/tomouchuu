@@ -39,7 +39,7 @@ class Blog extends React.Component {
 
 			let snippet = `${paragraphs[0]}</p>`;
 			snippet += `${paragraphs[1]}</p>`;
-			snippet += `<a href="${config.blog}/show/${url}" title="Read ${title}">Read More...</a>`;
+			snippet += `<a href="${config.blog}/${url}" title="Read ${title}">Read More...</a>`;
 
 			this.setState({
 				enabled: true,
