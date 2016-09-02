@@ -81,7 +81,7 @@ class Intro extends React.Component {
 				<Box className="intro--content" p={2} sm={11} md={5}>
 					<Flex align="center">
 						<Box px={2} className={ `intro--content__title ${titleFullWidth}` }>
-							<h1>とも</h1>
+							<h1>トモ</h1>
 						</Box>
 						<Box px={2} auto className={ `intro--content__latest-happenings ${hideHappenings}` }>
 							<LatestTweet twitterData={ this.props.twitterData } />
