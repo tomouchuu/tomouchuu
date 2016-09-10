@@ -8,14 +8,17 @@ const state = {
 	age: '22',
 	name: 'Thomas Moore',
 	work: {
-		company: 'Ahead4',
-		description: 'I make websites.',
+		company: 'reed.co.uk',
+		description: 'I work on the jobseeker site.',
 	},
 };
 
 const styles = {
 	base: {
 		padding: 15,
+	},
+	showCV: {
+		display: 'none',
 	},
 };
 
@@ -68,7 +71,7 @@ class About extends React.Component {
 						playing video games with friends or
 						with my headphones in listening to the latest music coming out of Japan.
 					</p>
-					<p>You can find my CV on <a href="https://represent.io/tomo" target="_blank">Represent.io</a> and in <a href="https://represent.io/tomo.pdf" target="_blank">PDF form</a></p>
+					<p style={styles.showCV}>You can find my CV on <a href="https://represent.io/tomo" target="_blank">Represent.io</a> and in <a href="https://represent.io/tomo.pdf" target="_blank">PDF form</a></p>
 				</div>
 			</div>
 		);
