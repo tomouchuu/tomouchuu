@@ -68,7 +68,7 @@ class Code extends React.Component {
 								It's written in node and is primarily in use for some fun commands on mine
 								and friends' discord servers.
 								"
-								plink="https://disbott.pagu.co"
+								plink="https://github.com/paguco/disbott"
 							/>
 							<Project
 								ptitle="Start (スタート)"
@@ -85,7 +85,7 @@ class Code extends React.Component {
 								pimage="assets/images/projects/zen.png"
 								pdesc="
 								A webpage to display a thoughtful message everyday. It also exposes an API.
-								Uses express & handlebars.
+								Uses express &amp; handlebars.
 								"
 								plink="https://github.com/tomopagu/zen"
 							/>
