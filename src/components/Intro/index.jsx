@@ -105,6 +105,11 @@ class Intro extends React.Component {
 							color="#333333"
 						/>
 						<SocialMedia
+							link={ this.props.me.contact.trello }
+							network="trello"
+							color="#0079bf"
+						/>
+						<SocialMedia
 							link={`mailto:${this.props.me.contact.email}`}
 							network="envelope"
 							color="#db4437"
