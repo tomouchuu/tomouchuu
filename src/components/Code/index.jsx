@@ -68,7 +68,7 @@ class Code extends React.Component {
 								It's written in node and is primarily in use for some fun commands on mine
 								and friends' discord servers.
 								"
-								plink="https://github.com/paguco/disbott"
+								plink="https://github.com/uchuuio/disbott"
 							/>
 							<Project
 								ptitle="Start (スタート)"
@@ -78,7 +78,7 @@ class Code extends React.Component {
 								and is a nice looking alternative which can be customisable
 								with a few changes to the config file.
 								"
-								plink="https://github.com/tomopagu/start"
+								plink="https://github.com/tomouchuu/start"
 							/>
 							<Project
 								ptitle="Z E N"
@@ -87,7 +87,7 @@ class Code extends React.Component {
 								A webpage to display a thoughtful message everyday. It also exposes an API.
 								Uses express &amp; handlebars.
 								"
-								plink="https://github.com/tomopagu/zen"
+								plink="https://github.com/tomouchuu/zen"
 							/>
 						</Box>
 						<Box px={2} sm={3} className={ `github-area ${githubEnabledCode}` }>

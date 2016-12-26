@@ -4,18 +4,18 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://tomopagu@github.com/tomopagu/personal.git"
+    "url": "https://tomouchuu@github.com/tomouchuu/personal.git"
   },
-  "author": "tomo@pagu",
+  "author": "tomo@uchuu",
   "bugs": {
-    "url": "https://github.com/tomopagu/personal/issues"
+    "url": "https://github.com/tomouchuu/personal/issues"
   },
   "scripts": {
     "run": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --inline",
     "build": "./node_modules/webpack/bin/webpack.js -p --config webpack.config.js",
 	"deploy": "npm run build && ns"
   },
-  "homepage": "https://tomo.pagu.co",
+  "homepage": "https://tomo.uchuu.io",
   "devDependencies": {
     "babel-core": "^6.7.6",
     "babel-eslint": "^6.0.2",

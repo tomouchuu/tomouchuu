@@ -1,4 +1,4 @@
 export const config = {
-	api: 'https://api-tomo.pagu.co',
-	blog: 'https://blog-tomo.pagu.co',
+	api: 'https://api-tomo.uchuu.io',
+	blog: 'https://blog-tomo.uchuu.io',
 };
