@@ -15,6 +15,9 @@
     "build": "./node_modules/webpack/bin/webpack.js -p --config webpack.config.js",
 	"deploy": "npm run build && ns"
   },
+  "now": {
+	  "alias": "tomo.uchuu.io"
+  },
   "homepage": "https://tomo.uchuu.io",
   "devDependencies": {
     "babel-core": "^6.7.6",
