@@ -110,6 +110,11 @@ class Intro extends React.Component {
 							color="#0079bf"
 						/>
 						<SocialMedia
+							link={ this.props.me.contact.blog }
+							network="newspaper-o"
+							color="#7fdbff"
+						/>
+						<SocialMedia
 							link={`mailto:${this.props.me.contact.email}`}
 							network="envelope"
 							color="#db4437"

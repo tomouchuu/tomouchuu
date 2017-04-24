@@ -33,9 +33,17 @@ class SocialMedia extends React.Component {
 	}
 
 	componentWillReceiveProps(update) {
+		let title = `Follow me on ${update.network}!`;
+		if (update.network === 'envelope') {
+			title = 'Email me!';
+		} else if (update.network === 'newspaper-o') {
+			title = 'Check out my blog!';
+		}
+
 		this.setState({
 			link: update.link,
 			network: update.network,
+			title,
 			color: update.color,
 			styles: {
 				base: {
@@ -65,7 +73,7 @@ class SocialMedia extends React.Component {
 		return (
 			<a
 				href={ this.state.link }
-				title={`Follow me on ${this.state.network}`}
+				title={ this.state.title }
 				className={`icon icon__${this.state.network}`}
 				target="_blank"
 				style={ this.state.styles.base }
