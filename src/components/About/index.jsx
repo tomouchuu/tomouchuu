@@ -59,7 +59,7 @@ class About extends React.Component {
 					</p>
 					<p>
 						My language of choice personally would be an Express / Laravel Backend
-						and then either a ReactJS / Laravel frontend using SCSS/PostCSS for my CSS.
+						and then either a VueJS/ReactJS / Blade frontend using SCSS/PostCSS for my CSS.
 					</p>
 					<p>
 						I'm currently employed at { this.state.work.company }
