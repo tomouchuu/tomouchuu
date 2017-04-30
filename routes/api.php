@@ -20,6 +20,7 @@ Route::group(['prefix' => 'me'], function () {
     Route::get('/twitter', 'Api\MeController@twitter');
     Route::get('/instagram', 'Api\MeController@instagram');
     Route::get('/github', 'Api\MeController@github');
+    Route::get('/wanikani', 'Api\MeController@wanikani');
 });
 
 // Blog API

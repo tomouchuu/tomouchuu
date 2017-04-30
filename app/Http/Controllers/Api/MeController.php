@@ -7,6 +7,8 @@ use Tomo\Http\Controllers\Controller;
 
 use Twitter;
 use Instagram;
+use GuzzleHttp\Client;
+use GuzzleHttp\Promise;
 
 class MeController extends Controller
 {
@@ -53,5 +55,37 @@ class MeController extends Controller
         $response = $client->getHttpClient()->get('users/tomouchuu/events/public');
         $events     = \Github\HttpClient\Message\ResponseMediator::getContent($response);
         return response()->json($events);
+    }
+
+    public function wanikani() {
+        $client = new Client(['base_uri' => 'https://www.wanikani.com/api/user/'.env('WANIKANI_API_KEY', '').'/']);
+
+        // Initiate each request but do not block
+        $promises = [
+            'srs-distribution' => $client->getAsync('srs-distribution'),
+            'study-queue' => $client->getAsync('study-queue'),
+            'level-progression' => $client->getAsync('level-progression'),
+        ];
+
+        // Wait on all of the requests to complete. Throws a ConnectException
+        // if any of the requests fail
+        $results = Promise\unwrap($promises);
+
+        // Wait for the requests to complete, even if some of them fail
+        $results = Promise\settle($promises)->wait();
+
+        // Setup all the response data
+        $srs = json_decode($results['srs-distribution']['value']->getBody(), true);
+        $studyQueue = json_decode($results['study-queue']['value']->getBody(), true);
+        $levelProgression = json_decode($results['level-progression']['value']->getBody(), true);
+
+        $wanikani = [
+            'user-information' => $srs['user_information'],
+            'srs-distribution' => $srs['requested_information'],
+            'study-queue' => $studyQueue['requested_information'],
+            'level-progression' => $levelProgression['requested_information'],
+        ];
+
+        return response()->json($wanikani);
     }
 }

@@ -30,3 +30,8 @@ Route::get('/oshimen', function () {
 Route::get('/start', function () {
     return view('welcome');
 });
+
+// Wanikani Dashboard ?
+Route::get('/wk-dashboard', function () {
+    return view('welcome');
+});
