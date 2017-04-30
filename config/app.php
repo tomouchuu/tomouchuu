@@ -173,11 +173,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Tomo\Providers\AppServiceProvider::class,
+        Tomo\Providers\AuthServiceProvider::class,
+        // Tomo\Providers\BroadcastServiceProvider::class,
+        Tomo\Providers\EventServiceProvider::class,
+        Tomo\Providers\RouteServiceProvider::class,
 
     ],
 

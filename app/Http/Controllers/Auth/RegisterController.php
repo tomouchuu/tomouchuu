@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Tomo\Http\Controllers\Auth;
 
-use App\User;
-use App\Http\Controllers\Controller;
+use Tomo\User;
+use Tomo\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
