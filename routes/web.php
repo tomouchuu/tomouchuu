@@ -12,9 +12,7 @@
 */
 
 // Tomo Homepage
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MeController');
 
 // Tomo Blog
 Route::get('/blog', function () {
