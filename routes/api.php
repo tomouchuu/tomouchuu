@@ -25,15 +25,17 @@ Route::group(['prefix' => 'me'], function () {
 // Blog API
 // File system to markdown files
 Route::group(['prefix' => 'blog'], function () {
-    Route::get('/', function ()    {
-        return "GENERAL";
-    });
+    Route::get('/', 'Api\BlogController@get');
+    // Route::get('/', function ()    {
+    //     return "GENERAL";
+    // });
 });
 
 // Oshimen API
 // Get from twitter list (if name matches this == kami, else if name marches this == newentry, esle general)
 Route::group(['prefix' => 'oshimen'], function () {
-    Route::get('/', function ()    {
-        return "GENERAL";
-    });
+    Route::get('/', 'Api\OshimenController@get');
+    // Route::get('/', function ()    {
+    //     return "GENERAL";
+    // });
 });
