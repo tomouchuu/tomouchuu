@@ -5,6 +5,9 @@ namespace Tomo\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use Tomo\Http\Controllers\Controller;
 
+use Twitter;
+use Instagram;
+
 class MeApiController extends Controller
 {
     public function me() {
@@ -37,11 +40,12 @@ class MeApiController extends Controller
     }
 
     public function twitter() {
-        return "TWITTER";
+        return Twitter::getUsers(['screen_name' => 'tomouchuu', 'format' => 'json']);
     }
 
     public function instagram() {
-        return "INSTAGRAM";
+        $data = Instagram::get('v1/users/self/media/recent', ['access_token' => env('INSTAGRAM_API_ACCESS_TOKEN', '')]);
+        return response()->json($data['data']);
     }
 
     public function github() {

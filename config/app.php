@@ -163,8 +163,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        Thujohn\Twitter\TwitterServiceProvider::class,
-
         /*
          * Package Service Providers...
          */
@@ -178,6 +176,9 @@ return [
         // Tomo\Providers\BroadcastServiceProvider::class,
         Tomo\Providers\EventServiceProvider::class,
         Tomo\Providers\RouteServiceProvider::class,
+
+        Thujohn\Twitter\TwitterServiceProvider::class,
+        Mbarwick83\Instagram\InstagramServiceProvider::class,
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
+        'Instagram'    => Mbarwick83\Instagram\Facades\Instagram::class,
 
     ],
 
