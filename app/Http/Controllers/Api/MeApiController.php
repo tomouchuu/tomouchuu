@@ -49,6 +49,9 @@ class MeApiController extends Controller
     }
 
     public function github() {
-        return "GITHUB";
+        $client = new \Github\Client();
+        $response = $client->getHttpClient()->get('users/tomouchuu/events/public');
+        $events     = \Github\HttpClient\Message\ResponseMediator::getContent($response);
+        return response()->json($events);
     }
 }
