@@ -13,6 +13,27 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Me API
+// Basically emulate me-api
+Route::group(['prefix' => 'me'], function () {
+    Route::get('/', 'Api\MeApiController@me');
+    Route::get('/twitter', 'Api\MeApiController@twitter');
+    Route::get('/instagram', 'Api\MeApiController@instagram');
+    Route::get('/github', 'Api\MeApiController@github');
+});
+
+// Blog API
+// File system to markdown files
+Route::group(['prefix' => 'blog'], function () {
+    Route::get('/', function ()    {
+        return "GENERAL";
+    });
+});
+
+// Oshimen API
+// Get from twitter list (if name matches this == kami, else if name marches this == newentry, esle general)
+Route::group(['prefix' => 'oshimen'], function () {
+    Route::get('/', function ()    {
+        return "GENERAL";
+    });
 });

@@ -11,6 +11,22 @@
 |
 */
 
+// Tomo Homepage
 Route::get('/', function () {
+    return view('welcome');
+});
+
+// Tomo Blog
+Route::get('/blog', function () {
+    return view('welcome');
+});
+
+// Tomo Oshis
+Route::get('/oshimen', function () {
+    return view('welcome');
+});
+
+// Tomo Start
+Route::get('/start', function () {
     return view('welcome');
 });
