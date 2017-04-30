@@ -8,7 +8,7 @@ use Tomo\Http\Controllers\Controller;
 use Twitter;
 use Instagram;
 
-class MeApiController extends Controller
+class MeController extends Controller
 {
     public function me() {
         return response()->json([

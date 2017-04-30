@@ -16,10 +16,10 @@ use Illuminate\Http\Request;
 // Me API
 // Basically emulate me-api
 Route::group(['prefix' => 'me'], function () {
-    Route::get('/', 'Api\MeApiController@me');
-    Route::get('/twitter', 'Api\MeApiController@twitter');
-    Route::get('/instagram', 'Api\MeApiController@instagram');
-    Route::get('/github', 'Api\MeApiController@github');
+    Route::get('/', 'Api\MeController@me');
+    Route::get('/twitter', 'Api\MeController@twitter');
+    Route::get('/instagram', 'Api\MeController@instagram');
+    Route::get('/github', 'Api\MeController@github');
 });
 
 // Blog API
