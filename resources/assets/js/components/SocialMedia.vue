@@ -1,5 +1,5 @@
 <template>
-    <a v-bind:href="url" v-bind:class="network">
+    <a v-bind:href="url" v-bind:class="network" v-bind:title="title()">
         <icon v-bind:label="network" scale="2">
             <icon name="square" scale="2"></icon>
             <icon class="socialicon" v-bind:name="icon()" v-bind:scale="iconScale()"></icon>
@@ -50,6 +50,14 @@
                     }
                     return 1;
                 },
+                title: function() {
+                    if (this.network === 'email') {
+                        return 'Email me';
+                    } else if (this.network === 'blog') {
+                        return 'My blog';
+                    }
+                    return `Find me on ${this.network}`;
+                },
             }
         },
     }
@@ -69,6 +77,7 @@
     a {
         margin-left: 7.5px;
         margin-right: 7.5px;
+        transition: all .2s;
         &:hover {
             transition: all .2s;
         }

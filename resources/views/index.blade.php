@@ -10,12 +10,18 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     </head>
     <body>
-        <div id="app">
-            <intro personaljson="{{ json_encode($me) }}" profileimgurl="{{ $twitter['profile_image_url'] }}" instagramjson="{{ json_encode($instagram) }}" />
+        <div id="intro">
+            <intro
+                personaljson="{{ json_encode($me) }}"
+                profileimgurl="{{ $twitter['profile_image_url'] }}"
+                instagramjson="{{ json_encode($instagram) }}"
+            />
+        </div>
+        -- NAVBAR --
+        <div id="recent-tweet">
+            <recent-tweet twitterjson="{{ json_encode($twitter) }}" />
         </div>
         <p style="text-align: center;">
-            -- NAVBAR --<br>
-            -- RecentTweet --<br>
             -- About --<br>
             -- RecentBlog --<br>
             -- Code (use https://github.com/Justineo/vue-octicon) --

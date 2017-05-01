@@ -16,7 +16,11 @@ window.Vue = require('vue');
  */
 
 Vue.component('intro', require('./components/Intro.vue'));
+const intro = new Vue({
+    el: '#intro'
+});
 
-const app = new Vue({
-    el: '#app'
+Vue.component('recent-tweet', require('./components/RecentTweet.vue'));
+const recentTweet = new Vue({
+    el: '#recent-tweet'
 });
