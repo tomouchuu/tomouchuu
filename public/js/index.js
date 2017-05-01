@@ -41084,7 +41084,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_vm._v("Outside of coding, I'm a big fan of things japanese whether it's music (mostly IDOL ("), _c('a', {
     attrs: {
-      "href": "/oshis",
+      "href": "/oshimen",
       "title": "oshis"
     }
   }, [_vm._v("oshi-list")]), _vm._v(")), tv (not anime) or aesthetics and I try to get over there every 2 years at least. I also play drums occasionally, used to be in a band but I still keep playing to keep skills up, because of that I do finger drum in the office (sorry).")])
