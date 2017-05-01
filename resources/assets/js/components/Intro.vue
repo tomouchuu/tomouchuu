@@ -1,8 +1,8 @@
 <template>
     <div class="intro">
-        <div class="container">
+        <div class="intro-container">
             <img class="profile-img" v-bind:src="profileimg()" v-bind:alt="personal.name" /><br>
-            Hi I'm <h1>{{ personal.name }}</h1>, <b>{{ age() }} years old</b>, from <b>{{ personal.location }}</b> and based in <b>{{ personal.based }}</b> where I'm currently working at <b>{{ personal.work[0].company }}</b>.
+            Hi I'm <h1>{{ personal.name }}</h1>, <b>{{ age() }} years old</b>, from <b>{{ personal.location }}</b> and based in <b>{{ personal.based }}</b> where I'm currently <span v-html="employment()"></span>.
             <p>Find me on:</p>
             <ul class="social-list">
                 <li v-for="(url, network) in personal.contact">
@@ -42,12 +42,18 @@
                     const birthday = parse(this.personal.birthday);
                     return differenceInYears(new Date(), birthday);
                 },
+                employment() {
+                    if (this.personal.work[0].company === 'unemployed') {
+                        return `looking for work, <a href="mailto:${ this.personal.contact.email }" class="lookingfor">get in touch</a>`;
+                    }
+                    return `working at <b>${ this.personal.work[0].company }</b>`;
+                }
             }
         },
     }
 </script>
 
-<style scoped>
+<style>
     .intro {
         display: flex;
         padding: 100px;
@@ -61,7 +67,7 @@
             font-size: 2rem;
         }
 
-    .container {
+    .intro-container {
         background: rgba(0, 0, 0, 0.6);
         border: 1px solid #fff;
         border-radius: 4px;
@@ -80,6 +86,16 @@
         margin-right: 30px;
         width: 170px;
     }
+
+    .lookingfor {
+        color: #ddd;
+        text-decoration: none;
+        transition: all .2s;
+    }
+        .lookingfor:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
 
     .social-list {
         list-style: none;
@@ -102,7 +118,7 @@
         .intro {
             padding: 30px;
         }
-        .container {
+        .intro-container {
             width: 100%;
         }
     }

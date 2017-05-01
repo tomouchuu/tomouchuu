@@ -10682,6 +10682,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var now = new Date();
                 var birthday = __WEBPACK_IMPORTED_MODULE_0_date_fns_parse___default()(this.personal.birthday);
                 return __WEBPACK_IMPORTED_MODULE_1_date_fns_difference_in_years___default()(new Date(), birthday);
+            },
+            employment: function employment() {
+                if (this.personal.work[0].company === 'unemployed') {
+                    return 'looking for work, <a href="mailto:' + this.personal.contact.email + '" class="lookingfor">get in touch</a>';
+                }
+                return 'working at <b>' + this.personal.work[0].company + '</b>';
             }
         };
     }
@@ -10837,13 +10843,7 @@ exports = module.exports = __webpack_require__(1)();
 exports.push([module.i, "\na[data-v-3e64a613] {\n  margin-left: 7.5px;\n  margin-right: 7.5px;\n  transition: all .2s;\n}\na[data-v-3e64a613]:hover {\n    transition: all .2s;\n}\n.twitter[data-v-3e64a613] {\n  color: #55acee;\n}\n.twitter[data-v-3e64a613]:hover {\n    color: #fff;\n}\n.twitter:hover .socialicon[data-v-3e64a613] {\n      fill: #55acee;\n}\n.instagram[data-v-3e64a613] {\n  color: #3f729b;\n}\n.instagram[data-v-3e64a613]:hover {\n    color: #fff;\n}\n.instagram:hover .socialicon[data-v-3e64a613] {\n      fill: #3f729b;\n}\n.github[data-v-3e64a613] {\n  color: #333333;\n}\n.github[data-v-3e64a613]:hover {\n    color: #fff;\n}\n.github:hover .socialicon[data-v-3e64a613] {\n      fill: #333333;\n}\n.trello[data-v-3e64a613] {\n  color: #0079bf;\n}\n.trello[data-v-3e64a613]:hover {\n    color: #fff;\n}\n.trello:hover .socialicon[data-v-3e64a613] {\n      fill: #0079bf;\n}\n.mastodon[data-v-3e64a613] {\n  color: #189efc;\n}\n.mastodon[data-v-3e64a613]:hover {\n    color: #fff;\n}\n.mastodon:hover .socialicon[data-v-3e64a613] {\n      fill: #189efc;\n}\n.email[data-v-3e64a613] {\n  color: #FF4136;\n}\n.email[data-v-3e64a613]:hover {\n    color: #fff;\n}\n.email:hover .socialicon[data-v-3e64a613] {\n      fill: #FF4136;\n}\n.blog[data-v-3e64a613] {\n  color: #2ECC40;\n}\n.blog[data-v-3e64a613]:hover {\n    color: #fff;\n}\n.blog:hover .socialicon[data-v-3e64a613] {\n      fill: #2ECC40;\n}\na .socialicon[data-v-3e64a613] {\n  fill: #fff;\n}\n", ""]);
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)();
-exports.push([module.i, "\n.intro[data-v-4d2e3888] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    padding: 100px;\n    font-size: 1.4rem;\n}\n.intro h1[data-v-4d2e3888] {\n        display: inline;\n        font-size: 2.75rem;\n}\n.intro b[data-v-4d2e3888] {\n        font-size: 2rem;\n}\n.container[data-v-4d2e3888] {\n    background: rgba(0, 0, 0, 0.6);\n    border: 1px solid #fff;\n    border-radius: 4px;\n    color: #fff;\n    margin: 0 auto;\n    padding: 0 30px 30px;\n    width: 550px;\n    line-height: 40px;\n}\n.profile-img[data-v-4d2e3888] {\n    border-radius: 50%;\n    border: 1px solid #fff;\n    float: left;\n    margin-top: 60px;\n    margin-right: 30px;\n    width: 170px;\n}\n.social-list[data-v-4d2e3888] {\n    list-style: none;\n    padding-left: 0;\n    margin: -15px 0 0;\n    text-align: center;\n}\n.social-list li[data-v-4d2e3888] {\n        display: inline-block;\n}\n.signature[data-v-4d2e3888] {\n    font-size: 1rem;\n    font-weight: light;\n    margin: 0;\n    text-align: center;\n}\n@media screen and (max-width: 800px) {\n.intro[data-v-4d2e3888] {\n        padding: 30px;\n}\n.container[data-v-4d2e3888] {\n        width: 100%;\n}\n}\n@media screen and (max-width: 500px) {\n.profile-img[data-v-4d2e3888] {\n        float: none;\n        display: block;\n        margin-left: auto;\n        margin-right: auto;\n        margin-top: 40px;\n}\n}\n", ""]);
-
-/***/ }),
+/* 16 */,
 /* 17 */,
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -38448,7 +38448,7 @@ __WEBPACK_IMPORTED_MODULE_0__components_Icon_vue___default.a.register({"twitter"
 
 
 /* styles */
-__webpack_require__(40)
+__webpack_require__(63)
 
 var Component = __webpack_require__(3)(
   /* script */
@@ -38456,7 +38456,7 @@ var Component = __webpack_require__(3)(
   /* template */
   __webpack_require__(36),
   /* scopeId */
-  "data-v-4d2e3888",
+  null,
   /* cssModules */
   null
 )
@@ -38631,14 +38631,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "intro"
   }, [_c('div', {
-    staticClass: "container"
+    staticClass: "intro-container"
   }, [_c('img', {
     staticClass: "profile-img",
     attrs: {
       "src": _vm.profileimg(),
       "alt": _vm.personal.name
     }
-  }), _c('br'), _vm._v("\n        Hi I'm "), _c('h1', [_vm._v(_vm._s(_vm.personal.name))]), _vm._v(", "), _c('b', [_vm._v(_vm._s(_vm.age()) + " years old")]), _vm._v(", from "), _c('b', [_vm._v(_vm._s(_vm.personal.location))]), _vm._v(" and based in "), _c('b', [_vm._v(_vm._s(_vm.personal.based))]), _vm._v(" where I'm currently working at "), _c('b', [_vm._v(_vm._s(_vm.personal.work[0].company))]), _vm._v(".\n        "), _c('p', [_vm._v("Find me on:")]), _vm._v(" "), _c('ul', {
+  }), _c('br'), _vm._v("\n        Hi I'm "), _c('h1', [_vm._v(_vm._s(_vm.personal.name))]), _vm._v(", "), _c('b', [_vm._v(_vm._s(_vm.age()) + " years old")]), _vm._v(", from "), _c('b', [_vm._v(_vm._s(_vm.personal.location))]), _vm._v(" and based in "), _c('b', [_vm._v(_vm._s(_vm.personal.based))]), _vm._v(" where I'm currently "), _c('span', {
+    domProps: {
+      "innerHTML": _vm._s(_vm.employment())
+    }
+  }), _vm._v(".\n        "), _c('p', [_vm._v("Find me on:")]), _vm._v(" "), _c('ul', {
     staticClass: "social-list"
   }, _vm._l((_vm.personal.contact), function(url, network) {
     return _c('li', [_c('socialmedia', {
@@ -38743,32 +38747,7 @@ if(false) {
 }
 
 /***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(16);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("6528f359", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-4d2e3888\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Intro.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-4d2e3888\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Intro.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
+/* 40 */,
 /* 41 */,
 /* 42 */
 /***/ (function(module, exports) {
@@ -40948,6 +40927,39 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-a057aa1c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RecentTweet.vue", function() {
      var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-a057aa1c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RecentTweet.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+exports.push([module.i, "\n.intro {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    padding: 100px;\n    font-size: 1.4rem;\n}\n.intro h1 {\n        display: inline;\n        font-size: 2.75rem;\n}\n.intro b {\n        font-size: 2rem;\n}\n.intro-container {\n    background: rgba(0, 0, 0, 0.6);\n    border: 1px solid #fff;\n    border-radius: 4px;\n    color: #fff;\n    margin: 0 auto;\n    padding: 0 30px 30px;\n    width: 550px;\n    line-height: 40px;\n}\n.profile-img {\n    border-radius: 50%;\n    border: 1px solid #fff;\n    float: left;\n    margin-top: 60px;\n    margin-right: 30px;\n    width: 170px;\n}\n.lookingfor {\n    color: #ddd;\n    text-decoration: none;\n    transition: all .2s;\n}\n.lookingfor:hover {\n        color: #fff;\n        text-decoration: underline;\n}\n.social-list {\n    list-style: none;\n    padding-left: 0;\n    margin: -15px 0 0;\n    text-align: center;\n}\n.social-list li {\n        display: inline-block;\n}\n.signature {\n    font-size: 1rem;\n    font-weight: light;\n    margin: 0;\n    text-align: center;\n}\n@media screen and (max-width: 800px) {\n.intro {\n        padding: 30px;\n}\n.intro-container {\n        width: 100%;\n}\n}\n@media screen and (max-width: 500px) {\n.profile-img {\n        float: none;\n        display: block;\n        margin-left: auto;\n        margin-right: auto;\n        margin-top: 40px;\n}\n}\n", ""]);
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(62);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("586cfcf6", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-4d2e3888\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Intro.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-4d2e3888\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Intro.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });

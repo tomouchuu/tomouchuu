@@ -19,6 +19,9 @@ class MeController extends Controller
             'based' => 'London',
             'birthday' => '1993-09-14',
             'work' => [
+                // [
+                //     'company' => 'unemployed',
+                // ],
                 [
                     'company' => 'reed.co.uk',
                     'date' => 'September 2016 - Current',
