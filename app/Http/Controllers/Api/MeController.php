@@ -15,8 +15,9 @@ class MeController extends Controller
     public function me() {
         return response()->json([
             'name' => 'Thomas Moore',
-            'location' => 'Chelmsford, Essex, England',
-            'birthday' => '14-09-1993',
+            'location' => 'Chelmsford',
+            'based' => 'London',
+            'birthday' => '1993-09-14',
             'work' => [
                 [
                     'company' => 'reed.co.uk',
