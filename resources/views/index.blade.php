@@ -17,12 +17,12 @@
                 instagramjson="{{ json_encode($instagram) }}"
             />
         </div>
-        -- NAVBAR --
+        -- NAVBAR --<br>
+        -- About --
         <div id="recent-tweet">
             <recent-tweet twitterjson="{{ json_encode($twitter) }}" />
         </div>
         <p style="text-align: center;">
-            -- About --<br>
             -- RecentBlog --<br>
             -- Code (use https://github.com/Justineo/vue-octicon) --
         </p>
