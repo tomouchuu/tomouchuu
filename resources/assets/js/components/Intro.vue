@@ -32,24 +32,16 @@
         data() {
             return {
                 personal: JSON.parse(this.personaljson),
-                profileimg: function() {
+                profileimg() {
                     const profileimg = this.profileimgurl.replace('_normal', '');
                     return profileimg;
                 },
                 instagram: JSON.parse(this.instagramjson),
-                age: function() {
+                age() {
                     const now = new Date();
                     const birthday = parse(this.personal.birthday);
                     return differenceInYears(new Date(), birthday);
                 },
-            }
-        },
-        mounted() {
-            console.log('Mounted');
-        },
-        methods: {
-            updateBackground() {
-                const self = this;
             }
         },
     }

@@ -10676,6 +10676,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var profileimg = this.profileimgurl.replace('_normal', '');
                 return profileimg;
             },
+
             instagram: JSON.parse(this.instagramjson),
             age: function age() {
                 var now = new Date();
@@ -10683,15 +10684,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return __WEBPACK_IMPORTED_MODULE_1_date_fns_difference_in_years___default()(new Date(), birthday);
             }
         };
-    },
-    mounted: function mounted() {
-        console.log('Mounted');
-    },
-
-    methods: {
-        updateBackground: function updateBackground() {
-            var self = this;
-        }
     }
 });
 
