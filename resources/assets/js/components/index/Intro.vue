@@ -3,7 +3,7 @@
         <div class="intro-container">
             <img class="profile-img" v-bind:src="profileimg()" v-bind:alt="personal.name" /><br>
             Hi I'm <h1>{{ personal.name }}</h1>, <b>{{ age() }} years old</b>, from <b>{{ personal.location }}</b> and based in <b>{{ personal.based }}</b> where I'm currently <span v-html="employment()"></span>.
-            <p>Find me on:</p>
+            <p style="font-size: 1.2rem;">Find me on:</p>
             <ul class="social-list">
                 <li v-for="(url, network) in personal.contact">
                     <socialmedia v-bind:url="url" v-bind:network="network" />
@@ -17,7 +17,7 @@
 <script>
     import parse from 'date-fns/parse';
     import differenceInYears from 'date-fns/difference_in_years';
-    import socialmedia from './SocialMedia.vue';
+    import socialmedia from './../SocialMedia.vue';
 
     export default {
         name: 'intro',

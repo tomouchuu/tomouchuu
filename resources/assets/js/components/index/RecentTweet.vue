@@ -59,4 +59,10 @@
         display: block;
         text-align: right;
     }
+
+    @media screen and (max-width: 840px) {
+        .recent-tweet-container {
+            width: 100%;
+        }
+    }
 </style>

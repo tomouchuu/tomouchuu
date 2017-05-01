@@ -18,7 +18,12 @@
             />
         </div>
         -- NAVBAR --<br>
-        -- About --
+        <div id="about">
+            <about
+                personaljson="{{ json_encode($me) }}"
+                wanikanijson="{{ json_encode($wanikani) }}"
+            />
+        </div>
         <div id="recent-tweet">
             <recent-tweet twitterjson="{{ json_encode($twitter) }}" />
         </div>
@@ -26,6 +31,6 @@
             -- RecentBlog --<br>
             -- Code (use https://github.com/Justineo/vue-octicon) --
         </p>
-        <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/index.js') }}" type="text/javascript"></script>
     </body>
 </html>

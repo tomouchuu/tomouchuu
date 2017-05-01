@@ -15,12 +15,18 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('intro', require('./components/Intro.vue'));
+Vue.component('intro', require('./components/index/Intro.vue'));
 const intro = new Vue({
     el: '#intro'
 });
 
-Vue.component('recent-tweet', require('./components/RecentTweet.vue'));
+Vue.component('about', require('./components/index/About.vue'));
+const about = new Vue({
+    el: '#about'
+});
+
+
+Vue.component('recent-tweet', require('./components/index/RecentTweet.vue'));
 const recentTweet = new Vue({
     el: '#recent-tweet'
 });
