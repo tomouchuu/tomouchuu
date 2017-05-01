@@ -10809,6 +10809,12 @@ __WEBPACK_IMPORTED_MODULE_7_vue_awesome_components_Icon___default.a.register({
                     return 'My blog';
                 }
                 return 'Find me on ' + this.network;
+            },
+            link: function link() {
+                if (this.network === 'email') {
+                    return 'mailto:' + this.url;
+                }
+                return this.url;
             }
         };
     }
@@ -38596,7 +38602,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('a', {
     class: _vm.network,
     attrs: {
-      "href": _vm.url,
+      "href": _vm.link(),
       "title": _vm.title()
     }
   }, [_c('icon', {

@@ -1,5 +1,5 @@
 <template>
-    <a v-bind:href="url" v-bind:class="network" v-bind:title="title()">
+    <a v-bind:href="link()" v-bind:class="network" v-bind:title="title()">
         <icon v-bind:label="network" scale="2">
             <icon name="square" scale="2"></icon>
             <icon class="socialicon" v-bind:name="icon()" v-bind:scale="iconScale()"></icon>
@@ -36,7 +36,7 @@
         ],
         data() {
             return {
-                icon: function() {
+                icon() {
                     if (this.network === 'email') {
                         return 'envelope';
                     } else if (this.network === 'blog') {
@@ -44,13 +44,13 @@
                     }
                     return this.network;
                 },
-                iconScale: function() {
+                iconScale() {
                     if (this.network === 'mastodon') {
                         return 2;
                     }
                     return 1;
                 },
-                title: function() {
+                title() {
                     if (this.network === 'email') {
                         return 'Email me';
                     } else if (this.network === 'blog') {
@@ -58,6 +58,12 @@
                     }
                     return `Find me on ${this.network}`;
                 },
+                link() {
+                    if (this.network === 'email') {
+                        return `mailto:${this.url}`;
+                    }
+                    return this.url
+                }
             }
         },
     }
