@@ -6,7 +6,7 @@
             <p>Find me on:</p>
             <ul class="social-list">
                 <li v-for="(url, network) in personal.contact">
-                    {{ network }}
+                    <socialmedia v-bind:url="url" v-bind:network="network" />
                 </li>
             </ul>
             <p class="signature">- トモ＠宇宙 -</p>
@@ -17,9 +17,13 @@
 <script>
     import parse from 'date-fns/parse';
     import differenceInYears from 'date-fns/difference_in_years';
+    import socialmedia from './SocialMedia.vue';
 
     export default {
         name: 'intro',
+        components: {
+            socialmedia,
+        },
         props: [
             'personaljson',
             'profileimgurl',
@@ -53,7 +57,6 @@
 
 <style scoped>
     .intro {
-        background-color: #8eb4cb;
         display: flex;
         padding: 100px;
         font-size: 1.4rem;
@@ -89,6 +92,8 @@
     .social-list {
         list-style: none;
         padding-left: 0;
+        margin: -15px 0 0;
+        text-align: center;
     }
         .social-list li {
             display: inline-block;

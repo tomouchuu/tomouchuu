@@ -18,7 +18,7 @@
             -- RecentTweet --<br>
             -- About --<br>
             -- RecentBlog --<br>
-            -- Code --
+            -- Code (use https://github.com/Justineo/vue-octicon) --
         </p>
         <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
     </body>

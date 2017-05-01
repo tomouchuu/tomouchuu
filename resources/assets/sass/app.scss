@@ -11,3 +11,9 @@ body {
     line-height: $line-height-base;
     margin: 0;
 }
+
+.intro {
+    background-image: url('./images/introbg.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
