@@ -1,6 +1,6 @@
 <template>
     <a v-bind:href="link()" v-bind:class="network" v-bind:title="title()">
-        <icon v-bind:label="network" scale="2">
+        <icon v-bind:label="network" v-bind:scale="scale">
             <icon name="square" scale="2"></icon>
             <icon class="socialicon" v-bind:name="icon()" v-bind:scale="iconScale()"></icon>
         </icon>
@@ -33,6 +33,7 @@
         props: [
             'network',
             'url',
+            'scale',
         ],
         data() {
             return {

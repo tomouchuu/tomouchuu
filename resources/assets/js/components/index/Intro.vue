@@ -6,7 +6,7 @@
             <p style="font-size: 1.2rem;">Find me on:</p>
             <ul class="social-list">
                 <li v-for="(url, network) in personal.contact">
-                    <socialmedia v-bind:url="url" v-bind:network="network" />
+                    <socialmedia v-bind:url="url" v-bind:network="network" scale="2" />
                 </li>
             </ul>
             <p class="signature">- トモ＠宇宙 -</p>
