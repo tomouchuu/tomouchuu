@@ -28,10 +28,16 @@
         <div id="recent-tweet">
             <recent-tweet twitterjson="{{ json_encode($twitter) }}" />
         </div>
-        <p style="text-align: center;">
-            -- RecentBlog --<br>
-            -- Code (use https://github.com/Justineo/vue-octicon) --
-        </p>
+        <div id="recent-blog">
+            <recent-blog personaljson="{{ json_encode($me) }}" />
+        </div>
+        <div id="programming">
+            <programming githubljson="{{ json_encode($me) }}" />
+        </div>
+
+        <div class="copy">
+            <p style="text-align: center;">&copy;{{ date('Y') }} - トモ＠宇宙 -</p>
+        </div>
 
         <script src="{{ asset('js/manifest.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/vendor.js') }}" type="text/javascript"></script>
