@@ -30,8 +30,12 @@ const about = new Vue({
     el: '#about'
 });
 
-
 Vue.component('recent-tweet', require('./components/index/RecentTweet.vue'));
 const recentTweet = new Vue({
     el: '#recent-tweet'
+});
+
+Vue.component('recent-blog', require('./components/index/RecentBlog.vue'));
+const recentBlog = new Vue({
+    el: '#recent-blog'
 });
