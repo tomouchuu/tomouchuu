@@ -1,9 +1,9 @@
 <template>
     <nav>
         <ul class="links">
-            <li><a href="#intro">To Top</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#code">Code</a></li>
+            <li><a href="#intro">TOP</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#code">CODE</a></li>
         </ul>
         <ul class="socials">
             <li v-for="(url, network) in personal.contact">
@@ -66,5 +66,14 @@
         margin-left: 0;
     }
 
+    @media screen and (max-width: 500px) {
+        nav ul {
+            text-align: center;
+            width: 100%;
+        }
+            nav ul.links {
+                margin-left: 0;
+                margin-bottom: 5px;
+            }
     }
 </style>
