@@ -32,6 +32,9 @@
             -- RecentBlog --<br>
             -- Code (use https://github.com/Justineo/vue-octicon) --
         </p>
+
+        <script src="{{ asset('js/manifest.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/vendor.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/index.js') }}" type="text/javascript"></script>
     </body>
 </html>
