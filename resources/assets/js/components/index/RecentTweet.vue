@@ -1,7 +1,7 @@
 <template>
     <div class="recent-tweet">
         <div class="recent-tweet-container">
-            <h3>- Recent Tweet -</h3>
+            <h3>- RECENT TWEET -</h3>
             <div class="text" v-html="text()"></div>
             <a class="date" v-bind:href="statusurl()" v-bind:title="twitter.status.created_at" target="_blank">{{ relativedate() }}</a>
         </div>
@@ -50,7 +50,7 @@
         width: 800px;
     }
 
-    h3 {
+    .recent-tweet h3 {
         color: #fff;
         margin: 0;
     }
