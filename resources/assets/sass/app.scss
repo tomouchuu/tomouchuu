@@ -17,3 +17,8 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+a,
+a:hover {
+    transition: all .2s;
+}

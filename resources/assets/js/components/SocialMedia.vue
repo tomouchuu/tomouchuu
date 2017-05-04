@@ -84,10 +84,6 @@
     a {
         margin-left: 7.5px;
         margin-right: 7.5px;
-        transition: all .2s;
-        &:hover {
-            transition: all .2s;
-        }
     }
 
     .twitter {

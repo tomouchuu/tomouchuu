@@ -90,7 +90,6 @@
     .lookingfor {
         color: #ddd;
         text-decoration: none;
-        transition: all .2s;
     }
         .lookingfor:hover {
             color: #fff;
