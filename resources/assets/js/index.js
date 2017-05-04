@@ -39,3 +39,8 @@ Vue.component('recent-blog', require('./components/index/RecentBlog.vue'));
 const recentBlog = new Vue({
     el: '#recent-blog'
 });
+
+Vue.component('programming', require('./components/index/programming/Index.vue'));
+const programming = new Vue({
+    el: '#programming'
+});
