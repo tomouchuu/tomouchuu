@@ -27,7 +27,6 @@
         props: [
             'personaljson',
             'profileimgurl',
-            'instagramjson',
         ],
         data() {
             return {
@@ -36,7 +35,6 @@
                     const profileimg = this.profileimgurl.replace('_normal', '');
                     return profileimg;
                 },
-                instagram: JSON.parse(this.instagramjson),
                 age() {
                     const now = new Date();
                     const birthday = parse(this.personal.birthday);

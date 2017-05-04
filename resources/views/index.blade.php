@@ -14,7 +14,6 @@
             <intro
                 personaljson="{{ json_encode($me) }}"
                 profileimgurl="{{ $twitter['profile_image_url'] }}"
-                instagramjson="{{ json_encode($instagram) }}"
             />
         </div>
         -- NAVBAR --<br>
