@@ -41,11 +41,17 @@
     .about-container {
         margin: 0 auto;
         padding: 20px;
+        text-align: justify;
         width: 800px;
     }
     @media screen and (max-width: 840px) {
         .about-container {
+            padding: 0;
             width: 100%;
         }
+            .about-container p {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
     }
 </style>
