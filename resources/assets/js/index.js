@@ -20,6 +20,11 @@ const intro = new Vue({
     el: '#intro'
 });
 
+Vue.component('navbar', require('./components/index/Navbar.vue'));
+const navbar = new Vue({
+    el: '#navbar'
+});
+
 Vue.component('about', require('./components/index/About.vue'));
 const about = new Vue({
     el: '#about'

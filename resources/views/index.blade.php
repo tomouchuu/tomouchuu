@@ -16,7 +16,9 @@
                 profileimgurl="{{ $twitter['profile_image_url'] }}"
             />
         </div>
-        -- NAVBAR --<br>
+        <div id="navbar">
+            <navbar personaljson="{{ json_encode($me) }}" />
+        </div>
         <div id="about">
             <about
                 personaljson="{{ json_encode($me) }}"
