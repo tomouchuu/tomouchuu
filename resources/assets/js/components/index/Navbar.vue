@@ -66,7 +66,5 @@
         margin-left: 0;
     }
 
-    .clearfix {
-        clear: both;
     }
 </style>
