@@ -3,6 +3,7 @@
 namespace Tomo\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Tomo\Http\Controllers\Controller;
 
 use Twitter;
@@ -46,49 +47,73 @@ class MeController extends Controller
     }
 
     public function twitter() {
-        return Twitter::getUsers(['screen_name' => 'tomouchuu', 'format' => 'json']);
+        $twitter = Cache::get('twitter');
+        if ($twitter === NULL) {
+            $twitterResponse = Twitter::getUsers(['screen_name' => 'tomouchuu', 'format' => 'json']);
+            Cache::put('twitter', $twitterResponse, 10);
+            return $twitterResponse;
+        }
+        return $twitter;
     }
 
     public function instagram() {
-        $data = Instagram::get('v1/users/self/media/recent', ['access_token' => env('INSTAGRAM_API_ACCESS_TOKEN', '')]);
-        return response()->json($data['data']);
+        $instagram = Cache::get('instagram');
+        if ($instagram === NULL) {
+            $instagramResponse = Instagram::get('v1/users/self/media/recent', ['access_token' => env('INSTAGRAM_API_ACCESS_TOKEN', '')]);
+            Cache::put('instagram', $instagramResponse['data'], 10);
+            return response()->json($instagramResponse['data']);
+        }
+        return response()->json($instagram);
     }
 
     public function github() {
-        $client = new \Github\Client();
-        $response = $client->getHttpClient()->get('users/tomouchuu/events/public');
-        $events     = \Github\HttpClient\Message\ResponseMediator::getContent($response);
-        return response()->json($events);
+        $github = Cache::get('github');
+        if ($github === NULL) {
+            $client = new \Github\Client();
+            $response = $client->getHttpClient()->get('users/tomouchuu/events/public');
+            $events = \Github\HttpClient\Message\ResponseMediator::getContent($response);
+            Cache::put('github', $events, 10);
+            return response()->json($events);
+        }
+        return response()->json($github);
     }
 
     public function wanikani() {
-        $client = new Client(['base_uri' => 'https://www.wanikani.com/api/user/'.env('WANIKANI_API_KEY', '').'/']);
+        $wanikani = Cache::get('wanikani');
 
-        // Initiate each request but do not block
-        $promises = [
-            'srs-distribution' => $client->getAsync('srs-distribution'),
-            'study-queue' => $client->getAsync('study-queue'),
-            'level-progression' => $client->getAsync('level-progression'),
-        ];
+        if ($wanikani === NULL) {
+            $client = new Client(['base_uri' => 'https://www.wanikani.com/api/user/'.env('WANIKANI_API_KEY', '').'/']);
 
-        // Wait on all of the requests to complete. Throws a ConnectException
-        // if any of the requests fail
-        $results = Promise\unwrap($promises);
+            // Initiate each request but do not block
+            $promises = [
+                'srs-distribution' => $client->getAsync('srs-distribution'),
+                'study-queue' => $client->getAsync('study-queue'),
+                'level-progression' => $client->getAsync('level-progression'),
+            ];
 
-        // Wait for the requests to complete, even if some of them fail
-        $results = Promise\settle($promises)->wait();
+            // Wait on all of the requests to complete. Throws a ConnectException
+            // if any of the requests fail
+            $results = Promise\unwrap($promises);
 
-        // Setup all the response data
-        $srs = json_decode($results['srs-distribution']['value']->getBody(), true);
-        $studyQueue = json_decode($results['study-queue']['value']->getBody(), true);
-        $levelProgression = json_decode($results['level-progression']['value']->getBody(), true);
+            // Wait for the requests to complete, even if some of them fail
+            $results = Promise\settle($promises)->wait();
 
-        $wanikani = [
-            'user-information' => $srs['user_information'],
-            'srs-distribution' => $srs['requested_information'],
-            'study-queue' => $studyQueue['requested_information'],
-            'level-progression' => $levelProgression['requested_information'],
-        ];
+            // Setup all the response data
+            $srs = json_decode($results['srs-distribution']['value']->getBody(), true);
+            $studyQueue = json_decode($results['study-queue']['value']->getBody(), true);
+            $levelProgression = json_decode($results['level-progression']['value']->getBody(), true);
+
+            $wanikani = [
+                'user-information' => $srs['user_information'],
+                'srs-distribution' => $srs['requested_information'],
+                'study-queue' => $studyQueue['requested_information'],
+                'level-progression' => $levelProgression['requested_information'],
+            ];
+
+
+            Cache::put('wanikani', $wanikani, 10);
+            return response()->json($wanikani);
+        }
 
         return response()->json($wanikani);
     }
