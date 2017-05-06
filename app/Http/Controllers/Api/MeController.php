@@ -36,7 +36,8 @@ class MeController extends Controller
             ],
             'contact' => [
                 'email' => "tomo@uchuu.io",
-                'blog' => "https://tomo.uchuu.io/blog",
+                'blog' => "http://localhost:8000/blog",
+                // 'blog' => "https://tomo.uchuu.io/blog",
                 'github' => "https://github.com/tomouchuu",
                 'instagram' => "https://instagram.com/tomouchuu",
                 'trello' => "https://trello.com/b/FcW2Q1jL",
