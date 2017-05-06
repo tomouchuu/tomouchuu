@@ -53,12 +53,4 @@
     h3.links {
         float: right;
     }
-        h3.links a {
-            color: #ddd;
-            text-decoration: none;
-        }
-            h3.links a:hover {
-                color: #fff;
-                text-decoration: underline;
-            }
 </style>

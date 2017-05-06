@@ -32,7 +32,7 @@
             <recent-blog personaljson="{{ json_encode($me) }}" />
         </div>
         <div id="programming">
-            <programming githubljson="{{ json_encode($me) }}" />
+            <programming githubjson="{{ json_encode($github) }}" />
         </div>
 
         <div class="copy">

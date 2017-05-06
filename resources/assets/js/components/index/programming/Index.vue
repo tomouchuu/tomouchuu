@@ -27,7 +27,7 @@
         </div>
         <div class="code-timeline-container">
             <div class="code-timeline">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi quod laudantium, distinctio sint mollitia aliquid ratione ipsam esse provident, delectus maxime, optio repellat sapiente voluptates veniam beatae quos ab reprehenderit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi quod laudantium, distinctio sint mollitia aliquid ratione ipsam esse provident, delectus maxime, optio repellat sapiente voluptates veniam beatae quos ab reprehenderit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi quod laudantium, distinctio sint mollitia aliquid ratione ipsam esse provident, delectus maxime, optio repellat sapiente voluptates veniam beatae quos ab reprehenderit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi quod laudantium, distinctio sint mollitia aliquid ratione ipsam esse provident, delectus maxime, optio repellat sapiente voluptates veniam beatae quos ab reprehenderit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi quod laudantium, distinctio sint mollitia aliquid ratione ipsam esse provident, delectus maxime, optio repellat sapiente voluptates veniam beatae quos ab reprehenderit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi quod laudantium, distinctio sint mollitia aliquid ratione ipsam esse provident, delectus maxime, optio repellat sapiente voluptates veniam beatae quos ab reprehenderit.</p>
+                <githubEvent v-for="ghevent in github()" v-bind:key="ghevent.id" v-bind:gh-event="ghevent" />
             </div>
         </div>
         <div class="clearfix"></div>
@@ -35,22 +35,45 @@
 </template>
 
 <script>
-    //https://github.com/Justineo/vue-octicon
     import project from './Project.vue';
+    import githubEvent from './GithubEvent.vue';
 
     export default {
         name: 'programming',
         components: {
             project,
+            githubEvent,
         },
-        // props: [
-        //     'githubjson',
-        // ],
-        // data() {
-        //     return {
-        //         github: JSON.parse(this.githubjson),
-        //     }
-        // },
+        props: [
+            'githubjson',
+        ],
+        data() {
+            return {
+                windowWidth: 0,
+                github() {
+                    const github = JSON.parse(this.githubjson);
+                    if (this.windowWidth < 1080) {
+                        return github.slice(0, 7);
+                    }
+                    return github;
+                },
+            }
+        },
+        mounted() {
+            this.$nextTick(function() {
+                window.addEventListener('resize', this.getWindowWidth);
+                this.getWindowWidth();
+            });
+        },
+
+        methods: {
+            getWindowWidth(event) {
+                this.windowWidth = document.documentElement.clientWidth;
+            },
+        },
+        beforeDestroy() {
+            window.removeEventListener('resize', this.getWindowWidth);
+        }
     }
 </script>
 
@@ -102,4 +125,14 @@
             width: 100%;
         }
     }
+</style>
+<style>
+    .programming a {
+            color: #ddd;
+            text-decoration: none;
+        }
+            .programming a:hover {
+                color: #fff;
+                text-decoration: underline;
+            }
 </style>
