@@ -29,7 +29,7 @@ Route::get('/start', function () {
     return view('welcome');
 });
 
-// Wanikani Dashboard ?
-Route::get('/wk-dashboard', function () {
+// Wanikani Stats ?
+Route::get('/wk-stats', function () {
     return view('welcome');
 });

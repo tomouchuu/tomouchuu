@@ -90,6 +90,7 @@ class MeController extends Controller
                 'srs-distribution' => $client->getAsync('srs-distribution'),
                 'study-queue' => $client->getAsync('study-queue'),
                 'level-progression' => $client->getAsync('level-progression'),
+                'critical-items' => $client->getAsync('critical-items'),
             ];
 
             // Wait on all of the requests to complete. Throws a ConnectException
@@ -103,12 +104,14 @@ class MeController extends Controller
             $srs = json_decode($results['srs-distribution']['value']->getBody(), true);
             $studyQueue = json_decode($results['study-queue']['value']->getBody(), true);
             $levelProgression = json_decode($results['level-progression']['value']->getBody(), true);
+            $criticalItems = json_decode($results['critical-items']['value']->getBody(), true);
 
             $wanikani = [
-                'user-information' => $srs['user_information'],
-                'srs-distribution' => $srs['requested_information'],
-                'study-queue' => $studyQueue['requested_information'],
-                'level-progression' => $levelProgression['requested_information'],
+                'user_information' => $srs['user_information'],
+                'srs_distribution' => $srs['requested_information'],
+                'study_queue' => $studyQueue['requested_information'],
+                'level_progression' => $levelProgression['requested_information'],
+                'critical_items' => $criticalItems['requested_information'],
             ];
 
 
