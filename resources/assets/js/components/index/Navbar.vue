@@ -3,7 +3,7 @@
         <ul class="links">
             <li><a href="#intro">TOP</a></li>
             <li><a href="#about">ABOUT</a></li>
-            <li><a href="#code">CODE</a></li>
+            <li><a href="#programming">PROGRAMMING</a></li>
         </ul>
         <ul class="socials">
             <li v-for="(url, network) in personal.contact">
@@ -37,6 +37,8 @@
     nav {
         background: rgba(0, 0, 0, 0.9);
         color: #fff;
+        padding-left: 7.5px;
+        padding-right: 7.5px;
     }
     nav ul {
         float: left;
