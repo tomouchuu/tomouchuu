@@ -1,23 +1,32 @@
 <template>
     <div class="recent-blog">
         <div class="recent-blog-container">
-            <h3>- TITLE -</h3>
-            <h4>DATE</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, libero consectetur quidem necessitatibus nisi vel, illum, quis impedit obcaecati mollitia enim reiciendis. Provident in libero, eligendi maxime, sit cumque minus.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, libero consectetur quidem necessitatibus nisi vel, illum, quis impedit obcaecati mollitia enim reiciendis. Provident in libero, eligendi maxime, sit cumque minus.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, libero consectetur quidem necessitatibus nisi vel, illum, quis impedit obcaecati mollitia enim reiciendis. Provident in libero, eligendi maxime, sit cumque minus.</p>
-            <a href="" title="READ MORE" class="read-more">READ MORE...</a>
+            <h3>- {{ blogpost.title }} -</h3>
+            <h4>{{ blogpost.date }}</h4>
+            <div class="snippet">
+                <p>{{ snippet() }}</p>
+            </div>
+            <a v-bind:href="`/blog/show/${blogpost.file}`" title="READ MORE" class="read-more">READ MORE...</a>
         </div>
     </div>
 </template>
 
 <script>
+    const parse5 = require('parse5');
+
     export default {
         name: 'recent-blog',
         props: [
-            'personaljson',
+            'blogpostjson',
         ],
         data() {
             return {
-                personal: JSON.parse(this.personaljson),
+                blogpost: JSON.parse(this.blogpostjson),
+                snippet() {
+                    const blogpost = parse5.parseFragment(this.blogpost.content);
+                    const snippet = blogpost.childNodes[0].childNodes[0].value;
+                    return snippet;
+                }
             }
         },
     }

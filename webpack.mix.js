@@ -17,3 +17,5 @@ mix.js('resources/assets/js/index.js', 'public/js')
 mix.sass('resources/assets/sass/app.scss', 'public/css');
 
 mix.copyDirectory('resources/assets/images', 'public/images');
+
+mix.copyDirectory('resources/assets/blogposts', 'public/blogposts');

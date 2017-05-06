@@ -15,9 +15,9 @@
 Route::get('/', 'MeController');
 
 // Tomo Blog
-Route::get('/blog', function () {
-    return view('welcome');
-});
+Route::get('/blog', 'BlogController@latest');
+Route::get('/blog/archive', 'BlogController@index');
+Route::get('/blog/show/{file}', 'BlogController@show');
 
 // Tomo Oshis
 Route::get('/oshimen', function () {

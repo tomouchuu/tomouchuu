@@ -29,7 +29,7 @@
             <recent-tweet twitterjson="{{ json_encode($twitter) }}" />
         </div>
         <div id="recent-blog">
-            <recent-blog personaljson="{{ json_encode($me) }}" />
+            <recent-blog blogpostjson="{{ json_encode($blogpost) }}" />
         </div>
         <div id="programming">
             <programming githubjson="{{ json_encode($github) }}" />

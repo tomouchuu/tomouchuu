@@ -26,10 +26,9 @@ Route::group(['prefix' => 'me'], function () {
 // Blog API
 // File system to markdown files
 Route::group(['prefix' => 'blog'], function () {
-    Route::get('/', 'Api\BlogController@get');
-    // Route::get('/', function ()    {
-    //     return "GENERAL";
-    // });
+    Route::get('/latest', 'Api\BlogController@latest');
+    Route::get('/archive', 'Api\BlogController@index');
+    Route::get('/post/{file}', 'Api\BlogController@show');
 });
 
 // Oshimen API

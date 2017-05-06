@@ -4,6 +4,7 @@ namespace Tomo\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Tomo\Http\Controllers\Api\MeController as MeApi;
+use Tomo\Http\Controllers\Api\BlogController as BlogApi;
 
 class MeController extends Controller
 {
@@ -42,6 +43,11 @@ class MeController extends Controller
         $githubJson = $meApi->github()->getContent();
         $data['github'] = json_decode($githubJson, true);
         $data['github'] = array_slice($data['github'], 0, 15);
+
+        $blogApi = new BlogApi();
+        $blogpostJson = $blogApi->latest()->getContent();
+        $blogpostArray = json_decode($blogpostJson, true);
+        $data['blogpost'] = $blogpostArray['blogpost'];
 
         $wanikaniJson = $meApi->wanikani()->getContent();
         $data['wanikani'] = json_decode($wanikaniJson, true);
