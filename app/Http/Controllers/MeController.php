@@ -39,9 +39,9 @@ class MeController extends Controller
             'videos' => $recentVideos,
         ];
 
-        // $githubJson = $meApi->github()->getContent();
-        // $data['github'] = json_decode($githubJson, true);
-        // cut down to 15
+        $githubJson = $meApi->github()->getContent();
+        $data['github'] = json_decode($githubJson, true);
+        $data['github'] = array_slice($data['github'], 0, 15);
 
         $wanikaniJson = $meApi->wanikani()->getContent();
         $data['wanikani'] = json_decode($wanikaniJson, true);
