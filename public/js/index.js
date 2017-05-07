@@ -13568,9 +13568,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
+//@TODO: Make sticky
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13578,10 +13577,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         socialmedia: __WEBPACK_IMPORTED_MODULE_0__SocialMedia_vue___default.a
     },
-    props: ['personaljson'],
+    props: ['navbartype', 'personaljson'],
     data: function data() {
         return {
-            personal: JSON.parse(this.personaljson)
+            personal: JSON.parse(this.personaljson),
+            navclass: function navclass() {
+                if (this.navbartype === 'blog') {
+                    return 'blog-nav';
+                }
+                return 'home-nav';
+            },
+            navlinks: function navlinks() {
+                if (this.navbartype === 'blog') {
+                    return {
+                        '/blog': 'tomo@uchuu blog',
+                        '/blog/archive': 'blog archive',
+                        '/': 'to main site'
+                    };
+                }
+                return {
+                    '#intro': 'TOP',
+                    '#about': 'ABOUT',
+                    '#programming': 'PROGRAMMING'
+                };
+            }
         };
     }
 });
@@ -14166,7 +14185,7 @@ exports.push([module.i, "\n.intro {\n    display: -webkit-box;\n    display: -ms
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
-exports.push([module.i, "\nnav[data-v-77857e01] {\n    background: rgba(0, 0, 0, 0.9);\n    color: #fff;\n    padding-left: 7.5px;\n    padding-right: 7.5px;\n}\nnav ul[data-v-77857e01] {\n    float: left;\n    list-style: none;\n    padding-left: 0;\n}\nnav ul li[data-v-77857e01] {\n        display: inline-block;\n}\nnav ul li a[data-v-77857e01] {\n            color: #fff;\n            margin-left: 7.5px;\n            margin-right: 7.5px;\n}\nnav ul li a[data-v-77857e01]:hover {\n                color: #ddd;\n}\nnav ul.links[data-v-77857e01] {\n    margin-top: 22px;\n    margin-bottom: 22px;\n    margin-left: 7.5px;\n}\nnav ul.socials[data-v-77857e01] {\n    float: right;\n    margin-left: 0;\n}\n@media screen and (max-width: 500px) {\nnav ul[data-v-77857e01] {\n        text-align: center;\n        width: 100%;\n}\nnav ul.links[data-v-77857e01] {\n            margin-left: 0;\n            margin-bottom: 5px;\n}\n}\n", ""]);
+exports.push([module.i, "\nnav[data-v-77857e01] {\n    background: rgba(0, 0, 0, 0.9);\n    color: #fff;\n    padding-left: 7.5px;\n    padding-right: 7.5px;\n}\nnav.home-nav[data-v-77857e01] {\n    background: rgba(0, 0, 0, 0.9);\n}\nnav.blog-nav[data-v-77857e01] {\n    background: rgba(46, 204, 64, 0.75);\n}\nnav ul[data-v-77857e01] {\n    float: left;\n    list-style: none;\n    padding-left: 0;\n}\nnav ul li[data-v-77857e01] {\n        display: inline-block;\n}\nnav ul li a[data-v-77857e01] {\n            color: #fff;\n            margin-left: 7.5px;\n            margin-right: 7.5px;\n}\nnav ul li a[data-v-77857e01]:hover {\n                color: #ddd;\n}\nnav ul.links[data-v-77857e01] {\n    margin-top: 22px;\n    margin-bottom: 22px;\n    margin-left: 7.5px;\n}\nnav ul.socials[data-v-77857e01] {\n    float: right;\n    margin-left: 0;\n}\n@media screen and (max-width: 500px) {\nnav ul[data-v-77857e01] {\n        text-align: center;\n        width: 100%;\n}\nnav ul.links[data-v-77857e01] {\n            margin-left: 0;\n            margin-bottom: 5px;\n}\n}\n", ""]);
 
 /***/ }),
 /* 64 */
@@ -46372,7 +46391,17 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('nav', [_vm._m(0), _vm._v(" "), _c('ul', {
+  return _c('nav', {
+    class: _vm.navclass()
+  }, [_c('ul', {
+    staticClass: "links"
+  }, _vm._l((_vm.navlinks()), function(name, url) {
+    return _c('li', [_c('a', {
+      attrs: {
+        "href": url
+      }
+    }, [_vm._v(_vm._s(name))])])
+  })), _vm._v(" "), _c('ul', {
     staticClass: "socials"
   }, _vm._l((_vm.personal.contact), function(url, network) {
     return _c('li', [_c('socialmedia', {
@@ -46385,23 +46414,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })), _vm._v(" "), _c('div', {
     staticClass: "clearfix"
   })])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('ul', {
-    staticClass: "links"
-  }, [_c('li', [_c('a', {
-    attrs: {
-      "href": "#intro"
-    }
-  }, [_vm._v("TOP")])]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "#about"
-    }
-  }, [_vm._v("ABOUT")])]), _vm._v(" "), _c('li', [_c('a', {
-    attrs: {
-      "href": "#programming"
-    }
-  }, [_vm._v("PROGRAMMING")])])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

@@ -1,7 +1,7 @@
 @extends('blog._master')
 
 @section('meta')
-	<title>{{ $blogpost['title'] }} || Blog.Tomo@pagu</title>
+	<title>{{ $blogpost['title'] }} || tomo@uchuu blog</title>
 @endsection
 
 @section('content')

@@ -3,6 +3,9 @@
 // Variables
 @import "variables";
 
+// Pages
+@import "blog";
+
 body {
     background-color: $body-bg;
     color: $text-color;
@@ -21,6 +24,10 @@ body {
 a,
 a:hover {
     transition: all .2s;
+}
+
+img {
+    max-width: 100%;
 }
 
 .clearfix {

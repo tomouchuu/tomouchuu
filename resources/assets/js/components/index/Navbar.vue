@@ -1,9 +1,7 @@
 <template>
-    <nav>
+    <nav v-bind:class="navclass()">
         <ul class="links">
-            <li><a href="#intro">TOP</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#programming">PROGRAMMING</a></li>
+            <li v-for="(name, url) in navlinks()"><a v-bind:href="url">{{ name }}</a></li>
         </ul>
         <ul class="socials">
             <li v-for="(url, network) in personal.contact">
@@ -15,6 +13,7 @@
 </template>
 
 <script>
+    //@TODO: Make sticky
     import socialmedia from './../SocialMedia.vue';
 
     export default {
@@ -23,11 +22,32 @@
             socialmedia,
         },
         props: [
+            'navbartype',
             'personaljson',
         ],
         data() {
             return {
                 personal: JSON.parse(this.personaljson),
+                navclass() {
+                    if (this.navbartype === 'blog') {
+                        return 'blog-nav';
+                    }
+                    return 'home-nav';
+                },
+                navlinks() {
+                    if (this.navbartype === 'blog') {
+                        return {
+                            '/blog': 'tomo@uchuu blog',
+                            '/blog/archive': 'blog archive',
+                            '/': 'to main site',
+                        };
+                    }
+                    return {
+                        '#intro': 'TOP',
+                        '#about': 'ABOUT',
+                        '#programming': 'PROGRAMMING',
+                    }
+                }
             }
         },
     }
@@ -39,6 +59,12 @@
         color: #fff;
         padding-left: 7.5px;
         padding-right: 7.5px;
+    }
+    nav.home-nav {
+        background: rgba(0, 0, 0, 0.9);
+    }
+    nav.blog-nav {
+        background: rgba(46, 204, 64, 0.75);
     }
     nav ul {
         float: left;

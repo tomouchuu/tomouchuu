@@ -17,7 +17,7 @@
             />
         </div>
         <div id="navbar">
-            <navbar personaljson="{{ json_encode($me) }}" />
+            <navbar navbartype="home" personaljson="{{ json_encode($me) }}" />
         </div>
         <div id="about">
             <about

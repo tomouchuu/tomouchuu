@@ -2,21 +2,26 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 	@yield('meta')
 
-	<link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/tachyons-css/4.0.1-beta/tachyons.min.css">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-	<div class="sans-serif w-75 center lh-copy">
-		<header>
-			<p class="f1 tr">Blog.Tomo@pagu</p>
-			<p class="tr"><a href="{{ url('/archive') }}">Archive</a></p>
-			<hr />
-		</header>
+	<div class="blog-layout">
+		<div id="navbar">
+            <navbar navbartype="blog" personaljson="{{ json_encode($me) }}" />
+        </div>
 
-		<div class="tj">
+		<div class="blog-container">
 			@yield('content')
 		</div>
 	</div>
+
+    <script src="{{ asset('js/manifest.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/vendor.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/index.js') }}" type="text/javascript"></script>
 </body>
 </html>

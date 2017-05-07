@@ -8,7 +8,7 @@
 	<h1>Blog.Tomo@pagu/Archive</h1>
 	<ul>
 		@foreach ($blogposts as $blogpost)
-			<li><a href="/show/{{ $blogpost }}" title="{{ $blogpost }}">{{ $blogpost }}</a></li>
+			<li><a href="{{ url('blog/show/'.$blogpost) }}" title="{{ $blogpost }}">{{ $blogpost }}</a></li>
 		@endforeach
 	</ul>
 @endsection
