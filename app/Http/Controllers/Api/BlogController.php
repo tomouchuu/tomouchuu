@@ -19,6 +19,8 @@ class BlogController extends Controller
 			$blogposts[$id] = $blogpost[0];
 		}
 
+        $blogposts = array_reverse($blogposts);
+
 		return response()->json([
 			'blogposts' => $blogposts,
 		]);
