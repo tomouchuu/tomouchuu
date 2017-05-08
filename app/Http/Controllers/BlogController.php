@@ -14,7 +14,21 @@ class BlogController extends Controller
 	{
         $blogApi = new BlogApi();
         $blogpostsJson = $blogApi->index()->getContent();
-        $data = json_decode($blogpostsJson, true);
+        $blogpostsArray = json_decode($blogpostsJson, true);
+        // Try to make the blogpost title a bit nicer
+        $data['blogposts'] = [];
+        foreach ($blogpostsArray['blogposts'] as $blogpost) {
+            $blogpostData['filename'] = $blogpost;
+            $blogpostDataArray = explode('-', $blogpost, 2);
+            $blogpostDate = \DateTime::createFromFormat('Ymd', $blogpostDataArray[0]);
+            $blogpostDateFormat = $blogpostDate->format('d-m-Y');
+
+            $blogpostName = str_replace('_', ' ', $blogpostDataArray[1]);
+
+            $blogpostData['title'] = $blogpostDateFormat.' || '.$blogpostName;
+
+            array_push($data['blogposts'], $blogpostData);
+        }
 
         $meApi = new MeApi();
         $meJson = $meApi->me()->getContent();

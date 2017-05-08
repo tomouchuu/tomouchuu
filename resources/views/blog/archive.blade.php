@@ -6,9 +6,9 @@
 
 @section('content')
 	<h1>Blog.Tomo@pagu/Archive</h1>
-	<ul>
-		@foreach ($blogposts as $blogpost)
-			<li><a href="{{ url('blog/show/'.$blogpost) }}" title="{{ $blogpost }}">{{ $blogpost }}</a></li>
-		@endforeach
-	</ul>
+    <ul>
+        @foreach ($blogposts as $blogpost)
+            <li><a href="{{ url('blog/show/'.$blogpost['filename']) }}" title="{{ $blogpost['title'] }}">{{ $blogpost['title'] }}</a></li>
+        @endforeach
+    </ul>
 @endsection
