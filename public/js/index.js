@@ -13466,9 +13466,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var criticalItem = this.wanikani.critical_items[0];
                 var criticalItemAnswer = void 0;
                 if (criticalItem.type === 'kanji') {
-                    if (criticalItem.impotant_reading === 'kunyomi') {
+                    if (criticalItem.important_reading === 'kunyomi') {
                         criticalItemAnswer = criticalItem.kunyomi;
-                    } else if (criticalItem.impotant_reading === 'nanori') {
+                    } else if (criticalItem.important_reading === 'nanori') {
                         criticalItemAnswer = criticalItem.nanori;
                     } else {
                         criticalItemAnswer = criticalItem.onyomi;
@@ -13479,7 +13479,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     // Radical
                     criticalItemAnswer = 'a radical';
                 }
-                return criticalItem.character + ' (' + criticalItemAnswer + ') which means ' + criticalItem.meaning + ' and I get it right ' + criticalItem.percentage + '% of the time';
+                return criticalItem.character + ' (' + criticalItemAnswer + ') which means ' + criticalItem.meaning + ' and I get it correct ' + criticalItem.percentage + '% of the time';
             }
         };
     }

@@ -37,9 +37,9 @@
                     const criticalItem = this.wanikani.critical_items[0];
                     let criticalItemAnswer;
                     if (criticalItem.type === 'kanji') {
-                        if (criticalItem.impotant_reading === 'kunyomi') {
+                        if (criticalItem.important_reading === 'kunyomi') {
                             criticalItemAnswer = criticalItem.kunyomi;
-                        } else if (criticalItem.impotant_reading === 'nanori') {
+                        } else if (criticalItem.important_reading === 'nanori') {
                             criticalItemAnswer = criticalItem.nanori;
                         } else {
                             criticalItemAnswer = criticalItem.onyomi;
@@ -50,7 +50,7 @@
                         // Radical
                         criticalItemAnswer = 'a radical';
                     }
-                    return `${criticalItem.character} (${criticalItemAnswer}) which means ${criticalItem.meaning} and I get it right ${criticalItem.percentage}% of the time`;
+                    return `${criticalItem.character} (${criticalItemAnswer}) which means ${criticalItem.meaning} and I get it correct ${criticalItem.percentage}% of the time`;
                 }
             }
         },
