@@ -31,6 +31,8 @@
                 navclass() {
                     if (this.navbartype === 'blog') {
                         return 'blog-nav';
+                    } else if (this.navbartype === 'oshimen') {
+                        return 'oshimen-nav';
                     }
                     return 'home-nav';
                 },
@@ -39,6 +41,10 @@
                         return {
                             '/blog': 'tomo@uchuu blog',
                             '/blog/archive': 'blog archive',
+                            '/': 'to main site',
+                        };
+                    } else if (this.navbartype === 'oshimen') {
+                        return {
                             '/': 'to main site',
                         };
                     }
@@ -60,39 +66,43 @@
         padding-left: 7.5px;
         padding-right: 7.5px;
     }
-    nav.home-nav {
-        background: rgba(0, 0, 0, 0.9);
-    }
-    nav.blog-nav {
-        background: rgba(46, 204, 64, 0.75);
-    }
-    nav ul {
-        float: left;
-        list-style: none;
-        padding-left: 0;
-    }
-        nav ul li {
-            display: inline-block;
+        nav.home-nav {
+            background: rgba(0, 0, 0, 0.9);
         }
-            nav ul li a {
-                color: #fff;
-                margin-left: 7.5px;
-                margin-right: 7.5px;
+        nav.blog-nav {
+            background: rgba(46, 204, 64, 0.75);
+        }
+        nav.oshimen-nav {
+            background: #ff69b4;
+        }
+
+        nav ul {
+            float: left;
+            list-style: none;
+            padding-left: 0;
+        }
+            nav ul li {
+                display: inline-block;
             }
-                nav ul li a:hover {
-                    color: #ddd;
+                nav ul li a {
+                    color: #fff;
+                    margin-left: 7.5px;
+                    margin-right: 7.5px;
                 }
+                    nav ul li a:hover {
+                        color: #ddd;
+                    }
 
-    nav ul.links {
-        margin-top: 22px;
-        margin-bottom: 22px;
-        margin-left: 7.5px;
-    }
+        nav ul.links {
+            margin-top: 22px;
+            margin-bottom: 22px;
+            margin-left: 7.5px;
+        }
 
-    nav ul.socials {
-        float: right;
-        margin-left: 0;
-    }
+        nav ul.socials {
+            float: right;
+            margin-left: 0;
+        }
 
     @media screen and (max-width: 500px) {
         nav ul {

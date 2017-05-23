@@ -20,9 +20,7 @@ Route::get('/blog/archive', 'BlogController@index');
 Route::get('/blog/show/{file}', 'BlogController@show');
 
 // Tomo Oshis
-Route::get('/oshimen', function () {
-    return view('welcome');
-});
+Route::get('/oshimen', 'OshimenController');
 
 // Tomo Start
 Route::get('/start', function () {
