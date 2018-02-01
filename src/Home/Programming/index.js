@@ -62,13 +62,38 @@ class Programming extends Component {
           <div className="projects">
             <Project
               project="Start (スタート)"
-              github="https://github.com/tomouchuu/start"
+              github="https://github.com/uchuuio/start"
+              website="https://start.uchuu.io"
               description="This start page replaces your browser's new tab page and is a nice looking alternative which can be customisable with a few changes to the config file."
               image="/images/projects/start.png"
             />
             <Project
+              project="tomOshi"
+              github="https://github.com/tomouchuu/tomOshi"
+              website="https://tomoshi.uchuu.io/"
+              description="A website to showcase the japanese pop idols I support"
+              image="/images/projects/tomoshi.png"
+            />
+            <Project
+              project="Mastodon Translate"
+              github="https://github.com/tomouchuu/mastodon-translate"
+              description="A tampermonkey/greasemonkey script that can translate toots on mastodon via the translate server below."
+            />
+            <Project
+              project="Translate Server"
+              github="https://github.com/uchuuio/translate-server"
+              website="https://translate.uchuu.io/"
+              description="A micro based google translate proxy server used by mastodon-tranlate"
+            />
+            <Project
+              project="Dempach Archive"
+              github="https://github.com/uchuuio/dempach-archive"
+              website="https://dempach-archive.uchuu.io/"
+              description="A site that archives dempach, a radio show on tunein hosted by Mirin & Pinky of Dempagumi.inc, as shows are deleted on tunein after a few weeks. So this site scrapes tunein every week to get the latest episode and then uploads it to S3."
+            />
+            <Project
               project="Zen"
-              github="https://github.com/tomouchuu/zen"
+              github="https://github.com/uchuuio/zen"
               website="https://zen.uchuu.io"
               description="A webpage to display a thoughtful message everyday. It also exposes an API. Uses express & handlebars."
               image="/images/projects/zen.png"
@@ -77,7 +102,7 @@ class Programming extends Component {
               project="Disbott"
               github="https://github.com/uchuuio/disbott"
               // website="https://disbott.uchuu.io"
-              description="Disbott is a bot for Discord. It's written in node and is primarily in use for some fun commands on mine and friends' discord servers."
+              description="Disbott is a bot for Discord. It's written in C# with my colleague sam and is primarily in use for some fun commands on mine and friends' discord servers."
               image="/images/projects/disbott.png"
             />
           </div>
