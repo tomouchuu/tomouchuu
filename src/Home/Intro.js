@@ -2,42 +2,12 @@ import React, { Component } from 'react';
 
 import parse from 'date-fns/parse';
 import differenceInYears from 'date-fns/difference_in_years';
-import styled, { keyframes } from 'styled-components';
-import { generator } from 'uigradients';
+import styled from 'styled-components';
 
+import HeroBG from './../Hero';
 import SocialMedia from './../SocialMedia';
 
-const gradientTransition = keyframes`
-  from {
-    ${generator({
-      gradient: 'timber',
-      type: 'radial',
-      options: {
-          position: '0 20px',
-          shape: 'ellipse',
-          colorStops: ['0%', '100%'],
-          extent: 'farthest-corner'
-      }
-    })}
-  }
-
-  to {
-    ${generator({
-      gradient: 'timber',
-      type: 'radial',
-      options: {
-          position: '2000px 20px',
-          shape: 'ellipse',
-          colorStops: ['0%', '100%'],
-          extent: 'farthest-corner'
-      }
-    })}
-  }
-`;
-
-const IntroArea = styled.div`
-  animation: ${gradientTransition} 20s linear infinite;
-
+const IntroArea = styled(HeroBG)`
   display: flex;
   padding: 100px;
   font-size: 1.4rem;
@@ -156,7 +126,7 @@ class Intro extends Component {
     });
 
     return (
-      <IntroArea id="intro">
+      <IntroArea id="intro" hue="189" saturation="100" lightness="81" animate={true} transition="5">
         <IntroContainer>
           {
             (this.props.twitterloaded) ? <ProfileImg src={this.profileimg()} alt={this.props.me.name} /> : null
