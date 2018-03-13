@@ -7,10 +7,13 @@ import styled from 'styled-components';
 import HeroBG from './../Hero';
 import SocialMedia from './../SocialMedia';
 
+import mask from './../mask.png';
+
 const IntroArea = styled(HeroBG)`
   display: flex;
-  padding: 100px;
   font-size: 1.4rem;
+  padding: 100px;
+  position: relative;
 
   & h1 {
     display: inline;
@@ -24,15 +27,29 @@ const IntroArea = styled(HeroBG)`
     padding: 30px;
   }
 `;
+const IntroMask = styled(HeroBG)`
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  width: 100%;
+
+  mask-image: url(${mask});
+  mask-mode: alpha;
+  mask-repeat: no-repeat;
+  mask-size: cover;
+`;
 const IntroContainer = styled.div`
   background: rgba(0, 0, 0, 0.6);
   border: 1px solid #fff;
   border-radius: 4px;
   color: #fff;
+  line-height: 40px;
   margin: 0 auto;
   padding: 0 30px 30px;
   width: 550px;
-  line-height: 40px;
+  z-index: 10;
 
   div {
     text-align: center;
@@ -126,7 +143,8 @@ class Intro extends Component {
     });
 
     return (
-      <IntroArea id="intro" hue="189" saturation="100" lightness="81" animate={true} transition="5">
+      <IntroArea id="intro" hue="189" saturation="25" lightness="81" animate={true} transition="5">
+        <IntroMask hue="189" saturation="100" lightness="81" animate={true} transition="5" />
         <IntroContainer>
           {
             (this.props.twitterloaded) ? <ProfileImg src={this.profileimg()} alt={this.props.me.name} /> : null
