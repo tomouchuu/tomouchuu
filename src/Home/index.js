@@ -164,7 +164,7 @@ class Home extends Component {
     let recentPlayed = <Loading loadingitem="Recently Played" color="#1db954" />;
     let programming = <Loading loadingitem="Programming Section" color="#333" />;
     if (this.state.me.loaded) { intro = <Intro me={this.state.me.data} twitterloaded={this.state.twitter.loaded} image={ this.state.twitter.data.profile_image_url } /> }
-    if (this.state.me.loaded) { navbar = <Navbar socials={this.state.me.data.contact} /> }
+    if (this.state.me.loaded) { navbar = <Navbar className="navbar" socials={this.state.me.data.contact} /> }
     if (this.state.me.loaded) { about = <About me={this.state.me.data} music={this.state.spotifyTop.loaded} topmusic={this.state.spotifyTop.top} /> }
     if (this.state.twitter.loaded) { recentTweet = <RecentTweet tweet={this.state.twitter.data.status} /> }
     if (this.state.spotify.loaded) { recentPlayed = <RecentPlayed data={this.state.spotify.recentlyPlayed} /> }
