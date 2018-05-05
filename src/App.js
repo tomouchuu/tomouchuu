@@ -6,12 +6,14 @@ import {
 
 import Home from './Home';
 import Blog from './Blog';
+import { SnapcodeComponent } from './SocialMedia';
 
 const App = () => (
   <Router>
     <div>
       <Route exact path="/" component={Home} />
       <Route path="/blog" component={Blog} />
+      <Route path="/snapcode" component={SnapcodeComponent} />
     </div>
   </Router>
 )

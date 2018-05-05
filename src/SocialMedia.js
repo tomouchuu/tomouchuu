@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import Snapcode from './snapcode.png';
+
 import fontawesome from '@fortawesome/fontawesome';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import brands from '@fortawesome/fontawesome-free-brands'
@@ -87,7 +89,11 @@ const SocialIcon = styled.a`
 }
 `;
 
-class SocialMedia extends Component {
+export const SnapcodeComponent = () => (
+  <img src={Snapcode} alt="My Snapcode" style={{width: '300px', margin: '0 auto', display: 'block'}} />
+);
+
+export class SocialMedia extends Component {
   icon() {
     if (this.props.network === 'email') {
       return ['fal', 'envelope'];
