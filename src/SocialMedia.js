@@ -93,8 +93,6 @@ class SocialMedia extends Component {
       return ['fal', 'envelope'];
     } else if (this.props.network === 'blog') {
       return ['fal', 'newspaper'];
-    } else if (this.props.network === 'mastodon') {
-      return ['fab', 'react'];
     }
     return ['fab', this.props.network];
   }
