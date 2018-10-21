@@ -99,6 +99,12 @@ class Programming extends Component {
               image="/images/projects/zen.png"
             />
             <Project
+              project="CHEERZ"
+              github="https://github.com/tomouchuu/cheerz"
+              website="https://cheerz.uchuu.io"
+              description="A react rebuild of the cheerz website. Also uses styled-components & react-styleguidist"
+            />
+            <Project
               project="Disbott"
               github="https://github.com/uchuuio/disbott"
               // website="https://disbott.uchuu.io"
