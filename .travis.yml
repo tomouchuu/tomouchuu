@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "node"
+before_install: npm config set "@fortawesome:registry" https://npm.fontawesome.com/ && npm config set "//npm.fontawesome.com/:_authToken" $NPM_AUTH
+cache:
+  directories:
+    - "node_modules"
+script: npm run build
+before_deploy: npm install now --no-save
+deploy:
+  provider: script
+  script: now --token $NOW_TOKEN
+  skip_cleanup: true
+  on:
+    condition: $TRAVIS_BRANCH != master
+  provider: script
+  script: now --token $NOW_TOKEN && now alias --token $NOW_TOKEN
+  skip_cleanup: true
+  on:
+    branch: master
