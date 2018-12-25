@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const RecentPlayedArea = styled.div`
-  background: #1db954;
+  background: #d51007;
   color: #fff;
   padding: 20px;
   position: relative;
@@ -84,29 +84,28 @@ const TrackName = styled.h4`
 
 class RecentPlayed extends Component {
   render() {
+    const isLive = (this.props.data['@attr']) ? this.props.data['@attr'].nowplaying : false;
+    const image = this.props.data.image[3]['#text'];
+    const songName = this.props.data.name
+    const artist = this.props.data.artist["#text"];
+    const album = this.props.data.album["#text"];
+
     return (
       <RecentPlayedArea>
-        <RecentPlayedBackgroundArtwork image={this.props.data.item.album.images[0].url} />
+        {
+          image ? 
+          <RecentPlayedBackgroundArtwork image={image} /> : null
+        }
         <RecentPlayedContainer>
-          <RecentPlayedTitle>- { this.props.data.is_playing ? 'Currently Playing' : 'Last Played' } -</RecentPlayedTitle>
+          <RecentPlayedTitle>- { isLive ? 'Currently Playing' : 'Last Played' } -</RecentPlayedTitle>
           <TrackInfoArea>
-            <a href={this.props.data.item.album.external_urls.spotify} title={`See ${this.props.data.item.album.name} on Spotify`}><AlbumArtwork src={this.props.data.item.album.images[1].url} alt={this.props.data.item.album.name} /></a>
+            <a href="" title={`See ${album} on Spotify`}><AlbumArtwork src={image} alt={album} /></a>
             <TrackInfo>
-              <TrackName>{this.props.data.item.name}</TrackName>
+              <TrackName>{songName}</TrackName>
               <p>
-              {
-                this.props.data.item.artists.map((artist, index) => {
-                  if (index !== (this.props.data.item.artists.length - 1)) {
-                    return (<span key={artist.id}><a key={artist.id} href={artist.external_urls.spotify} title={`See ${artist.name} on Spotify`}>{artist.name}</a>, </span>);
-                  }
-                  return (<a key={artist.id} href={artist.external_urls.spotify} title={`See ${artist.name} on Spotify`}>{artist.name}</a>);
-                })
-              }
+                <a href="" title={`See ${artist} on Lastfm`}>Artist: {artist}</a>
               </p>
-              <p><a href={this.props.data.item.album.external_urls.spotify} title={`See ${this.props.data.item.album.name} on Spotify`}>{this.props.data.item.album.name}</a></p>
-              <p>
-                <a href={this.props.data.item.preview_url} title={`Preview ${this.props.data.item.name}`}>Preview</a> || <a href={this.props.data.item.external_urls.spotify} title={`Listen to ${this.props.data.item.name} on Spotify`}>Listen on Spotify</a>
-              </p>
+              <p><a href="" title={`See ${album} on Lastfm`}>Album: {album}</a></p>
             </TrackInfo>
             <div className="clearfix"></div>
           </TrackInfoArea>
