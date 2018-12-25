@@ -135,6 +135,7 @@ class Intro extends Component {
   render() {
     const contactData = this.props.me.contact;
     const socialMediaArr = [];
+    const basedInText = ` and based in <b>${this.props.me.based}</b>`;
     Object.keys(this.props.me.contact).forEach(function(network, i) {
       socialMediaArr.push({
         network: network,
@@ -150,7 +151,7 @@ class Intro extends Component {
             (this.props.twitterloaded) ? <ProfileImg src={this.profileimg()} alt={this.props.me.name} /> : null
           }
           <br />
-          <div>Hi I'm <h1>{ this.props.me.name }</h1>, <b>{this.age()} years old</b>, from <b>{this.props.me.location}</b> and based in <b>{ this.props.me.based }</b> where I'm currently <span dangerouslySetInnerHTML={this.employment()} />.</div>
+          <div>Hi I'm <h1>{ this.props.me.name }</h1>, <b>{this.age()} years old</b>, from <b>{this.props.me.location}</b>{ this.props.me.based ? <span dangerouslySetInnerHTML={{__html: basedInText}} /> : '' } where I'm currently <span dangerouslySetInnerHTML={this.employment()} />.</div>
           <p style={{'fontSize': '1.2rem'}}>Find me on:</p>
           <SocialList>
           {socialMediaArr.map((social) =>
