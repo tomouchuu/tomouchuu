@@ -21,21 +21,11 @@ class Home extends Component {
           "name": "Thomas Moore",
           "birthday": "1993-09-14",
           "location": "Chelmsford",
-          "based": "London",
           "contact": {
             "email": "tomo@uchuu.io",
-            "blog": "https://tomo.uchuu.io/blog",
             "twitter": "https://www.twitter.com/tomouchuu",
             "github": "https://github.com/tomouchuu",
-            "instagram": "https://instagram.com/tomouchuu",
-            "spotify": "https://open.spotify.com/user/117937777",
-            "discord": "discord:tomouchuu#6089",
             "mastodon": "https://niu.moe/@tomo",
-            "snapchat": "http://tomo.uchuu.io/images/snapcode.png",
-            "youtube": "https://www.youtube.com/channel/UCl8LE1A9XI5gE_VD47hl8Cg",
-            "twitch": "https://www.twitch.tv/tomouchuu",
-            "soundcloud": "https://soundcloud.com/tomopagu",
-            "trello": "https://trello.com/b/FcW2Q1jL",
             "linkedin": "https://www.linkedin.com/in/thomas-moore-730226121/"
           },
           "work": [
@@ -64,14 +54,10 @@ class Home extends Component {
         loaded: false,
         data: {},
       },
-      spotify: {
+      music: {
         loaded: false,
         recentlyPlayed: {},
-      },
-      spotifyTop: {
-        loaded: false,
-        top: {},
-      },
+      }
     }
   }
 
@@ -87,7 +73,7 @@ class Home extends Component {
         });
       });
 
-    fetch(`${config.api}/blog/latest`)
+    fetch(`${config.api}/blog?latest=true`)
       .then((response) => response.json())
       .then((data) => {
         this.setState({
@@ -98,7 +84,7 @@ class Home extends Component {
         });
       });
 
-    fetch(`${config.api}/twitter`)
+    fetch(`${config.api}/twitter/`)
       .then((response) => response.json())
       .then((data) => {
         this.setState({
@@ -121,34 +107,22 @@ class Home extends Component {
         });
       });
 
-      fetch(`${config.api}/spotify`)
+      fetch(`${config.api}/lastfm`)
         .then((response) => response.json())
         .then((data) => {
           if (!data.err) {
+            const track = data.track[0];
             this.setState({
-              spotify: {
+              music: {
                 loaded: true,
-                recentlyPlayed: data
+                recentlyPlayed: track
               }
             });
           } else {
             this.setState({
-              spotify: {
+              music: {
                 loaded: 'fail',
                 recentlyPlayed: null
-              }
-            });
-          }
-        });
-
-      fetch(`${config.api}/spotify/top`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (!data.err) {
-            this.setState({
-              spotifyTop: {
-                loaded: true,
-                top: data
               }
             });
           }
@@ -165,10 +139,10 @@ class Home extends Component {
     let programming = <Loading loadingitem="Programming Section" color="#333" />;
     if (this.state.me.loaded) { intro = <Intro me={this.state.me.data} twitterloaded={this.state.twitter.loaded} image={ this.state.twitter.data.profile_image_url } /> }
     if (this.state.me.loaded) { navbar = <Navbar className="navbar" socials={this.state.me.data.contact} /> }
-    if (this.state.me.loaded) { about = <About me={this.state.me.data} music={this.state.spotifyTop.loaded} topmusic={this.state.spotifyTop.top} /> }
+    if (this.state.me.loaded) { about = <About me={this.state.me.data} /> }
     if (this.state.twitter.loaded) { recentTweet = <RecentTweet tweet={this.state.twitter.data.status} /> }
-    if (this.state.spotify.loaded) { recentPlayed = <RecentPlayed data={this.state.spotify.recentlyPlayed} /> }
-    if (this.state.spotify.loaded === 'fail') { recentPlayed = null }
+    if (this.state.music.loaded) { recentPlayed = <RecentPlayed data={this.state.music.recentlyPlayed} /> }
+    if (this.state.music.loaded === 'fail') { recentPlayed = null }
     if (this.state.blogpost.loaded) { recentBlog = <RecentBlog blogpost={this.state.blogpost.data} /> }
     if (this.state.github.loaded) { programming = <Programming data={this.state.github.data} /> }
 
