@@ -84,6 +84,14 @@ const SocialIcon = styled.a`
   ${IconStyling('#0077b5')}
 }
 
+& .lastfm {
+  ${IconStyling('#d51007')}
+}
+
+& .applemusic {
+  ${IconStyling('#ff2f56')}
+}
+
 & .socialicon {
   color: #fff;
 }
@@ -99,6 +107,8 @@ export class SocialMedia extends Component {
       return ['fal', 'envelope'];
     } else if (this.props.network === 'blog') {
       return ['fal', 'newspaper'];
+    } else if (this.props.network === 'applemusic') {
+      return ['fab', 'itunes-note'];
     }
     return ['fab', this.props.network];
   }
@@ -113,6 +123,8 @@ export class SocialMedia extends Component {
       return 'Email me';
     } else if (this.props.network === 'blog') {
       return 'My blog';
+    } else if (this.props.network === 'applemusic') {
+      return 'Apple Music';
     }
     return `Find me on ${this.props.network}`;
   }
