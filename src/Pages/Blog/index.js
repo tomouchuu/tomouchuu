@@ -1,10 +1,10 @@
-import { config } from './../config';
+import { config } from '../../config';
 
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Navbar from './../Navbar';
+import Navbar from '../../Components/Navbar';
 import Archive from './Archive';
 import Post from './Post';
 

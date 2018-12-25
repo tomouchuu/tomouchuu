@@ -84,11 +84,14 @@ const TrackName = styled.h4`
 
 class RecentPlayed extends Component {
   render() {
-    const isLive = (this.props.data['@attr']) ? this.props.data['@attr'].nowplaying : false;
-    const image = this.props.data.image[3]['#text'];
-    const songName = this.props.data.name
-    const artist = this.props.data.artist["#text"];
-    const album = this.props.data.album["#text"];
+    let image = false;
+    if (this.props.data.track.image) {
+      image = this.props.data.track.image;
+    } else if (this.props.data.album.image) {
+      image = this.props.data.album.image;
+    } else if (this.props.data.artist.image) {
+      image = this.props.data.artist.image;
+    }
 
     return (
       <RecentPlayedArea>
@@ -97,15 +100,16 @@ class RecentPlayed extends Component {
           <RecentPlayedBackgroundArtwork image={image} /> : null
         }
         <RecentPlayedContainer>
-          <RecentPlayedTitle>- { isLive ? 'Currently Playing' : 'Last Played' } -</RecentPlayedTitle>
+          <RecentPlayedTitle>- { this.props.data.islive === 'true' ? 'Currently Playing' : 'Last Played' } -</RecentPlayedTitle>
           <TrackInfoArea>
-            <a href="" title={`See ${album} on Spotify`}><AlbumArtwork src={image} alt={album} /></a>
+            <a href={this.props.data.album.url} title={`See ${this.props.data.album.name} on LastFm`}><AlbumArtwork src={image} alt={this.props.data.album.name} /></a>
             <TrackInfo>
-              <TrackName>{songName}</TrackName>
+              <TrackName>{this.props.data.track.name}</TrackName>
               <p>
-                <a href="" title={`See ${artist} on Lastfm`}>Artist: {artist}</a>
+                <a href={this.props.data.artist.url} title={`See ${this.props.data.artist.name} on Lastfm`}>Artist: {this.props.data.artist.name}</a>
               </p>
-              <p><a href="" title={`See ${album} on Lastfm`}>Album: {album}</a></p>
+              <p><a href={this.props.data.album.url} title={`See ${this.props.data.album.name} on Lastfm`}>Album: {this.props.data.album.name}</a></p>
+              <p>Played: {this.props.data.track.playedCount} times</p>
             </TrackInfo>
             <div className="clearfix"></div>
           </TrackInfoArea>

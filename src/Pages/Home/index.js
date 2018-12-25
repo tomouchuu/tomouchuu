@@ -1,15 +1,15 @@
-import { config } from './../config';
+import { config } from '../../config';
 
 import React, { Component } from 'react';
 
 import Intro from './Intro';
-import Navbar from './../Navbar';
+import Navbar from '../../Components/Navbar';
 import About from './About';
 import RecentTweet from './RecentTweet';
 import Programming from './Programming';
 import RecentBlog from './RecentBlog';
 import RecentPlayed from './RecentPlayed';
-import Loading from '../Loading';
+import Loading from '../../Components/Loading';
 
 class Home extends Component {
   constructor(props) {
@@ -56,7 +56,11 @@ class Home extends Component {
       },
       music: {
         loaded: false,
-        recentlyPlayed: {},
+        recentlyPlayed: {
+          artist: {},
+          track: {},
+          album: {}
+        },
       }
     }
   }
@@ -111,11 +115,10 @@ class Home extends Component {
         .then((response) => response.json())
         .then((data) => {
           if (!data.err) {
-            const track = data.track[0];
             this.setState({
               music: {
                 loaded: true,
-                recentlyPlayed: track
+                recentlyPlayed: data
               }
             });
           } else {
@@ -140,7 +143,7 @@ class Home extends Component {
     if (this.state.me.loaded) { intro = <Intro me={this.state.me.data} twitterloaded={this.state.twitter.loaded} image={ this.state.twitter.data.profile_image_url } /> }
     if (this.state.me.loaded) { navbar = <Navbar className="navbar" socials={this.state.me.data.contact} /> }
     if (this.state.me.loaded) { about = <About me={this.state.me.data} /> }
-    if (this.state.twitter.loaded) { recentTweet = <RecentTweet tweet={this.state.twitter.data.status} /> }
+    if (this.state.twitter.loaded) { recentTweet = <RecentTweet tweet={this.state.twitter.data} /> }
     if (this.state.music.loaded) { recentPlayed = <RecentPlayed data={this.state.music.recentlyPlayed} /> }
     if (this.state.music.loaded === 'fail') { recentPlayed = null }
     if (this.state.blogpost.loaded) { recentBlog = <RecentBlog blogpost={this.state.blogpost.data} /> }

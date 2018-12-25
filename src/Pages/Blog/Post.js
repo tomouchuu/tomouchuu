@@ -1,9 +1,9 @@
-import { config } from './../config';
+import { config } from '../../config';
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import Loading from '../Loading';
+import Loading from '../../Components/Loading';
 
 const Date = styled.p`
   display: block;

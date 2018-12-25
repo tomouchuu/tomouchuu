@@ -1,4 +1,4 @@
-import { config } from './../config';
+import { config } from '../../config';
 
 import React, { Component } from 'react';
 import { HashLink as Link } from 'react-router-hash-link';

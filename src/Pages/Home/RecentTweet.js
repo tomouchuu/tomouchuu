@@ -35,15 +35,15 @@ const Date = styled.a`
 
 class RecentTweet extends Component {
   text() {
-    return {__html: twitter.autoLink(this.props.tweet.text)};
+    return {__html: twitter.autoLink(this.props.tweet.status.text)};
   }
 
   relativedate() {
-    return distanceInWordsToNow(this.props.tweet.created_at, {addSuffix: true});
+    return distanceInWordsToNow(this.props.tweet.status.created_at, {addSuffix: true});
   }
 
   statusurl() {
-    return `https://twitter.com/${this.props.tweet.screen_name}/status/${this.props.tweet.id}`;
+    return `https://twitter.com/${this.props.tweet.screen_name}/status/${this.props.tweet.status.id}`;
   }
 
   render() {
@@ -52,7 +52,7 @@ class RecentTweet extends Component {
         <RecentTweetContainer>
           <h3>- RECENT TWEET -</h3>
           <Text dangerouslySetInnerHTML={this.text()}></Text>
-          <Date href={this.statusurl()} title={this.props.tweet.created_at} target="_blank">{ this.relativedate() }</Date>
+          <Date href={this.statusurl()} title={this.props.tweet.status.created_at} target="_blank">{ this.relativedate() }</Date>
         </RecentTweetContainer>
       </RecentTweetArea>
     );

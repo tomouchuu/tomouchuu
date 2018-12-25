@@ -4,10 +4,10 @@ import parse from 'date-fns/parse';
 import differenceInYears from 'date-fns/difference_in_years';
 import styled from 'styled-components';
 
-import HeroBG from './../Hero';
-import SocialMedia from './../SocialMedia';
+import HeroBG from '../../Components/Hero';
+import SocialMedia from '../../Components/SocialMedia';
 
-import mask from './../mask.png';
+import mask from '../../Components/mask.png';
 
 const IntroArea = styled(HeroBG)`
   display: flex;

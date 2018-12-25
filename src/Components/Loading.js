@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { ScaleLoader } from 'halogenium';
-import { config } from './config';
+import { config } from '../config';
 
 const LoadingComponent = styled.div`
   margin: 15px 0;
