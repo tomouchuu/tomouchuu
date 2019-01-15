@@ -17,6 +17,7 @@ import issueReopened from 'octicons-modular/icons/issue-reopened';
 import organization from 'octicons-modular/icons/organization';
 import repo from 'octicons-modular/icons/repo';
 import repoPush from 'octicons-modular/icons/repo-push';
+import repoForked from 'octicons-modular/icons/repo-forked';
 import rocket from 'octicons-modular/icons/rocket';
 import star from 'octicons-modular/icons/star';
 import tag from 'octicons-modular/icons/tag';
@@ -146,10 +147,18 @@ class GithubEvent extends Component {
           icon: gitPullRequest,
           message: 'Pull Request'
         };
+    } else if (this.props.ghevent.type === 'ForkEvent') {
+      return {
+        icon: repoForked,
+        message: 'Forked'
+      };
+    } else {
+        console.log(this.props.ghevent.type); // eslint-disable-line
+        return {
+          icon: rocket,
+          message: 'Unknown'
+        };
     }
-    // else {
-    //     console.log(this.ghEvent.type); // eslint-disable-line
-    // }
   }
 
   relativeTimeCreated() {
