@@ -32,7 +32,7 @@ class Home extends Component {
             {
               "company": "reed.co.uk",
               "date": "September 2016 - Current",
-              "description": "I'm a junior full-stack developer working on the jobseeker site. At work we use Razor & Knockout with LESS for our front end and a C# backend."
+              "description": "I'm a frontend developer working on the design systems team. At work we use reactjs with storybook powered by express with scss for styling."
             },
             {
               "company": "Ahead4",

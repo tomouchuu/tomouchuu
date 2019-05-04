@@ -38,10 +38,9 @@ class About extends Component {
     return (
       <AboutContainer id="about">
         <p>So hello there, I'm { this.props.me.name }. I'm { this.age() }, from { this.props.me.location } and currently { this.employment() }.</p>
-        <p>I'm primarily a frontend developer with a heavy focus on javascript using frameworks like reactjs & vuejs for my frontends along with a combination with knowledge of most css solutions (css, scss, less, stylus, postcss, css in js). I do also a little bit of backend work, either in javascript with node or php where I use laravel.</p>
+        <p>I'm a frontend developer with a focus on building components with javascript frameworks like reactjs & vuejs along with knowledge of a combination of most css solutions (css, scss, less, stylus, postcss, css in js). Storybook is ❤. I do also a little bit of backend work, either in javascript with node or php where I use laravel.</p>
         <p>Outside of coding, I'm a big fan of things japanese but mostly enjoy music (and mostly IDOL (<a href="https://tomoshi.uchuu.io" title="oshis">oshi-list</a>) at that)) and aesthetics. I try to get over there every 2 years at least and I'm trying to learn the language via a tutor, self teaching and going to meetups.</p>
         <p>I also play drums occasionally, used to be in a band but I still keep playing to keep skills up, because of that I do finger drum in the office (sorry not sorry). You can see what I'm currently listening to below or via <a href={this.props.me.contact.lastfm} title="My Lastfm">my Lastfm</a>.</p>
-        <p>You might be wondering what uchuu is. Uchuu is a circle that I created with a few of my friends, the aim, do cool multimedia stuff and help each other out. The idea came from japanese groups, that would be a part of a group yet able to be their own individual ala ryo(supercell) so therefore I'm tomo@uchuu!</p>
       </AboutContainer>
     );
   }
