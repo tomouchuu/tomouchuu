@@ -2,5 +2,11 @@
   "version": 2,
   "name": "personal",
   "alias": "tomo.uchuu.io",
-  "regions": ["bru"]
+  "regions": ["bru"],
+  "build": {
+    "env": {
+      "NPM_AUTH": "@npm-font-awesome",
+      "NPM_RC": "./.npmrc"
+    }
+  }
 }
