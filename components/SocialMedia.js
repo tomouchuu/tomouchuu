@@ -5,8 +5,8 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {fab} from '@fortawesome/free-brands-svg-icons';
 import {faSquare} from '@fortawesome/free-solid-svg-icons';
-import {faEnvelope, faNewspaper} from '@fortawesome/pro-light-svg-icons';
-library.add(fab, faSquare, faEnvelope, faNewspaper);
+import {faEnvelope, faFileAlt, faNewspaper} from '@fortawesome/pro-light-svg-icons';
+library.add(fab, faSquare, faEnvelope, faFileAlt, faNewspaper);
 
 function IconStyling(color) {
     return `
@@ -21,6 +21,14 @@ function IconStyling(color) {
 };
 
 const SocialIcon = styled.a`
+    span {
+        transition: color .6s;
+        &:hover {
+            transition: color .3s;
+        }
+    }
+
+
     & .fa-layers {
         margin: 5px;
     }
@@ -89,6 +97,20 @@ const SocialIcon = styled.a`
         ${IconStyling('#ff2f56')}
     }
 
+    & .cv {
+        color: #fff;
+        &:hover {
+            color: #111;
+            .socialicon {
+                color: #fff;
+            }
+        }
+
+        .socialicon {
+            color: #111;
+        }
+    }
+
     & .socialicon {
         color: #fff;
     }
@@ -102,6 +124,8 @@ export class SocialMedia extends React.Component {
             return ['fal', 'newspaper'];
         } else if (this.props.network === 'applemusic') {
             return ['fab', 'itunes-note'];
+        } else if (this.props.network === 'cv') {
+            return ['fal', 'file-alt'];
         }
         return ['fab', this.props.network];
     }
@@ -118,6 +142,8 @@ export class SocialMedia extends React.Component {
             return 'My blog';
         } else if (this.props.network === 'applemusic') {
             return 'Apple Music';
+        } else if (this.props.network === 'cv') {
+            return 'My CV';
         }
         return `Find me on ${this.props.network}`;
     }

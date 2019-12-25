@@ -39,6 +39,9 @@ function age(birthday) {
     return differenceInYears(now, parsedBirthday);
 }
 
+// TODO: The current/last components need to transition in&out from each other.
+// Thinking they fade upwards
+
 function Home(props) {
     const {baseData: data, githubData, twitterData} = props;
 
