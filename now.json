@@ -1,7 +1,6 @@
 {
   "version": 2,
   "name": "personal",
-  "alias": "tomo.uchuu.io",
   "regions": ["bru"],
   "build": {
     "env": {
