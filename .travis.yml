@@ -13,7 +13,7 @@ deploy:
   on:
     condition: $TRAVIS_BRANCH != master
   provider: script
-  script: now --token $NOW_TOKEN && now --prod
+  script: now --prod --token $NOW_TOKEN
   skip_cleanup: true
   on:
     branch: master
