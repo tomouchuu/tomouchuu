@@ -22,5 +22,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start"
+  },
+  "devDependencies": {
+    "@zeit/next-css": "^1.0.1"
   }
 }

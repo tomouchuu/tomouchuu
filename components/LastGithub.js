@@ -1,14 +1,7 @@
-import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
 
-const LastGithubText = styled.p`
-    color: #fff;
-
-    a {
-        color: #fff;
-    }
-`;
+import CurrentText from './CurrentText';
 
 function link(ghevent) {
     return `
@@ -66,10 +59,10 @@ function event(ghevent) {
 export const LastGithub = props => {
     const {data} = props;
     return (
-        <LastGithubText>
+        <CurrentText>
             <FontAwesomeIcon icon={faGithub} size="lg" fixedWidth style={{marginRight: '10px'}} />
             <span dangerouslySetInnerHTML={{__html: event(data)}} />
-        </LastGithubText>
+        </CurrentText>
     );
 }
 

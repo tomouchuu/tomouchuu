@@ -1,8 +1,12 @@
+import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
-import {differenceInYears, parse} from 'date-fns';
+
+import employmentMarkup from '../utils/employment-text';
+import ageText from '../utils/age-text';
 
 import Base from '../components/Base';
 import Intro from '../components/Intro';
+import CurrentText from '../components/CurrentText';
 import CurrentMusic from '../components/CurrentMusic';
 import CurrentTweet from '../components/CurrentTweet';
 import LastGithub from '../components/LastGithub';
@@ -25,23 +29,6 @@ Home.getInitialProps = async () => {
     return {baseData, githubData, twitterData};
 }
 
-function employment(meData) {
-    let markup = `working at <b>${meData.work[0].company}</b>`;
-    if (meData.work[0].company === 'unemployed') {
-        markup = `<span>looking for work, <a href="mailto:${meData.contact.email}" class="looking-for">get in touch</a></span>`;
-    }
-    return {__html: markup};
-}
-
-function age(birthday) {
-    const now = new Date();
-    const parsedBirthday = parse(birthday, 'yyyy-MM-dd', now);
-    return differenceInYears(now, parsedBirthday);
-}
-
-// TODO: The current/last components need to transition in&out from each other.
-// Thinking they fade upwards
-
 function Home(props) {
     const {baseData: data, githubData, twitterData} = props;
 
@@ -51,9 +38,9 @@ function Home(props) {
         <Base>
             <Intro
                 based={basedInText}
-                birthday={age(data.me.birthday)}
+                birthday={ageText(data.me.birthday)}
                 contact={data.me.contact}
-                employment={employment(data.me)}
+                employment={employmentMarkup(data.me)}
                 image={twitterData.profile_image_url_https.replace('_normal', '')}
                 location={data.me.location}
                 name={data.me.name}
@@ -61,6 +48,9 @@ function Home(props) {
             <CurrentMusic music={data.music} />
             <CurrentTweet tweet={twitterData} />
             <LastGithub data={githubData[0]} />
+            <CurrentText>
+                <Link href="/me"><a>More about me</a></Link>
+            </CurrentText>
         </Base>
     )
 };

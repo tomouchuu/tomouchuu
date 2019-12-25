@@ -4,33 +4,41 @@ import App from 'next/app';
 import Head from 'next/head';
 
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
-import { normalize } from 'styled-normalize';
+import {normalize} from 'styled-normalize';
+
+import {config} from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
+config.autoAddCss = false;
 
 const theme = {
+    borderRadius: ['4px', '50%'],
+    breakpoints: ['620px'],
     colors: {
-        text: '#111',
-        background: '#fff',
-        primary: '#07c',
-        secondary: '#05a',
-        accent: '#609',
-        muted: '#f6f6f6f',
+        text: '#fff',
+        altText: '#333',
+        background: '#ff4136'
     },
+    containerSize: '550px',
     fonts: {
         body: "-apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif",
         heading: "-apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif",
         monospace: 'Menlo, monospace',
     },
-    fontSizes: ['12px', '14px', '16px', '20px', '24px', '32px', '48px', '64px'],
+    fontSizes: ['0.8rem', '1rem', '1.3rem', '2rem', '2.75rem'],
     fontWeights: {
+        light: 200,
         body: 400,
         heading: 700,
         bold: 700,
     },
     lineHeights: {
-        body: 1.5,
-        heading: 1.125,
-    }
-  }
+        body: 2,
+        intro: 1.5,
+        socials: 3
+    },
+    spacings: ['10px', '15px', '20px', '30px']
+}
 
 const GlobalStyle = createGlobalStyle`
     ${normalize}
@@ -39,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
         background: ${props => props.theme.colors.background};
         color: ${props => props.theme.colors.text};
         font-family: ${props => props.theme.fonts.body};
-        font-size: ${props => props.theme.fontSizes[2]};
+        font-size: 16px;
         font-weight: ${props => props.theme.fontWeights.body};
     }
 
