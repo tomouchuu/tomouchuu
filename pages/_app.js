@@ -17,7 +17,8 @@ const theme = {
     colors: {
         text: '#fff',
         altText: '#333',
-        background: '#ff4136'
+        background: '#1eb8d2',
+        altBackground: '#ff4136',
     },
     containerSize: '550px',
     fonts: {
