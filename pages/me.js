@@ -29,8 +29,8 @@ function Me(props) {
 
     return (
         <MeBase>
-            <Link href="/"><a>Back</a></Link>
             <Container>
+                <Link href="/"><a>Back</a></Link>
                 <img src={twitterData.profile_image_url_https.replace('_normal', '')} alt={data.me.name} style={{borderRadius: '50%', display: 'block', margin: '0 auto', width: '230px'}} />
                 <p>So hello there, I'm {data.me.name}. I'm {ageText(data.me.birthday)}, from {data.me.location} and currently {employmentText(data.me)}.</p>
                 <p>I'm a frontend developer with a focus on building components with javascript frameworks like reactjs & vuejs along with knowledge of a combination of most css solutions (css, scss, less, stylus, postcss, css in js). Storybook is ❤. I do also a little bit of backend work, eithern in javascript with node or php where I use laravel.</p>

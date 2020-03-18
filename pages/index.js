@@ -48,7 +48,7 @@ function Home(props) {
             <CurrentMusic music={data.music} />
             <CurrentTweet tweet={twitterData} />
             <LastGithub data={githubData[0]} />
-            <CurrentText>
+            <CurrentText style={{textAlign: "center"}}>
                 <Link href="/me"><a>More about me</a></Link>
             </CurrentText>
         </Base>
