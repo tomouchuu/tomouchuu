@@ -36,21 +36,23 @@ function Home(props) {
 
     return (
         <Base>
-            <Intro
-                based={basedInText}
-                birthday={ageText(data.me.birthday)}
-                contact={data.me.contact}
-                employment={employmentMarkup(data.me)}
-                image={twitterData.profile_image_url_https.replace('_normal', '')}
-                location={data.me.location}
-                name={data.me.name}
-            />
-            <CurrentMusic music={data.music} />
-            <CurrentTweet tweet={twitterData} />
-            <LastGithub data={githubData[0]} />
-            <CurrentText style={{textAlign: "center"}}>
-                <Link href="/me"><a>More about me</a></Link>
-            </CurrentText>
+            <div>
+                <Intro
+                    based={basedInText}
+                    birthday={ageText(data.me.birthday)}
+                    contact={data.me.contact}
+                    employment={employmentMarkup(data.me)}
+                    image={twitterData.profile_image_url_https.replace('_normal', '')}
+                    location={data.me.location}
+                    name={data.me.name}
+                />
+                <CurrentMusic music={data.music} />
+                <CurrentTweet tweet={twitterData} />
+                <LastGithub data={githubData[0]} />
+                <CurrentText style={{textAlign: "center"}}>
+                    <Link href="/me"><a>More about me</a></Link>
+                </CurrentText>
+            </div>
         </Base>
     )
 };

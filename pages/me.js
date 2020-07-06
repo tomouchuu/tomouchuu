@@ -12,6 +12,12 @@ const MeBase = styled(Base)`
     background: ${props => props.theme.colors.text};
     color: ${props => props.theme.colors.altText};
     font-size: ${props => props.theme.fontSizes[2]};
+    height: auto;
+    width: auto;
+
+    @media screen and (max-width: ${props => props.theme.breakpoints[0]}) {
+        text-align: justify;
+    }
 `;
 
 Me.getInitialProps = async () => {

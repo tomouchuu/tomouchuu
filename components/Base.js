@@ -24,15 +24,15 @@ export const Base = styled.div`
         100%{background-position:0% 50%}
     }
     color: ${props => props.theme.colors.text};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
     height: 100vh;
-    width: 100vw;
+    place-items: center;
+
+    @media screen and (max-height: 790px) {
+        height: 100%;
+    }
 
     @media screen and (max-width: ${props => props.theme.breakpoints[0]}) {
-        align-items: stretch;
         height: 100%;
         text-align: center;
     }

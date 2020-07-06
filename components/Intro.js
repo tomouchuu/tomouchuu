@@ -8,6 +8,12 @@ const IntroContainer = styled(Container)`
     border: 1px solid ${props => props.theme.colors.text};
     line-height: ${props => props.theme.lineHeights.intro};
     border-radius: ${props => props.theme.borderRadius[0]};
+    margin-bottom: ${props => props.theme.spacings[3]};
+
+    @media screen and (max-width: ${props => props.theme.breakpoints[0]}) {
+        border: 0;
+        border-radius: 0;
+    }
 `;
 
 const IntroContent = styled.div`
