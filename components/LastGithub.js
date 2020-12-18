@@ -1,3 +1,6 @@
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faGithub} from '@fortawesome/free-brands-svg-icons';
+
 function link(ghevent) {
     return `
         <a href='https://github.com/${ghevent.repo.name}' title='View ${ghevent.repo.name} on Github' target='_blank'>
@@ -54,7 +57,8 @@ function event(ghevent) {
 export const LastGithub = props => {
     const {data} = props;
     return (
-        <p className="text-lg">
+        <p className="my-2 text-lg">
+            <FontAwesomeIcon icon={faGithub} size="lg" fixedWidth className="mr-1" />
             <span dangerouslySetInnerHTML={{__html: event(data)}} />
         </p>
     );
