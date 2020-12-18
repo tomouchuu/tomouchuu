@@ -1,11 +1,6 @@
 import twitter from 'twitter-text';
 import {formatDistanceToNow} from 'date-fns';
 
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTwitter} from '@fortawesome/free-brands-svg-icons';
-
-import CurrentText from './CurrentText';
-
 function text(text) {
     return {__html: twitter.autoLink(text)};
   }
@@ -21,12 +16,12 @@ function statusurl(tweet) {
 export const CurrentTweet = props => {
     const {tweet} = props;
     return (
-        <CurrentText>
+        <p className="text-lg">
             <a href={statusurl(tweet)} title={relativedate(tweet.status.created_at)} target="_blank">
-                <FontAwesomeIcon icon={faTwitter} size="lg" fixedWidth style={{marginRight: '10px'}} />
+                TW
             </a>
             <span dangerouslySetInnerHTML={text(tweet.status.full_text)} />
-        </CurrentText>
+        </p>
     );
 }
 

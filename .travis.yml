@@ -5,15 +5,15 @@ cache:
   directories:
     - "node_modules"
 script: npm run build
-before_deploy: npm install now --no-save
+before_deploy: npm install vercel --no-save
 deploy:
   provider: script
-  script: now --confirm --token $NOW_TOKEN
+  script: vercel --confirm --token $NOW_TOKEN
   skip_cleanup: true
   on:
     condition: $TRAVIS_BRANCH != master
   provider: script
-  script: now --confirm --token $NOW_TOKEN --prod
+  script: vercel --confirm --token $NOW_TOKEN --prod
   skip_cleanup: true
   on:
     branch: master

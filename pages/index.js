@@ -6,7 +6,6 @@ import ageText from '../utils/age-text';
 
 import Base from '../components/Base';
 import Intro from '../components/Intro';
-import CurrentText from '../components/CurrentText';
 import CurrentMusic from '../components/CurrentMusic';
 import CurrentTweet from '../components/CurrentTweet';
 import LastGithub from '../components/LastGithub';
@@ -32,7 +31,7 @@ Home.getInitialProps = async () => {
 function Home(props) {
     const {baseData: data, githubData, twitterData} = props;
 
-    const basedInText = data.me.based ? ` and working in <b>${data.me.based}</b>` : false;
+    const basedInText = data.me.based ? ` and working in <b>${data.me.based}</b>` : '';
 
     return (
         <Base>
@@ -46,12 +45,14 @@ function Home(props) {
                     location={data.me.location}
                     name={data.me.name}
                 />
-                <CurrentMusic music={data.music} />
-                <CurrentTweet tweet={twitterData} />
-                <LastGithub data={githubData[0]} />
-                <CurrentText style={{textAlign: "center"}}>
-                    <Link href="/me"><a>More about me</a></Link>
-                </CurrentText>
+                <div className="px-4 mb-8 md:px-0">
+                    <CurrentMusic music={data.music} />
+                    <CurrentTweet tweet={twitterData} />
+                    <LastGithub data={githubData[0]} />
+                    <p className="mt-4 text-2xl">
+                        <Link href="/me"><a>More about me</a></Link>
+                    </p>
+                </div>
             </div>
         </Base>
     )

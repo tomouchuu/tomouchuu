@@ -1,10 +1,5 @@
 import o from 'js-ordinal';
 
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faHeadphones} from '@fortawesome/free-solid-svg-icons';
-
-import CurrentText from './CurrentText';
-
 export const CurrentMusic = props => {
     const {music} = props;
     let {album, artist, track} = music;
@@ -16,15 +11,16 @@ export const CurrentMusic = props => {
     if (!track.playedCount) { track.playedCount = 1; }
 
     return (
-        <CurrentText>
-            <FontAwesomeIcon icon={faHeadphones} size="lg" fixedWidth style={{marginRight: '10px'}} />
+        <p className="text-lg">
             <a href={track.url} title={track.name} target="_blank">{track.name}</a>
             {' by '}
             <a href={artist.url} title={artist.name} target="_blank">{artist.name}</a>
             {' from '}
             <a href={album.url} title={album.name} target="_blank">{album.name}</a>
-            {` for the ${o.toOrdinal(track.playedCount)} time`}
-        </CurrentText>
+            {` for the `}
+            <span className="ordinal">{o.toOrdinal(track.playedCount)}</span>
+            {` time`}
+        </p>
     );
 }
 

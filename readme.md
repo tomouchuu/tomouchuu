@@ -1,3 +1,3 @@
-# TOMO@UCHUU Personal Site V6
+# TOMO@UCHUU Personal Site V7
 
-Frontend for my personal site to find out more about me, portfolio etc. but also my blog.
+Frontend for my personal site to find out more about me
