@@ -45,7 +45,7 @@ function Home(props) {
                     location={data.me.location}
                     name={data.me.name}
                 />
-                <div className="px-4 mb-8 md:px-0">
+                <div className="px-4 mb-8 md:px-2">
                     <CurrentMusic music={data.music} />
                     <CurrentTweet tweet={twitterData} />
                     <LastGithub data={githubData[0]} />
