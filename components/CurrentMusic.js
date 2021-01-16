@@ -16,11 +16,11 @@ export const CurrentMusic = props => {
     return (
         <p className="my-2 text-lg">
             <FontAwesomeIcon icon={faHeadphones} size="lg" fixedWidth className="mr-1" />
-            <a href={track.url} title={track.name} target="_blank">{track.name}</a>
+            <a href={track.url} title={track.name} target="_blank" rel="noopener">{track.name}</a>
             {' by '}
-            <a href={artist.url} title={artist.name} target="_blank">{artist.name}</a>
+            <a href={artist.url} title={artist.name} target="_blank" rel="noopener">{artist.name}</a>
             {' from '}
-            <a href={album.url} title={album.name} target="_blank">{album.name}</a>
+            <a href={album.url} title={album.name} target="_blank" rel="noopener">{album.name}</a>
             {` for the `}
             <span className="ordinal">{o.toOrdinal(track.playedCount)}</span>
             {` time`}

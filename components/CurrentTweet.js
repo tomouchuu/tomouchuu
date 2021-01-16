@@ -20,7 +20,7 @@ export const CurrentTweet = props => {
     const {tweet} = props;
     return (
         <p className="my-2 text-lg">
-            <a href={statusurl(tweet)} title={relativedate(tweet.status.created_at)} target="_blank">
+            <a href={statusurl(tweet)} title={relativedate(tweet.status.created_at)} target="_blank" rel="noopener">
                 <FontAwesomeIcon icon={faTwitter} size="lg" fixedWidth className="mr-1" />
             </a>
             <span dangerouslySetInnerHTML={text(tweet.status.full_text)} />

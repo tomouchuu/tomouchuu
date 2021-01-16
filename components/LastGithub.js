@@ -3,7 +3,7 @@ import {faGithub} from '@fortawesome/free-brands-svg-icons';
 
 function link(ghevent) {
     return `
-        <a href='https://github.com/${ghevent.repo.name}' title='View ${ghevent.repo.name} on Github' target='_blank'>
+        <a href='https://github.com/${ghevent.repo.name}' title='View ${ghevent.repo.name} on Github' target='_blank' rel='noopener'>
             ${ghevent.repo.name}
         </a>
     `

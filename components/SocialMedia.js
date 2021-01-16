@@ -48,7 +48,7 @@ export class SocialMedia extends React.Component {
 
     render() {
         return (
-            <a href={this.link()} title={this.title()}>
+            <a href={this.link()} title={this.title()} rel="noopener">
                 <span className={`m-1 fa-layers fa-fw ${this.scale()} socials ${this.props.network}`}>
                     <FontAwesomeIcon icon="square" size="lg" />
                     <FontAwesomeIcon icon={this.icon()} size="xs" className="socialicon" />
