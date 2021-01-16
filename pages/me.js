@@ -4,14 +4,18 @@ import fetch from 'isomorphic-unfetch';
 import {employmentText} from '../utils/employment-text';
 import ageText from '../utils/age-text';
 
-Me.getInitialProps = async () => {
+export async function getStaticProps() {
     const base = await fetch('https://api-tomo.uchuu.io/');
     const baseData = await base.json();
 
     const twitter = await fetch('https://api-tomo.uchuu.io/twitter/user.js');
     const twitterData = await twitter.json();
 
-    return {baseData, twitterData};
+    return {
+        props: {
+            baseData, twitterData
+        }
+    };
 }
 
 function Me(props) {
