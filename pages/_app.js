@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
                 <html lang="en" />
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <meta name="Description" content="Personal/Portfolio site for Thomas Moore. Frontend Developer from Chelmsford, UK"></meta>
+                <meta name="description" content="Personal/Portfolio site for Thomas Moore. Frontend Developer from Chelmsford, UK" />
                 <title>Thomas Moore</title>
             </Head>
             <Component {...pageProps} />
