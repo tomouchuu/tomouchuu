@@ -1,14 +1,3 @@
-// const SocialList = styled.ul`
-//     list-style: none;
-//     padding-left: 0;
-//     margin: -${props => props.theme.spacings[1]} 0 0;
-//     text-align: center;
-//     line-height: ${props => props.theme.lineHeights.socials};
-//     & li {
-//         display: inline-block;
-//     }
-// `;
-
 import SocialMedia from '../components/SocialMedia';
 
 const Intro = props => {
