@@ -14,7 +14,8 @@ export async function getStaticProps() {
     return {
         props: {
             baseData, twitterData
-        }
+        },
+        revalidate: 21600 //6hours
     };
 }
 
