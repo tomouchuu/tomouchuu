@@ -12,8 +12,7 @@ import CurrentMusic from '../components/CurrentMusic';
 import CurrentTweet from '../components/CurrentTweet';
 import LastGithub from '../components/LastGithub';
 
-// const endpoint = 'https://api-tomo.uchuu.io/api/me';
-const endpoint = 'http://localhost:3000/api/me'; //VERY DUMB
+const endpoint = 'https://api-tomo.uchuu.io/api/me';
 const graphQLClient = new GraphQLClient(endpoint, {
     mode: 'cors',
     credentials: 'omit'
