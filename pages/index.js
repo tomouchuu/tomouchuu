@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { request, gql } from 'graphql-request';
+import { GraphQLClient, gql } from 'graphql-request';
 
 import Link from 'next/link';
 
@@ -12,7 +12,13 @@ import CurrentMusic from '../components/CurrentMusic';
 import CurrentTweet from '../components/CurrentTweet';
 import LastGithub from '../components/LastGithub';
 
-const fetcher = query => request('https://api-tomo.uchuu.io/api/me', query)
+// const endpoint = 'https://api-tomo.uchuu.io/api/me';
+const endpoint = 'http://localhost:3000/api/me'; //VERY DUMB
+const graphQLClient = new GraphQLClient(endpoint, {
+    mode: 'cors',
+    credentials: 'omit'
+});
+const fetcher = query => graphQLClient.request(query)
 
 const query = gql`{
 	personal {
