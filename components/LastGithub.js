@@ -15,7 +15,7 @@ function event(ghevent) {
     } else if (ghevent.type === 'IssueCommentEvent') {
         return `Commented on Issue #${ghevent.payload.issue.number} for ${link(ghevent)}`;
     } else if (ghevent.type === 'DeleteEvent') {
-        return 'Deleted';
+        return `Deleted ${ghevent.payload.ref_type}`;
     } else if (ghevent.type === 'WatchEvent') {
         if (ghevent.payload.action === 'watched') {
             return `Watched ${link(ghevent)}`;
