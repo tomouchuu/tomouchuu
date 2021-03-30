@@ -27,7 +27,7 @@ const IdolPage = () => {
                 name="Sayuri Kiuchi (Sayucha)"
                 jpName="木内小百合 (さゆちゃ)"
                 group="Papipupepo wa muzukashii - パピプペポは難しい"
-                blurb="I went to see another group but was absolutely entranced by Sayucha and Papimuzu. She was in a maid outfit (turns out it was a cosplay show) and she knew a little bit of english so we could chat while taking chekis. Being a chika idol, we developed a great relationship over twitter while I was back home. Papimuzu has gone from strength to strength and it's great seeing their progress."
+                blurb="I went to see another group but was absolutely entranced by Sayucha and Papimuzu. She was in a maid outfit (turns out it was a cosplay show) and she knew a little bit of english so we could chat while taking chekis. Being a chika idol, we developed a great relationship over twitter while I was back home and fuels the desire to go back and see her whenever I can. She can also play the guitar and always wants to know what I'm up to."
                 twitterUrl="https://twitter.com/sayuri_ppppphm"
             />
             <Idol
@@ -37,7 +37,7 @@ const IdolPage = () => {
                 name="Shirahane Yui (Yuipon)"
                 jpName="白羽根優衣 (ゆいぽん)"
                 group="Papipupepo wa muzukashii - パピプペポは難しい"
-                blurb="As papimuzu is a smaller group, you will always end up interacting with the other members. For yuipon I would tune into her Pococha streams and becoming more interested in her twitter. She is a really relatable idol, not afraid to chat about negatives, her part time job and I want to make her happy."
+                blurb="As papimuzu is a smaller group, you will always end up interacting with the other members. For yuipon I would tune into her Pococha streams and became more interested in her twitter. Now we play Lords Mobile together (leftover from a collaboration competition). She is a really relatable idol, not afraid to chat about negatives, her part time job and I want to make her happy."
                 twitterUrl="https://twitter.com/yui_ppppphm"
             />
             <Idol
@@ -47,7 +47,7 @@ const IdolPage = () => {
                 name="Yamato Ao"
                 jpName="大和明桜"
                 group="Niji no conquistador - 虹のコンキスタドール"
-                blurb="Ao is always super interesting and loves to learn about the world. It's all so fascinating to her. She is trying her hardest at learning english to make talking easier. We first met in France so it's a running joke that I'm french. It's always a fun time talking to her."
+                blurb="Ao is always super interesting and loves to learn about the world. It's all so fascinating to her. She is trying her hardest at learning english to make talking easier and other skills since she is doing her best to stand out from a stacked idol group. We first met in France so it's a running joke that I'm french. It's always a fun time talking to her."
                 twitterUrl="https://twitter.com/yamato__ao"
             />
             <hr className="w-3/4 mx-auto my-3" />
