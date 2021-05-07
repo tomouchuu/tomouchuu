@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 const Idol = ({imgSrc, imgAlt, colour, name, jpName, group, blurb, twitterUrl}) => (
-    <div className="flex my-8 p-4 border rounded">
-        <a href={twitterUrl} title={`Follow ${name} on Twitter`} className="w-60">
+    <div className="flex flex-wrap md:flex-nowrap my-8 p-4 border rounded shadow-lg" style={{borderColor: colour}}>
+        <a href={twitterUrl} title={`Follow ${name} on Twitter`} className="inline-block mx-auto mb-4 md:mb-0 w-60">
             <img src={imgSrc} alt={imgAlt} className="max-w-none h-60 border-4 rounded-full" style={{borderColor: colour}} />
         </a>
         <div className="flex-grow ml-8">
@@ -17,7 +17,7 @@ const Idol = ({imgSrc, imgAlt, colour, name, jpName, group, blurb, twitterUrl}) 
 
 const IdolPage = () => {
     return (
-        <div className="container max-w-screen-md mx-auto text-lg mt-4 p-4 md:mt-12 md:p-0">
+        <div className="container md:max-w-screen-md mx-auto text-lg mt-4 p-4 md:mt-12 md:p-0">
             <Link href="/"><a className="text-xl">Back</a></Link>
             <h1 className="my-4 text-6xl text-center">Oshimen List</h1>
             <Idol
@@ -41,7 +41,7 @@ const IdolPage = () => {
                 twitterUrl="https://twitter.com/yui_ppppphm"
             />
             <Idol
-                imgSrc="https://pbs.twimg.com/profile_images/1342062843579928577/YWQw7iIW_400x400.jpg"
+                imgSrc="https://pbs.twimg.com/profile_images/1381149611423793153/4nIDjATC_400x400.jpg"
                 imgAlt="Ao"
                 colour="#76c2ef"
                 name="Yamato Ao"
