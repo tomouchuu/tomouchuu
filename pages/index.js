@@ -20,7 +20,7 @@ const graphQLClient = new GraphQLClient(endpoint, {
 const fetcher = query => graphQLClient.request(query)
 
 const query = gql`{
-	personal {
+    personal {
         name
         birthday
         location

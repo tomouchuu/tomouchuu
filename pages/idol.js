@@ -1,11 +1,20 @@
 import Link from 'next/link';
+import Image from 'next/image';
+
+import SayuchaImg from '../public/images/idols/sayucha.jpg';
+import YuiponImg from '../public/images/idols/yuipon.jpg';
+import AoImg from '../public/images/idols/ao.jpg';
+import RisanoImg from '../public/images/idols/risano.jpg';
+import MirinImg from '../public/images/idols/mirin.jpg';
 
 const Idol = ({imgSrc, imgAlt, colour, name, jpName, group, blurb, twitterUrl}) => (
-    <div className="flex flex-wrap md:flex-nowrap my-8 p-4 border rounded shadow-lg" style={{borderColor: colour}}>
-        <a href={twitterUrl} title={`Follow ${name} on Twitter`} className="inline-block mx-auto mb-4 md:mb-0 w-60">
-            <img src={imgSrc} alt={imgAlt} className="max-w-none h-60 border-4 rounded-full" style={{borderColor: colour}} />
-        </a>
-        <div className="flex-grow ml-8">
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-8 my-8 p-4 border rounded shadow-lg" style={{borderColor: colour}}>
+        <div className="md:col-span-4 mb-4 md:mb-0">
+            <a href={twitterUrl} title={`Follow ${name} on Twitter`}>
+                <Image src={imgSrc} alt={imgAlt} className="rounded-2xl" placeholder="blur" />
+            </a>
+        </div>
+        <div className="md:col-span-8">
             <p className="text-3xl">{name}</p>
             {jpName && <p className="font-light text-xl">{jpName}</p>}
             <p className="text-lg">{group}</p>
@@ -21,7 +30,7 @@ const IdolPage = () => {
             <Link href="/"><a className="text-xl">Back</a></Link>
             <h1 className="my-4 text-6xl text-center">Oshimen List</h1>
             <Idol
-                imgSrc="https://pbs.twimg.com/profile_images/1318192298547580928/-4s3z2ps_400x400.jpg"
+                imgSrc={SayuchaImg}
                 imgAlt="Sayucha"
                 colour="#1fb8d3"
                 name="Sayuri Kiuchi (Sayucha)"
@@ -31,7 +40,7 @@ const IdolPage = () => {
                 twitterUrl="https://twitter.com/sayuri_ppppphm"
             />
             <Idol
-                imgSrc="https://pbs.twimg.com/profile_images/1318191710531317762/_AH65g8l_400x400.jpg"
+                imgSrc={YuiponImg}
                 imgAlt="Yuipon"
                 colour="#b91d29"
                 name="Shirahane Yui (Yuipon)"
@@ -41,7 +50,7 @@ const IdolPage = () => {
                 twitterUrl="https://twitter.com/yui_ppppphm"
             />
             <Idol
-                imgSrc="https://pbs.twimg.com/profile_images/1381149611423793153/4nIDjATC_400x400.jpg"
+                imgSrc={AoImg}
                 imgAlt="Ao"
                 colour="#76c2ef"
                 name="Yamato Ao"
@@ -52,7 +61,7 @@ const IdolPage = () => {
             />
             <hr className="w-3/4 mx-auto my-3" />
             <Idol
-                imgSrc="https://pbs.twimg.com/profile_images/1321104409820946433/Gh3oEepE_400x400.jpg"
+                imgSrc={RisanoImg}
                 imgAlt="Risano"
                 colour="#f37f34"
                 name="Risano"
@@ -62,7 +71,7 @@ const IdolPage = () => {
                 twitterUrl="https://twitter.com/risano_0928"
             />
             <Idol
-                imgSrc="https://pbs.twimg.com/profile_images/914721530302447618/vTcINAG5_400x400.jpg"
+                imgSrc={MirinImg}
                 imgAlt="Mirin"
                 colour="#d62215"
                 name="Furukawa Mirin"
