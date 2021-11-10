@@ -35,6 +35,7 @@ const query = gql`{
             youtube
             twitch
             linkedin
+            cv
         }
         work {
             company
