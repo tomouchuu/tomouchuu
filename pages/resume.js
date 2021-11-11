@@ -77,17 +77,17 @@ function Resume(props) {
                 <Link href="/"><a className="text-2xl">Back</a></Link>
             )}
 
-            <div className={`container max-w-screen-lg mx-auto my-4 p-4 md:mt-12 md:p-0 ${isPDF ? 'text-base' : 'text-lg'}`}>
+            <div className={`container max-w-screen-lg mx-auto my-4 p-4 ${isPDF ? 'text-base' : 'text-lg'}`}>
                 <section>
-                    <div className="flex items-baseline">
+                    <div className="sm:flex items-baseline">
                         <h1 className="text-5xl">{personal.name}</h1>
                         <h2 className="text-2xl ml-4">aka. Tom, Tomo <small className="text-sm">He/Him</small></h2>
                     </div>
                     {!isPDF ? (
-                        <ul className="mt-4 flex justify-between text-center">
+                        <ul className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
                             <li className="flex-1">{personal.location}</li>
                             <li className="flex-1 border-l border-gray-300 px-3"><a href={`mailto:${personal.contact.email}`} title={personal.contact.email}>Email</a></li>
-                            <li className="flex-1 border-l border-gray-300 px-3"><a href={personal.contact.linkedin} title={personal.contact.linkedin}>Linkedin</a></li>
+                            <li className="flex-1 sm:border-l border-gray-300 px-3"><a href={personal.contact.linkedin} title={personal.contact.linkedin}>Linkedin</a></li>
                             <li className="flex-1 border-l border-gray-300"><a href={personal.contact.github} title={personal.contact.github}>Github</a></li>
                         </ul>
                     ) : (
@@ -117,7 +117,7 @@ function Resume(props) {
                     <SectionTitle>Experience</SectionTitle>
                     {personal.work.map(work => (
                         <section key={work.date} className="grid grid-cols-12 gap-4 my-6">
-                            <div className="col-span-5">
+                            <div className="col-span-12 sm:col-span-5">
                                 <p className="font-bold">{work.title}</p>
                                 {work.url !== "" ? (
                                     <>
@@ -135,7 +135,7 @@ function Resume(props) {
                                 )}
                                 <p>{work.date}</p>
                             </div>
-                            <p className="col-span-7">{work.description}</p>
+                            <p className="col-span-12 sm:col-span-7">{work.description}</p>
                         </section>
                     ))}
                 </section>
@@ -152,7 +152,7 @@ function Resume(props) {
                                     <p>{project.url}</p>
                                 </div>
                             ) : (
-                                <div className="flex justify-between items-baseline mb-2">
+                                <div className="sm:flex justify-between items-baseline mb-2">
                                     <p className="font-bold">{project.name}</p>
                                     {project.url && (
                                         <a href={project.url} className="text-sm">More information</a>
@@ -170,7 +170,7 @@ function Resume(props) {
 
                 <section>
                     <SectionTitle>Skills</SectionTitle>
-                    <ul className="grid grid-cols-4 gap-4 text-center mt-4">
+                    <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center mt-4">
                         {personal.skills.map(skill => (
                             <li key={skill}>{skill}</li>
                         ))}
