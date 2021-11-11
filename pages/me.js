@@ -39,6 +39,7 @@ export async function getStaticProps() {
     };
 };
 
+// TODO: This page probably needs changing as it's too similar to resume now :thinking:
 function Me(props) {
     const { data } = useSWR(query, fetcher, { initialData: props.data });
     const {personal} = data;

@@ -116,7 +116,7 @@ const Home = (props) => {
                     <CurrentTweet tweet={twitterData} />
                     <LastGithub data={lastGithub[0]} />
                     <p className="mt-4 text-2xl">
-                        <Link href="/me"><a title="All about Tomo">More about me</a></Link>
+                        <Link href="/resume"><a title="All about Tomo">More about me</a></Link>
                     </p>
                     <p className="mt-1 text-xl">
                         <Link href="/idol"><a title="Tomo's oshimen list">Oshimen list</a></Link>
