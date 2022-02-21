@@ -74,7 +74,11 @@ function Resume(props) {
     return (
         <>
             {!local && (
-                <Link href="/"><a className="text-2xl">Back</a></Link>
+                <div className={`container max-w-screen-lg mx-auto my-4 p-4`}>
+                    <section>
+                        <Link href="/"><a className="text-2xl">Back</a></Link>
+                    </section>
+                </div>
             )}
 
             <div className={`container max-w-screen-lg mx-auto my-4 p-4 ${isPDF ? 'text-base' : 'text-lg'}`}>
