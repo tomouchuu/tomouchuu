@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useSWR from 'swr';
+import useSWR, { SWRConfig } from 'swr';
 import { GraphQLClient, gql } from 'graphql-request';
 
 import Link from 'next/link';
@@ -46,9 +46,10 @@ export async function getStaticProps() {
 
     return {
         props: {
-            data
-        },
-        revalidate: 21600 //6hours
+      fallback: {
+        [query]: data
+      }
+    }
     };
 };
 
@@ -57,11 +58,11 @@ const SectionTitle = ({children}) => <h3 className="inline-block text-3xl underl
 
 // NOTE:
 // To generate a PDF you'll want to go to this page in a dev env then you'll want to click the download as pdf button and from there use chrome's print to save it as a pdf.
-function Resume(props) {
+function Resume() {
     const [local] = useState(process.env.NODE_ENV === 'development');
     const [isPDF, setIsPDF] = useState(false);
-    const { data } = useSWR(query, fetcher, { initialData: props.data });
-    const {personal} = data;
+  const { data } = useSWR(query, fetcher);
+  const { personal } = data;
 
     function toggleIsPDF() {
         if (local) {
@@ -208,4 +209,10 @@ function Resume(props) {
     )
 };
 
-export default Resume;
+export default function Page({ fallback }) {
+  return (
+    <SWRConfig value={{ fallback, refreshInterval: 21600 }}>
+      <Resume />
+    </SWRConfig>
+  )
+};

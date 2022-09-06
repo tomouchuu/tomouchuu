@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+import useSWR, { SWRConfig } from 'swr';
 import { GraphQLClient, gql } from 'graphql-request';
 
 import Link from 'next/link';
@@ -87,14 +87,15 @@ export async function getStaticProps() {
 
     return {
         props: {
-            data
-        },
-        revalidate: 21600 //6hours
+      fallback: {
+        [query]: data
+      }
+    }
     };
 };
 
-const Home = (props) => {
-    const { data } = useSWR(query, fetcher, { initialData: props.data });
+const Home = () => {
+  const {data} = useSWR(query, fetcher);
     const {personal, github: lastGithub, music, twitter: {user: twitterData}} = data;
     
     const basedInText = personal.based ? ` and working in <b>${personal.based}</b>` : '';
@@ -127,4 +128,10 @@ const Home = (props) => {
     )
 };
 
-export default Home;
+export default function Page({ fallback }) {
+  return (
+    <SWRConfig value={{ fallback, refreshInterval: 21600 }}>
+      <Home />
+    </SWRConfig>
+  )
+};
