@@ -117,10 +117,10 @@ const Home = () => {
           <CurrentTweet tweet={twitterData} />
           <LastGithub data={lastGithub[0]} />
           <p className="mt-4 text-2xl">
-            <Link href="/resume"><a title="All about Tomo">More about me</a></Link>
+            <Link href="/resume" title="All about Tomo">More about me</Link>
           </p>
           <p className="mt-1 text-xl">
-            <Link href="/idol"><a title="Tomo's oshimen list">Oshimen list</a></Link>
+            <Link href="/idol" title="Tomo's oshimen list">Oshimen list</Link>
           </p>
         </div>
       </div>
