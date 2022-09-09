@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/future/image';
 
 import SayuchaImg from '../public/images/idols/sayucha.jpg';
 import YuiponImg from '../public/images/idols/yuipon.jpg';
@@ -11,7 +11,7 @@ const Idol = ({imgSrc, imgAlt, colour, name, jpName, group, blurb, twitterUrl}) 
   <div className="grid grid-cols-1 md:grid-cols-12 gap-8 my-8 p-4 border rounded shadow-lg" style={{borderColor: colour}}>
     <div className="md:col-span-4 mb-4 md:mb-0">
       <a href={twitterUrl} title={`Follow ${name} on Twitter`}>
-        <Image src={imgSrc} alt={imgAlt} className="rounded-2xl" placeholder="blur" />
+        <Image src={imgSrc} alt={imgAlt} className="rounded-2xl h-auto max-w-full" placeholder="blur" />
       </a>
     </div>
     <div className="md:col-span-8">

@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import { GraphQLClient, gql } from 'graphql-request';
 
-import Image from 'next/image';
+import Image from 'next/future/image';
 import Link from 'next/link';
 
 import {employmentText} from '../utils/employment-text';
@@ -48,7 +48,7 @@ function Me(props) {
     <div className="container max-w-screen-md mx-auto text-lg text-justify mt-4 p-4 md:mt-12 md:p-0">
       <Link href="/"><a className="text-2xl">Back</a></Link>
       <div className="mx-auto my-8 w-72">
-        <Image src={ProfilePicture} alt={personal.name} className="rounded-full" placeholder="blur" />
+        <Image src={ProfilePicture} alt={personal.name} className="rounded-full h-auto max-w-full" placeholder="blur" />
       </div>
       <p>So hello there, I'm {personal.name}. I'm {ageText(personal.birthday)}, from {personal.location} and currently {employmentText(personal)}.</p>
       <p className="my-8">I'm a frontend developer with a focus on building components with javascript frameworks like reactjs & vuejs along with knowledge of a combination of most css solutions (css, scss, less, stylus, postcss, css in js). Storybook is ❤. I do also a little bit of backend work, either in javascript with node or php where I use laravel.</p>

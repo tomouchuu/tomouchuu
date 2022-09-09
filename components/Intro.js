@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import SocialMedia from '../components/SocialMedia';
 
 import ProfilePicture from '../public/images/thomas.jpg';
