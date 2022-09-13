@@ -73,16 +73,16 @@ function Resume() {
   }
 
   return (
-    <>
+    <div className="dark:bg-neutral-900 dark:text-white">
       {!local && (
-        <div className={`container max-w-screen-lg mx-auto my-4 p-4`}>
+        <div className={`container max-w-screen-lg mx-auto p-8`}>
           <section>
             <Link href="/"><a className="text-2xl">Back</a></Link>
           </section>
         </div>
       )}
 
-      <div className={`container max-w-screen-lg mx-auto my-4 p-4 ${isPDF ? 'text-base' : 'text-lg'}`}>
+      <div className={`container max-w-screen-lg mx-auto p-8 ${isPDF ? 'text-base' : 'text-lg'}`}>
         <section>
           <div className="sm:flex items-baseline">
             <h1 className="text-5xl">{personal.name}</h1>
@@ -202,10 +202,10 @@ function Resume() {
         </section>
       </div>
 
-      <section className="mx-auto my-8 text-center max-w-sm w-full">
+      <section className="mx-auto py-8 text-center max-w-sm w-full">
         <button className={`w-full p-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-800 transition-colors ${isPDF ? 'hidden' : 'visible'}`} onClick={toggleIsPDF}>Download as PDF</button>
       </section>
-    </>
+    </div>
   )
 };
 
