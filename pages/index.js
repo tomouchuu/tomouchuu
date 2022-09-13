@@ -73,6 +73,7 @@ const query = gql`{
   twitter {
     user {
       profile_image_url_https
+      screen_name
       status {
         created_at
         id_str

@@ -13,7 +13,7 @@ function relativedate(time) {
 }
 
 function statusurl(tweet) {
-  return `https://twitter.com/${tweet.screen_name}/status/${tweet.status.id}`;
+  return `https://twitter.com/${tweet.screen_name}/status/${tweet.status.id_str}`;
 }
 
 export const CurrentTweet = props => {
