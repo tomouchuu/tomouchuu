@@ -1,6 +1,7 @@
 import useSWR, { SWRConfig } from 'swr';
 import { GraphQLClient, gql } from 'graphql-request';
 
+import Dynamic from "next/dynamic";
 import Link from 'next/link';
 
 import employmentMarkup from '../utils/employment-text';
@@ -11,6 +12,10 @@ import Intro from '../components/Intro';
 import CurrentMusic from '../components/CurrentMusic';
 import CurrentTweet from '../components/CurrentTweet';
 import LastGithub from '../components/LastGithub';
+
+const ThemeToggle = Dynamic(() => import('../components/ThemeToggle'), {
+  ssr: false,
+});
 
 const endpoint = 'https://api-tomo.uchuu.io/api/me';
 const graphQLClient = new GraphQLClient(endpoint, {
@@ -103,6 +108,9 @@ const Home = () => {
 
   return (
     <Base>
+      <div className="absolute top-2 right-2 lg:top-4 lg:right-4">
+        <ThemeToggle />
+      </div>
       <div>
         <Intro
           based={basedInText}
@@ -113,17 +121,17 @@ const Home = () => {
           location={personal.location}
           name={personal.name}
         />
-        <div className="px-4 mb-8 md:px-2">
+        <section className="px-4 mb-8 md:px-2">
           <CurrentMusic music={music} />
           <CurrentTweet tweet={twitterData} />
           <LastGithub data={lastGithub[0]} />
           <p className="mt-4 text-2xl">
-            <Link href="/resume" title="All about Tomo">More about me</Link>
+            <Link href="/me" title="All about Tomo">More about me</Link>
           </p>
           <p className="mt-1 text-xl">
             <Link href="/idol" title="Tomo's oshimen list">Oshimen list</Link>
           </p>
-        </div>
+        </section>
       </div>
     </Base>
   )

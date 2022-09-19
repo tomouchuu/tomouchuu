@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 import {employmentText} from '../utils/employment-text';
 import ageText from '../utils/age-text';
+import Layout from "../components/Layout";
 
 const endpoint = 'https://api-tomo.uchuu.io/api/me';
 const graphQLClient = new GraphQLClient(endpoint, {
@@ -73,15 +74,7 @@ function Resume() {
   }
 
   return (
-    <div className="dark:bg-neutral-900 dark:text-white">
-      {!local && (
-        <div className={`container max-w-screen-lg mx-auto p-8`}>
-          <section>
-            <Link href="/"><a className="text-2xl">Back</a></Link>
-          </section>
-        </div>
-      )}
-
+    <Layout isLocal={local}>
       <div className={`container max-w-screen-lg mx-auto p-8 ${isPDF ? 'text-base' : 'text-lg'}`}>
         <section>
           <div className="sm:flex items-baseline">
@@ -110,7 +103,7 @@ function Resume() {
         <section className="text-justify">
           <p>So hello there, I'm {personal.name}. I'm {ageText(personal.birthday)}, from {personal.location} and currently {employmentText(personal)}.</p>
           <p className="my-8">I'm a frontend developer with a focus on building components with js libraries like reactjs (preferred) & vuejs in frameworks like NextJS + Gatsby along with a combination of most css solutions (css, scss, less, stylus, postcss, css in js, tailwind). Storybook is ❤.</p>
-          <p className="my-4">I've also done a bit of backend work in javascript with node aswell as having used PHP and Laravel in the past.</p>
+          <p className="my-4">I've also done a small small of backend work in javascript with node aswell as having used PHP and Laravel in the past.</p>
           <p className="my-8">Outside of coding, I'm a big fan of things japanese but mostly enjoy music (and mostly <Link href="/idol"><a title="Oshimen list">IDOL</a></Link> at that) and aesthetics. I used to try to get over there at least once a year and I'm trying to learn the language via a tutor, self teaching and going to meetups.</p>
           <p className="my-8">Gamewise most of my time is taken up playing the critically acclaimed Final Fantasy 14 which has an unlimited free trial up to level 60 that includes the award winning Heavensward expansion. I mostly play ranged support roles and have ranked as the best in role at a given fight in Europe.</p>
           <p className="my-8">I also play drums occasionally, used to be in a band but I still keep playing to keep skills up, because of that I do finger drum in the office (sorry not sorry).</p>
@@ -205,7 +198,7 @@ function Resume() {
       <section className="mx-auto py-8 text-center max-w-sm w-full">
         <button className={`w-full p-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-800 transition-colors ${isPDF ? 'hidden' : 'visible'}`} onClick={toggleIsPDF}>Download as PDF</button>
       </section>
-    </div>
+    </Layout>
   )
 };
 

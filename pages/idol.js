@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import Image from 'next/future/image';
+
+import Layout from "../components/Layout";
 
 import SayuchaImg from '../public/images/idols/sayucha.jpg';
 import YuiponImg from '../public/images/idols/yuipon.jpg';
@@ -26,9 +27,8 @@ const Idol = ({imgSrc, imgAlt, colour, name, jpName, group, blurb, twitterUrl}) 
 
 const IdolPage = () => {
   return (
-    <div className="dark:bg-neutral-900 dark:text-white">
+    <Layout>
       <div className="container md:max-w-screen-md mx-auto text-lg p-4 md:py-6 md:px-0">
-        <Link href="/"><a className="text-xl">Back</a></Link>
         <h1 className="my-4 text-6xl text-center">Oshimen List</h1>
         <Idol
           imgSrc={SayuchaImg}
@@ -82,7 +82,7 @@ const IdolPage = () => {
           twitterUrl="https://twitter.com/FurukawaMirin"
         />
       </div>
-    </div>
+    </Layout>
   )
 };
 
