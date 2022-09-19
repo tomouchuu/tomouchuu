@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+import useSWR, { SWRConfig } from 'swr';
 import { GraphQLClient, gql } from 'graphql-request';
 
 import Image from 'next/future/image';
@@ -33,16 +33,17 @@ export async function getStaticProps() {
 
   return {
     props: {
-      data
-    },
-    revalidate: 21600 //6hours
+      fallback: {
+        [query]: data
+      }
+    }
   };
 };
 
 // TODO: This page probably needs changing as it's too similar to resume now :thinking:
-function Me(props) {
-  const { data } = useSWR(query, fetcher, { initialData: props.data });
-  const {personal} = data;
+function Me() {
+  const { data } = useSWR(query, fetcher);
+  const { personal } = data;
 
   return (
     <div className="container max-w-screen-md mx-auto text-lg text-justify mt-4 p-4 md:mt-12 md:p-0">
@@ -58,4 +59,10 @@ function Me(props) {
   )
 };
 
-export default Me;
+export default function Page({ fallback }) {
+  return (
+    <SWRConfig value={{ fallback, refreshInterval: 21600 }}>
+      <Me />
+    </SWRConfig>
+  )
+};
