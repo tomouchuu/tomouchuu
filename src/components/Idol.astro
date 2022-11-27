@@ -1,0 +1,28 @@
+---
+export interface Props {
+  blurb: string
+	colour: string
+  group: string
+  imgSrc: string
+  imgAlt: string
+  jpName: string
+  name: string
+  twitterUrl: string
+}
+
+const { blurb, colour, group, imgSrc, imgAlt, jpName, name, twitterUrl } = Astro.props;
+---
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 my-8 p-4 border-2 rounded shadow-lg" style={{borderColor: colour}}>
+  <div class="md:col-span-4 mb-4 md:mb-0">
+    <a href={twitterUrl} title={`Follow ${name} on Twitter`}>
+      <img src={imgSrc} alt={imgAlt} class="rounded-2xl h-auto max-w-full" />
+    </a>
+  </div>
+  <div class="md:col-span-8">
+    <p class="text-3xl">{name}</p>
+    {jpName && <p class="font-light text-xl">{jpName}</p>}
+    <p class="text-lg">{group}</p>
+    <hr class="w-1/2 mx-auto my-3" />
+    <p>{blurb}</p>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const ThemeToggle = () => {
-  const [activeTheme, setActiveTheme] = useState(document.body.dataset.theme);
+  const [activeTheme, setActiveTheme] = useState(document.body.dataset.theme || "light");
   const inactiveTheme = activeTheme === "light" ? "dark" : "light";
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const ThemeToggle = () => {
       type="button"
       onClick={() => setActiveTheme(inactiveTheme)}
     >
-      <span className="absolute top-0 bg-white rounded-full w-7 h-7 left-2 dark:translate-x-8 transition-all duration-300" activetheme={activeTheme} />
+      <span className="absolute top-0 bg-white rounded-full w-7 h-7 left-2 dark:translate-x-8 transition-all duration-300" data-activetheme={activeTheme} />
       <span>🌙</span>
       <span>☀️</span>
     </button>

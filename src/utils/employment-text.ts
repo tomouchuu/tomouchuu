@@ -1,12 +1,25 @@
-const employmentMarkup = (meData) => {
+interface employment {
+  company: string
+}
+
+interface meData {
+  based: boolean
+  contact: {
+    email: string
+  }
+  location: string
+  work: employment[]
+}
+
+const employmentMarkup = (meData: meData) => {
   let markup = `working in <b class="text-4xl">${meData.work[0].company}</b>`;
   if (meData.work[0].company === 'unemployed') {
     markup = `<span>looking for work, <a href="mailto:${meData.contact.email}" class="transition-color text-4xl hover:text-blue-600">get in touch</a></span>`;
   }
-  return {__html: markup};
+  return markup;
 }
 
-export const employmentText = (meData) => {
+export const employmentText = (meData: meData) => {
   if (meData.work[0].company === 'unemployed') {
     return `I'm looking for work (get in touch if you feel like it!)`;
   }

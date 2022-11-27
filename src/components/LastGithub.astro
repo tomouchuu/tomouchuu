@@ -1,7 +1,54 @@
+---
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
 
-function link(ghevent) {
+const response = await fetch("https://api-tomo.uchuu.io/api/me",
+  {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({
+      query: `
+				query {
+					github(limit: 1) {
+            payload {
+              action
+              issue {
+                number
+              }
+              ref
+              ref_type
+            }
+            repo {
+              name
+            }
+            type
+          }
+				}
+			`,
+    }),
+  }
+);
+
+const json = await response.json();
+const { data: { github: ghevents } } = json;
+const ghevent = ghevents[0];
+
+interface GithubEvent {
+  payload: {
+    action: string
+    issue: {
+      number: string
+    }
+    ref: string
+    ref_type: string
+  }
+  repo: {
+    name: string
+  }
+  type: string
+}
+
+const link = (ghevent: GithubEvent) => {
   return `
     <a href='https://github.com/${ghevent.repo.name}' title='View ${ghevent.repo.name} on Github' target='_blank' rel='noopener'>
         ${ghevent.repo.name}
@@ -9,7 +56,7 @@ function link(ghevent) {
   `;
 }
 
-function event(ghevent) {
+const event = (ghevent: GithubEvent) => {
   if (ghevent.type === 'PushEvent') {
     return `Pushed to ${link(ghevent)}`;
   } else if (ghevent.type === 'IssueCommentEvent') {
@@ -54,14 +101,8 @@ function event(ghevent) {
   }
 };
 
-export const LastGithub = props => {
-  const {data} = props;
-  return (
-    <p className="my-2 text-lg">
-      <FontAwesomeIcon icon={faGithub} size="lg" fixedWidth className="mr-1" />
-      <span dangerouslySetInnerHTML={{__html: event(data)}} />
-    </p>
-  );
-}
-
-export default LastGithub;
+---
+<p class="my-2 text-lg">
+  <FontAwesomeIcon icon={faGithub} size="lg" fixedWidth className="mr-1" />
+  <span set:html={event(ghevent)} />
+</p>
