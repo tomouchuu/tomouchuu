@@ -1,107 +1,117 @@
 ---
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faGithub} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-const response = await fetch("https://api-tomo.uchuu.io/api/me",
-  {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({
-      query: `
-				query {
-					github(limit: 1) {
-            payload {
-              action
-              issue {
-                number
-              }
-              ref
-              ref_type
+const response = await fetch("https://api-tomo.uchuu.io/api/me", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      query {
+        github(limit: 1) {
+          payload {
+            action
+            issue {
+              number
             }
-            repo {
-              name
-            }
-            type
+            ref
+            ref_type
           }
-				}
-			`,
-    }),
-  }
-);
+          repo {
+            name
+          }
+          type
+        }
+      }
+    `,
+  }),
+});
 
 const json = await response.json();
-const { data: { github: ghevents } } = json;
+const {
+  data: { github: ghevents },
+} = json;
 const ghevent = ghevents[0];
 
 interface GithubEvent {
   payload: {
-    action: string
+    action: string;
     issue: {
-      number: string
-    }
-    ref: string
-    ref_type: string
-  }
+      number: string;
+    };
+    ref: string;
+    ref_type: string;
+  };
   repo: {
-    name: string
-  }
-  type: string
+    name: string;
+  };
+  type: string;
 }
 
 const link = (ghevent: GithubEvent) => {
   return `
     <a href='https://github.com/${ghevent.repo.name}' title='View ${ghevent.repo.name} on Github' target='_blank' rel='noopener'>
-        ${ghevent.repo.name}
+      ${ghevent.repo.name}
     </a>
   `;
-}
+};
 
 const event = (ghevent: GithubEvent) => {
-  if (ghevent.type === 'PushEvent') {
+  if (ghevent.type === "PushEvent") {
     return `Pushed to ${link(ghevent)}`;
-  } else if (ghevent.type === 'IssueCommentEvent') {
-    return `Commented on Issue #${ghevent.payload.issue.number} for ${link(ghevent)}`;
-  } else if (ghevent.type === 'DeleteEvent') {
+  } else if (ghevent.type === "IssueCommentEvent") {
+    return `Commented on Issue #${ghevent.payload.issue.number} for ${link(
+      ghevent
+    )}`;
+  } else if (ghevent.type === "DeleteEvent") {
     return `Deleted ${ghevent.payload.ref_type}`;
-  } else if (ghevent.type === 'WatchEvent') {
-    if (ghevent.payload.action === 'watched') {
+  } else if (ghevent.type === "WatchEvent") {
+    if (ghevent.payload.action === "watched") {
       return `Watched ${link(ghevent)}`;
-    } else if (ghevent.payload.action === 'started') {
+    } else if (ghevent.payload.action === "started") {
       return `Stared ${link(ghevent)}`;
     }
-  } else if (ghevent.type === 'IssuesEvent') {
-    if (ghevent.payload.action === 'opened') {
-      return `Opened issue #${ghevent.payload.issue.number} on ${link(ghevent)}`;
-    } else if (ghevent.payload.action === 'reopened') {
-      return `Reopened issue #${ghevent.payload.issue.number} on ${link(ghevent)}`;
-    } else if (ghevent.payload.action === 'closed') {
-      return `Closed issue #${ghevent.payload.issue.number} on ${link(ghevent)}`;
+  } else if (ghevent.type === "IssuesEvent") {
+    if (ghevent.payload.action === "opened") {
+      return `Opened issue #${ghevent.payload.issue.number} on ${link(
+        ghevent
+      )}`;
+    } else if (ghevent.payload.action === "reopened") {
+      return `Reopened issue #${ghevent.payload.issue.number} on ${link(
+        ghevent
+      )}`;
+    } else if (ghevent.payload.action === "closed") {
+      return `Closed issue #${ghevent.payload.issue.number} on ${link(
+        ghevent
+      )}`;
     }
-  } else if (ghevent.type === 'CreateEvent') {
-    if (ghevent.payload.ref_type === 'tag') {
+  } else if (ghevent.type === "CreateEvent") {
+    if (ghevent.payload.ref_type === "tag") {
       return `Tagged ${link(ghevent)}`;
-    } else if (ghevent.payload.ref_type === 'branch') {
+    } else if (ghevent.payload.ref_type === "branch") {
       return `Created Branch ${ghevent.payload.ref} on ${link(ghevent)}`;
-    } else if (ghevent.payload.ref_type === 'repository') {
+    } else if (ghevent.payload.ref_type === "repository") {
       return `Created ${ghevent.payload.ref_type}`;
     }
-  } else if (ghevent.type === 'MemberEvent') {
-    if (ghevent.payload.action === 'added') {
+  } else if (ghevent.type === "MemberEvent") {
+    if (ghevent.payload.action === "added") {
       return `Added collaborator to ${link(ghevent)}`;
     }
-  } else if (ghevent.type === 'PublicEvent') {
+  } else if (ghevent.type === "PublicEvent") {
     return `Made ${link(ghevent)} public`;
-  } else if (ghevent.type === 'PullRequestEvent') {
+  } else if (ghevent.type === "PullRequestEvent") {
     return `Pull Request for ${link(ghevent)}`;
-  } else if (ghevent.type === 'ForkEvent') {
+  } else if (ghevent.type === "ForkEvent") {
     return `Forked ${link(ghevent)}`;
+  } else if (ghevent.type === "ReleaseEvent") {
+    return `Released a package for ${link(ghevent)}`;
   } else {
     console.log(ghevent.type); // eslint-disable-line
     return `Unknown action for ${link(ghevent)}`;
   }
 };
-
 ---
+
 <p class="my-2 text-lg">
   <FontAwesomeIcon icon={faGithub} size="lg" fixedWidth className="mr-1" />
   <span set:html={event(ghevent)} />
