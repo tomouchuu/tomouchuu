@@ -1,15 +1,12 @@
 ---
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faHeadphones} from '@fortawesome/free-solid-svg-icons';
-
 import getOrdinal from "../utils/get-ordinal";
+import { Headphones } from "./Icons";
 
-const response = await fetch("https://api-tomo.uchuu.io/api/me",
-  {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({
-      query: `
+const response = await fetch("https://api-tomo.uchuu.io/", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
 				query {
 					music {
             album {
@@ -28,22 +25,31 @@ const response = await fetch("https://api-tomo.uchuu.io/api/me",
           }
 				}
 			`,
-    }),
-  }
-);
+  }),
+});
 
 const json = await response.json();
-const { data: { music } } = json;
+const {
+  data: { music },
+} = json;
 const { album, artist, track } = music;
 ---
+
 <p class="my-2 text-lg">
-  <FontAwesomeIcon icon={faHeadphones} size="lg" fixedWidth className="mr-1" />
-  <a href={track.url} title={track.name} target="_blank" rel="noopener">{track.name}</a>
-  {' by '}
-  <a href={artist.url} title={artist.name} target="_blank" rel="noopener">{artist.name}</a>
-  {' from '}
-  <a href={album.url} title={album.name} target="_blank" rel="noopener">{album.name}</a>
+  <Headphones className="inline-block align-text-top mr-2" />
+  <a href={track.url} title={track.name} target="_blank" rel="noopener"
+    >{track.name}</a
+  >
+  {" by "}
+  <a href={artist.url} title={artist.name} target="_blank" rel="noopener"
+    >{artist.name}</a
+  >
+  {" from "}
+  <a href={album.url} title={album.name} target="_blank" rel="noopener"
+    >{album.name}</a
+  >
   {` for the `}
-  <span class="ordinal">{track.playedCount}{getOrdinal(track.playedCount)}</span>
+  <span class="ordinal">{track.playedCount}{getOrdinal(track.playedCount)}</span
+  >
   {` time`}
 </p>

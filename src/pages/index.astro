@@ -1,8 +1,7 @@
 ---
-import type { IconName } from '@fortawesome/fontawesome-svg-core';
-import '../styles/globals.css';
+import "../styles/globals.css";
 
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
 import CurrentMusic from "../components/CurrentMusic.astro";
 import CurrentTweet from "../components/CurrentTweet.astro";
@@ -13,12 +12,11 @@ import ThemeToggle from "../components/ThemeToggle";
 import ageText from "../utils/age-text";
 import employmentMarkup from "../utils/employment-text";
 
-const response = await fetch("https://api-tomo.uchuu.io/api/me",
-  {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({
-      query: `
+const response = await fetch("https://api-tomo.uchuu.io/", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
 				query {
 					personal {
 						name
@@ -43,69 +41,87 @@ const response = await fetch("https://api-tomo.uchuu.io/api/me",
 					}
 				}
 			`,
-    }),
-  }
-);
+  }),
+});
 
 const json = await response.json();
 const { data } = json;
 const { personal } = data;
 
 const birthday = ageText(personal.birthday);
-const basedInText = personal.based ? ` and working in <b>${personal.based}</b>` : '';
+const basedInText = personal.based
+  ? ` and working in <b>${personal.based}</b>`
+  : "";
 const employmentText = employmentMarkup(personal);
 
-interface SocialMediaType {
-	network: IconName | 'applemusic' | 'blog' | 'cv' | 'email' 
-	url: string
-}
-const socialMediaArr: SocialMediaType[] = [];
-  Object.keys(personal.contact).forEach((network) => {
-    socialMediaArr.push({
-      network: network as SocialMediaType["network"],
-      url: personal.contact[network],
-    });
+const socialMediaArr = [];
+Object.keys(personal.contact).forEach((network) => {
+  socialMediaArr.push({
+    network: network,
+    url: personal.contact[network],
   });
+});
 ---
+
 <Layout title="Thomas Moore">
-	<div class="min-h-screen h-100 grid place-items-center font-sans text-base text-center text-gray-50 bg-gradient-to-br from-blue-400 to-red-500 dark:from-blue-800 dark:to-red-900">
-		<div class="absolute top-2 right-2 lg:top-4 lg:right-4">
-			<ThemeToggle client:only />
-		</div>
-		<div>
-			<main class="container max-w-screen-md mx-auto bg-black bg-opacity-60 mb-8 sm:border sm:border-gray-50 sm:rounded text-3xl p-8 shadow-xl z-10">
-				<div class="flex flex-wrap align-middle justify-around">
-					<div class='mr-2'>
-						<img class="rounded-full w-52 h-52 !border-2 border-gray-50 flex-none" src="/images/thomas.jpg" alt={personal.name} width="208" height="208" />
-					</div>
-					<div class="flex-1">
-						Hi I'm <h1 class="inline font-bold text-5xl">{personal.name}</h1>, <b class="text-4xl">{birthday} years old</b>, from <b class="text-4xl">{personal.location}</b><span set:html={basedInText} /> where I'm currently <span set:html={employmentText} />.
-					</div>
-				</div>
-				<div class="mt-4 text-2xl">
-					<p>Find me on:</p>
-					<ul class="flex flex-row flex-wrap justify-center w-5/6 mt-2 mx-auto">
-						{socialMediaArr.map((social) =>
-							<li class="flex-initial m-2">
-								<SocialMedia client:load network={social.network} url={social.url} scale="2x" />
-							</li>
-						)}
-					</ul>
-				</div>
-				<p class="font-light mt-8">- トーマス＠宇宙 -</p>
-			</main>
-	
-			<section class="container max-w-screen-md mx-auto px-4 mb-8 md:px-2">
-				<CurrentMusic />
-				<CurrentTweet />
-				<LastGithub />
-				<p class="mt-4 text-2xl">
-					<a href="/me" title="All about Tomo">More about me</a>
-				</p>
-				<p class="mt-1 text-xl">
-					<a href="/idols" title="Tomo's favourite idols">Oshimen list</a>
-				</p>
-			</section>
-		</div>
-	</div>
+  <div
+    class="min-h-screen h-100 grid place-items-center font-sans text-base text-center text-gray-50 bg-gradient-to-br from-blue-400 to-red-500 dark:from-blue-800 dark:to-red-900"
+  >
+    <div class="absolute top-2 right-2 lg:top-4 lg:right-4">
+      <ThemeToggle client:only />
+    </div>
+    <div>
+      <main
+        class="container max-w-screen-md mx-auto bg-black bg-opacity-60 mb-8 sm:border sm:border-gray-50 sm:rounded text-3xl p-8 shadow-xl z-10"
+      >
+        <div class="flex flex-wrap align-middle justify-around">
+          <div class="mr-2">
+            <img
+              class="rounded-full w-52 h-52 !border-2 border-gray-50 flex-none"
+              src="/images/thomas.jpg"
+              alt={personal.name}
+              width="208"
+              height="208"
+            />
+          </div>
+          <div class="flex-1">
+            Hi I'm <h1 class="inline font-bold text-5xl">{personal.name}</h1>, <b
+              class="text-4xl">{birthday} years old</b
+            >, from <b class="text-4xl">{personal.location}</b><span
+              set:html={basedInText}
+            /> where I'm currently <span set:html={employmentText} />.
+          </div>
+        </div>
+        <div class="mt-4 text-2xl">
+          <p>Find me on:</p>
+          <ul class="flex flex-row flex-wrap justify-center w-5/6 mt-2 mx-auto">
+            {
+              socialMediaArr.map((social) => (
+                <li class="flex-initial m-2">
+                  <SocialMedia
+                    network={social.network}
+                    url={social.url}
+                    scale="2x"
+                  />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <p class="font-light mt-2">- トーマス＠宇宙 -</p>
+      </main>
+
+      <section class="container max-w-screen-md mx-auto px-4 mb-8 md:px-2">
+        <CurrentMusic />
+        <CurrentTweet />
+        <LastGithub />
+        <p class="mt-4 text-2xl">
+          <a href="/me" title="All about Tomo">More about me</a>
+        </p>
+        <p class="mt-1 text-xl">
+          <a href="/idols" title="Tomo's favourite idols">Oshimen list</a>
+        </p>
+      </section>
+    </div>
+  </div>
 </Layout>

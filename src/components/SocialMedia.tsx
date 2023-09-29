@@ -1,69 +1,90 @@
-import {IconName, IconProp, library} from '@fortawesome/fontawesome-svg-core'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {fab} from '@fortawesome/free-brands-svg-icons';
-import {faSquare} from '@fortawesome/free-solid-svg-icons';
-import {faEnvelope, faFileAlt, faNewspaper} from '@fortawesome/free-regular-svg-icons';
-library.add(fab, faSquare, faEnvelope, faFileAlt, faNewspaper);
+import {
+  BookOpen,
+  FileText,
+  Headphones,
+  HelpCircle,
+  Mail,
+  Music,
+  Square,
+} from "./Icons";
+
+import {
+  Discord,
+  Github,
+  Instagram,
+  Linkedin,
+  Twitch,
+  Twitter,
+  Youtube,
+} from "./Socials";
 
 interface Props {
-  network: IconName | 'applemusic' | 'blog' | 'cv' | 'email'
-  scale: string
-  url: string
+  network: string;
+  scale: string;
+  url: string;
 }
 
 const SocialMedia = (props: Props) => {
-  const icon = (): IconProp => {
-    if (props.network === 'email') {
-      return ['far', 'envelope'];
-    } else if (props.network === 'blog') {
-      return ['far', 'newspaper'];
-    } else if (props.network === 'applemusic') {
-      return ['fab', 'itunes-note'];
-    } else if (props.network === 'cv') {
-      return ['far', 'file-alt'];
+  const icon = () => {
+    if (props.network === "email") {
+      return <Mail />;
+    } else if (props.network === "blog") {
+      return <BookOpen />;
+    } else if (props.network === "applemusic") {
+      return <Music />;
+    } else if (props.network === "cv") {
+      return <FileText />;
+    } else if (props.network === "discord") {
+      return <Discord />;
+    } else if (props.network === "github") {
+      return <Github />;
+    } else if (props.network === "instagram") {
+      return <Instagram />;
+    } else if (props.network === "lastfm") {
+      return <Headphones />;
+    } else if (props.network === "linkedin") {
+      return <Linkedin />;
+    } else if (props.network === "twitch") {
+      return <Twitch />;
+    } else if (props.network === "twitter") {
+      return <Twitter />;
+    } else if (props.network === "youtube") {
+      return <Youtube />;
     }
-    return ['fab', props.network];
-  }
-
-  const scale = () => {
-    if (props.scale) { return `fa-${props.scale}`; }
-    return 'fa-lg';
-  }
+    return <HelpCircle />;
+  };
 
   const title = () => {
-    if (props.network === 'email') {
-      return 'Email me';
-    } else if (props.network === 'blog') {
-      return 'My blog';
-    } else if (props.network === 'applemusic') {
-      return 'Apple Music';
-    } else if (props.network === 'cv') {
-      return 'My CV';
+    if (props.network === "email") {
+      return "Email me";
+    } else if (props.network === "blog") {
+      return "My blog";
+    } else if (props.network === "applemusic") {
+      return "Apple Music";
+    } else if (props.network === "cv") {
+      return "My CV";
     }
     return `Find me on ${props.network}`;
-  }
+  };
 
   const link = () => {
-    if (props.network === 'email') {
+    if (props.network === "email") {
       return `mailto:${props.url}`;
     }
-    return props.url
-  }
-
+    return props.url;
+  };
 
   return (
     <a
+      className={`inline-table border-2 border-white rounded-lg p-3 h-6 w-6 socials ${props.network}`}
       href={link()}
       rel="noopener"
-      target={props.network === 'cv' ? '_blank': ''}
+      target={props.network === "cv" ? "_blank" : ""}
       title={title()}
     >
-      <span className={`m-1 fa-layers fa-fw ${scale()} socials ${props.network}`}>
-        <FontAwesomeIcon icon="square" size="lg" />
-        <FontAwesomeIcon icon={icon()} size="xs" className="socialicon" />
-      </span>
+      {icon()}
     </a>
   );
-}
+};
 
 export default SocialMedia;
