@@ -1,3 +1,3 @@
-# TOMO@UCHUU Personal Site V7
+# TOMO@UCHUU Personal Site V8
 
-Frontend for my personal site to find out more about me
+Frontend + API for my personal site to find out more about me
