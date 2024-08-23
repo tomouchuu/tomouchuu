@@ -75,12 +75,16 @@ a:hover {
 }
 
 .socials {
-  transition: background-color 0.7s, color 0.7s;
+  transition:
+    background-color 0.7s,
+    color 0.7s;
 }
-  .socials:hover {
-    color: hsl(var(--social-white)) !important;
-    transition: background-color 0.3s, color 0.3s;
-  }
+.socials:hover {
+  color: hsl(var(--social-white)) !important;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
 
 .socials.twitter {
   background-color: hsl(var(--background));

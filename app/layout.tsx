@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { ThemeProvider } from "@/components/theme-provider"
-import { Separator } from "@/components/ui/separator"
+import { ThemeProvider } from "@/components/theme-provider";
+import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
   title: "Thomas Moore",
-  description: "Portfolio / About etc. for Thomas Moore. UI Engineer from Essex, UK.",
+  description:
+    "Portfolio / About etc. for Thomas Moore. UI Engineer from Essex, UK.",
 };
 
 export default function RootLayout({

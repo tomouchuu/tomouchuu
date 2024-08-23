@@ -1,12 +1,12 @@
-import { startServerAndCreateNextHandler } from '@as-integrations/next';
-import { ApolloServer } from '@apollo/server';
-import { gql } from 'graphql-tag';
+import { startServerAndCreateNextHandler } from "@as-integrations/next";
+import { ApolloServer } from "@apollo/server";
+import { gql } from "graphql-tag";
 
-import GithubApi from './github';
-import LastFMApi from './lastfm';
-import personal from './personal';
+import GithubApi from "./github";
+import LastFMApi from "./lastfm";
+import personal from "./personal";
 
-import { NextRequest } from 'next/server';
+import { NextRequest } from "next/server";
 
 const typeDefs = gql`
   type LastFmMusicInfo {

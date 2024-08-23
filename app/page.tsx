@@ -1,9 +1,9 @@
-import Lastfm from "@/components/blocks/lastfm"
-import Github from "@/components/blocks/github"
-import Socials from "@/components/blocks/socials"
+import Lastfm from "@/components/blocks/lastfm";
+import Github from "@/components/blocks/github";
+import Socials from "@/components/blocks/socials";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Separator } from "@/components/ui/separator"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
   return (
