@@ -8,7 +8,7 @@ class LastFMApi extends RESTDataSource {
   baseURL = "http://ws.audioscrobbler.com/2.0/";
   lastFmUser = "TminatorT";
 
-  willSendRequest(_path, request) {
+  willSendRequest(_path: string, request: any) {
     request.headers["User-Agent"] = `Tomo-API/8.0.0 (tomo.uchuu.io)`;
     request.params.set("api_key", process.env.LASTFM_API_KEY);
     request.params.set("username", this.lastFmUser);

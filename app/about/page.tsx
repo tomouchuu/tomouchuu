@@ -23,20 +23,20 @@ export default function About() {
       </Breadcrumb>
 
       <section>
-        <p>So hello there, I'm Thomas Moore.</p>
+        <p>So hello there, I&apos;m Thomas Moore.</p>
         <p className="my-4">
-          I'm a UI engineer primarily working in React with frameworks like
-          Next.js, Remix and Astro. Right now I'm a big fan of TailwindCSS.
+          I&apos;m a UI engineer primarily working in React with frameworks like
+          Next.js, Remix and Astro. Right now I&apos;m a big fan of TailwindCSS.
         </p>
         <p className="my-4">
-          Outside of coding, I'm a big fan of things japanese but mostly enjoy
-          music (and mostly{" "}
+          Outside of coding, I&apos;m a big fan of things japanese but mostly
+          enjoy music (and mostly{" "}
           <a className="underline" href="/idols" title="Tomo's favourite idols">
             IDOL
           </a>{" "}
           at that) and aesthetics. I try to get over there every year at least
-          and I'm trying to learn the language via a tutor, self teaching and
-          going to meetups.
+          and I&apos;m trying to learn the language via a tutor, self teaching
+          and going to meetups.
         </p>
         <p className="my-4">
           I play the critically acclaimed MMORPG Final Fantasy 14 to a

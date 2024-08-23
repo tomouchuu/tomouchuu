@@ -21,7 +21,11 @@ interface GithubEvent {
   type: string;
 }
 
-const fetcher = (query: string) =>
+interface Data {
+  github: GithubEvent[];
+}
+
+const fetcher = (query: string): Promise<Data> =>
   request(`${window.location.origin}/api/graphql`, query);
 
 const link = (ghevent: GithubEvent) => {
@@ -90,27 +94,27 @@ const event = (ghevent: GithubEvent) => {
 };
 
 export default function Github() {
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading } = useSWR<Data>(
     `{
-            github(limit: 1) {
-                payload {
-                    action
-                    issue {
-                        number
-                    }
-                    ref
-                    ref_type
-                }
-                repo {
-                    name
-                }
-                type
-            }
-        }`,
+      github(limit: 1) {
+        payload {
+          action
+          issue {
+            number
+          }
+          ref
+          ref_type
+        }
+        repo {
+          name
+        }
+        type
+      }
+    }`,
     fetcher,
   );
 
-  if (isLoading || error)
+  if (data === undefined || isLoading || error)
     return (
       <div className="flex justify-center items-center my-2 text-lg">
         <SiGithub className="mr-4" />
@@ -120,21 +124,6 @@ export default function Github() {
 
   const { github: ghevents } = data;
   const ghevent = ghevents[0];
-
-  // const ghevent = {
-  //     payload: {
-  //         action: "opened",
-  //         issue: {
-  //             number: "1",
-  //         },
-  //         ref: "main",
-  //         ref_type: "branch",
-  //     },
-  //     repo: {
-  //         name: "test",
-  //     },
-  //     type: "IssuesEvent",
-  // }
 
   return (
     <div className="flex justify-center items-center my-2 text-lg">

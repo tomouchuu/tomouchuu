@@ -3,7 +3,7 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 class GithubApi extends RESTDataSource {
   baseURL = "https://api.github.com/";
 
-  willSendRequest(_path, request) {
+  willSendRequest(_path: string, request: any) {
     request.headers["Accept"] = "application/vnd.github+json";
     request.headers["User-Agent"] = "tomouchuu";
   }

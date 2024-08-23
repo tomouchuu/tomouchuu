@@ -12,7 +12,15 @@ interface Props {
   url: string;
 }
 
-const fetcher = (query: string) =>
+interface Data {
+  personal: {
+    contact: {
+      [key: string]: string;
+    };
+  };
+}
+
+const fetcher = (query: string): Promise<Data> =>
   request(`${window.location.origin}/api/graphql`, query);
 
 const SocialIcon = (props: Props) => {
@@ -74,26 +82,26 @@ const SocialIcon = (props: Props) => {
 };
 
 export default function Socials() {
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading } = useSWR<Data>(
     `{
-            personal {
-				contact {
-					email
-					twitter
-					github
-					applemusic
-					lastfm
-					discord
-					youtube
-					twitch
-					cv
-				}
-			}
-        }`,
+      personal {
+        contact {
+          email
+          twitter
+          github
+          applemusic
+          lastfm
+          discord
+          youtube
+          twitch
+          cv
+        }
+      }
+    }`,
     fetcher,
   );
 
-  if (isLoading || error)
+  if (data === undefined || isLoading || error)
     return (
       <div className="flex flex-row gap-2">
         <Skeleton className="h-[52px] w-full" />

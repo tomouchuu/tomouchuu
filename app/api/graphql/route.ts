@@ -108,7 +108,6 @@ const server = new ApolloServer({
   resolvers,
   typeDefs,
   introspection: true,
-  enablePlayground: true,
 });
 
 const handler = startServerAndCreateNextHandler<NextRequest>(server, {

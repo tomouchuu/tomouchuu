@@ -5,7 +5,26 @@ import { request } from "graphql-request";
 import { Headphones } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 
-const fetcher = (query: string) =>
+interface Data {
+  music: {
+    isLive: boolean;
+    album: {
+      name: string;
+      url: string;
+    };
+    artist: {
+      name: string;
+      url: string;
+    };
+    track: {
+      name: string;
+      url: string;
+      playedCount: number;
+    };
+  };
+}
+
+const fetcher = (query: string): Promise<Data> =>
   request(`${window.location.origin}/api/graphql`, query);
 
 function getOrdinal(n: number) {
@@ -23,29 +42,29 @@ function getOrdinal(n: number) {
 }
 
 export default function Lastfm() {
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading } = useSWR<Data>(
     `{
-            music {
-                isLive
-                album {
-                    name
-                    url
-                }
-                artist {
-                    name
-                    url
-                }
-                track {
-                    name
-                    url
-                    playedCount
-                }
-            }
-        }`,
+      music {
+        isLive
+        album {
+          name
+          url
+        }
+        artist {
+          name
+          url
+        }
+        track {
+          name
+          url
+          playedCount
+        }
+      }
+    }`,
     fetcher,
   );
 
-  if (isLoading || error)
+  if (data === undefined || isLoading || error)
     return (
       <div className="flex justify-center items-center my-2 text-lg w-full">
         <Headphones className="mr-4" />
