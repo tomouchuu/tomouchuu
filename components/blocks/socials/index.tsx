@@ -70,7 +70,7 @@ const SocialIcon = (props: Props) => {
 
   return (
     <a
-      className={`inline-table border-2 border-accent rounded-lg p-3 h-6 w-6 socials ${props.network}`}
+      className={`inline-table border-2 border-accent rounded-lg p-3 socials ${props.network}`}
       href={link()}
       rel="noopener"
       target={props.network === "cv" ? "_blank" : ""}
