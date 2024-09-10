@@ -118,7 +118,7 @@ export default function Socials() {
   });
 
   return (
-    <div className="flex flex-row justify-center items-center gap-4">
+    <div className="flex flex-row flex-wrap justify-center items-center gap-4">
       {socialMediaArrObj.map((social) => (
         <SocialIcon
           key={social.network}

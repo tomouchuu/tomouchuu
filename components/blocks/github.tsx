@@ -117,7 +117,7 @@ export default function Github() {
   if (data === undefined || isLoading || error)
     return (
       <div className="flex justify-center items-center my-2 text-lg">
-        <SiGithub className="mr-4" />
+        <SiGithub className="flex-none mr-4" />
         <Skeleton className="h-8 flex-grow" />
       </div>
     );
@@ -127,7 +127,7 @@ export default function Github() {
 
   return (
     <div className="flex justify-center items-center my-2 text-lg">
-      <SiGithub className="mr-4" />
+      <SiGithub className="flex-none mr-4" />
       <span dangerouslySetInnerHTML={{ __html: event(ghevent) }} />
     </div>
   );

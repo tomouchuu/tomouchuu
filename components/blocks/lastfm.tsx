@@ -67,7 +67,7 @@ export default function Lastfm() {
   if (data === undefined || isLoading || error)
     return (
       <div className="flex justify-center items-center my-2 text-lg w-full">
-        <Headphones className="mr-4" />
+        <Headphones className="flex-none mr-4" />
         <Skeleton className="h-8 flex-grow" />
       </div>
     );
@@ -77,7 +77,7 @@ export default function Lastfm() {
 
   return (
     <div className="flex justify-center items-center my-2 text-lg">
-      <Headphones className="mr-4" />
+      <Headphones className="flex-none mr-4" />
       <p>
         <a href={track.url} title={track.name} target="_blank" rel="noopener">
           {track.name}
