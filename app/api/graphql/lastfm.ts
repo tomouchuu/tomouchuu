@@ -1,3 +1,4 @@
+import { Resource } from "sst";
 import { RESTDataSource } from "@apollo/datasource-rest";
 
 interface LastFmApiOptions {
@@ -10,7 +11,7 @@ class LastFMApi extends RESTDataSource {
 
   willSendRequest(_path: string, request: any) {
     request.headers["User-Agent"] = `Tomo-API/8.0.0 (tomo.uchuu.io)`;
-    request.params.set("api_key", process.env.LASTFM_API_KEY);
+    request.params.set("api_key", Resource.LastFmApiKey.value);
     request.params.set("username", this.lastFmUser);
     request.params.set("format", "json");
   }
