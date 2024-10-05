@@ -7,6 +7,7 @@
     "dev": "next dev",
     "lint": "next lint",
     "prepare": "husky",
+    "sso": "aws sso login --sso-session=uchuu",
     "start": "next start"
   },
   "dependencies": {
@@ -32,7 +33,6 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@flydotio/dockerfile": "latest",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
