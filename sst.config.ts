@@ -33,7 +33,7 @@ export default $config({
   async run() {
     const LastFmApiKey = new sst.Secret("LastFmApiKey");
 
-    new sst.aws.Nextjs("PortfolioApp", {
+    new sst.aws.SolidStart("PortfolioApp", {
       domain: {
         name: "tomo.uchuu.io",
         dns: sst.cloudflare.dns(),
