@@ -4,10 +4,12 @@ import { query, createAsync, type RouteDefinition } from "@solidjs/router";
 
 import { api } from "~/lib/api";
 
-import Lastfm from "~/components/homepage/lastfm";
-
+import {
+  Lastfm,
+  LastfmError,
+  LastfmLoading,
+} from "~/components/homepage/lastfm";
 import type { LastfmData } from "~/server/api/routers/lastfm";
-
 const getLastfmData = query(async () => {
   const initialData = await api.lastfm.getLatest.query();
   const allData = await Promise.all([
@@ -21,8 +23,6 @@ const getLastfmData = query(async () => {
       track: initialData.track,
     }),
   ]);
-
-  await new Promise((resolve) => setTimeout(() => resolve(""), 5000));
 
   return {
     album: allData[0],
@@ -44,6 +44,7 @@ export default function Home() {
       <Title>Tomo@Uchuu</Title>
 
       <section class="text-center">
+        {/* TODO: Get avatar from solid-ui and photo back from github */}
         {/* <Avatar class="w-64 h-64 mb-2">
           <AvatarImage src="/images/thomas.jpg" />
           <AvatarFallback>TM</AvatarFallback>
@@ -57,17 +58,25 @@ export default function Home() {
       </section>
 
       <section class="w-full">
-        <ErrorBoundary fallback={<div>Could not load lastfm...</div>}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Show when={Boolean(lastfmData()?.track.name)}>
+        <ErrorBoundary fallback={<LastfmError />}>
+          <Suspense fallback={<LastfmLoading />}>
+            <Show
+              when={Boolean(lastfmData()?.track.name)}
+              fallback={<LastfmLoading />}
+            >
               <Lastfm data={lastfmData()} />
             </Show>
           </Suspense>
         </ErrorBoundary>
+        {/* TODO: Github component */}
         {/* <Github /> */}
       </section>
 
-      <section class="w-full mb-2">{/* <Socials /> */}</section>
+      <section class="w-full mb-2">
+        {/* TODO: Pull in socials from trpc and pass to this component to render them dynamically */}
+        {/* https://docs.solidjs.com/concepts/control-flow/dynamic */}
+        {/* <Socials /> */}
+      </section>
     </main>
   );
 }

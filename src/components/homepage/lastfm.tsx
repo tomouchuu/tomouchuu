@@ -1,4 +1,6 @@
-import { Headphones } from "lucide-solid";
+import HeadphonesIcon from "~/components/icons/headphones";
+
+import { Skeleton } from "~/components/ui/skeleton";
 
 import type { LastfmData } from "~/server/api/routers/lastfm";
 
@@ -20,7 +22,25 @@ interface Props {
   data?: LastfmData;
 }
 
-export default function Lastfm(props: Props) {
+export function LastfmError() {
+  return (
+    <div class="flex justify-center items-center my-2 text-lg w-full">
+      <HeadphonesIcon class="flex-none mr-4" />
+      <p>Could not load lastfm data</p>
+    </div>
+  );
+}
+
+export function LastfmLoading() {
+  return (
+    <div class="flex justify-center items-center my-2 text-lg w-full">
+      <HeadphonesIcon class="flex-none mr-4" />
+      <Skeleton class="h-8 rounded-lg flex-grow" style={{ height: "" }} />
+    </div>
+  );
+}
+
+export function Lastfm(props: Props) {
   if (props.data === undefined) return;
 
   const { album, artist, isLive, track } = props.data;
@@ -29,7 +49,7 @@ export default function Lastfm(props: Props) {
 
   return (
     <div class="flex justify-center items-center my-2 text-lg">
-      <Headphones class="flex-none mr-4" />
+      <HeadphonesIcon class="flex-none mr-4" />
       <p>
         <a href={track.url} title={track.name} target="_blank" rel="noopener">
           {track.name}
@@ -53,3 +73,5 @@ export default function Lastfm(props: Props) {
     </div>
   );
 }
+
+export default Lastfm;
