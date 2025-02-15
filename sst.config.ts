@@ -27,6 +27,10 @@ export default $config({
             stage: "production",
           };
         }
+
+        if (event.type === "pull_request") {
+          return { stage: `pr-${event.number}` };
+        }
       },
     },
   },
