@@ -1,11 +1,29 @@
 import { Title } from "@solidjs/meta";
 
-export default function About() {
-  // TODO: Add breadcrumb to link back to homepage here
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "~/components/ui/breadcrumb";
 
+export default function About() {
   return (
     <main class="container max-w-screen-md mx-auto flex flex-col gap-4">
       <Title>About | Tomo@Uchuu</Title>
+
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink current>About</BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
       <section>
         <p>So hello there, I'm Thomas Moore.</p>
