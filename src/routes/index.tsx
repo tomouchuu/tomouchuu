@@ -4,6 +4,8 @@ import { query, createAsync, type RouteDefinition } from "@solidjs/router";
 
 import { api } from "~/lib/api";
 
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+
 import {
   Lastfm,
   LastfmError,
@@ -44,11 +46,10 @@ export default function Home() {
       <Title>Tomo@Uchuu</Title>
 
       <section class="text-center">
-        {/* TODO: Get avatar from solid-ui and photo back from github */}
-        {/* <Avatar class="w-64 h-64 mb-2">
+        <Avatar class="w-64 h-64 mb-2">
           <AvatarImage src="/images/thomas.jpg" />
           <AvatarFallback>TM</AvatarFallback>
-        </Avatar> */}
+        </Avatar>
         <h1 class="text-4xl font-bold">Thomas Moore</h1>
         <p class="text-lg">UI Engineer from Essex, UK.</p>
 
