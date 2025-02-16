@@ -1,5 +1,7 @@
+import { JSX } from "solid-js";
+
 // https://feathericons.dev/?search=twitter&iconset=brands&format=strict-tsx
-export function Twitter(props: HTMLOrSVGElement) {
+export function Twitter(props: JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

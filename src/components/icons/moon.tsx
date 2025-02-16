@@ -1,4 +1,6 @@
-export default function (props: any) {
+import { JSX } from "solid-js";
+
+export default function (props: JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

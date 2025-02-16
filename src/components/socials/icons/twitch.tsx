@@ -1,5 +1,7 @@
+import { JSX } from "solid-js";
+
 // https://feathericons.dev/?search=twitch&iconset=brands&format=strict-tsx
-export function Twitch(props: HTMLOrSVGElement) {
+export function Twitch(props: JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

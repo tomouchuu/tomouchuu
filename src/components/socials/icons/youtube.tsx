@@ -1,5 +1,7 @@
+import { JSX } from "solid-js";
+
 // https://feathericons.dev/?search=youtube&iconset=brands&format=strict-tsx
-export function Youtube(props: HTMLOrSVGElement) {
+export function Youtube() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -7,7 +9,6 @@ export function Youtube(props: HTMLOrSVGElement) {
       width="24"
       height="24"
       fill="none"
-      {...props}
     >
       <path
         clip-rule="evenodd"

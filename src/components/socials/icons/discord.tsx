@@ -1,5 +1,7 @@
+import { JSX } from "solid-js";
+
 // https://feathericons.dev/?search=discord&iconset=brands&format=strict-tsx
-export function Discord(props: HTMLOrSVGElement) {
+export function Discord(props: JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

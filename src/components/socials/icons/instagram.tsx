@@ -1,5 +1,7 @@
+import { JSX } from "solid-js";
+
 // https://feathericons.dev/?search=instagram&iconset=brands&format=strict-tsx
-export function Instagram(props: HTMLOrSVGElement) {
+export function Instagram(props: JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
