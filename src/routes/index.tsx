@@ -32,7 +32,7 @@ const getLastfmData = query(async () => {
     track: allData[2],
     isLive: initialData.isLive,
   } as LastfmData;
-}, "posts");
+}, "lastfmData");
 
 export const route = {
   preload: () => getLastfmData(),
