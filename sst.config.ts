@@ -37,9 +37,12 @@ export default $config({
   async run() {
     const LastFmApiKey = new sst.Secret("LastFmApiKey");
 
+    let domain = "tomo.uchuu.io";
+    if ($app.stage !== "production") domain = `${$app.stage}.tomo.uchuu.io`;
+
     new sst.aws.SolidStart("PortfolioApp", {
       domain: {
-        name: "tomo.uchuu.io",
+        name: domain,
         dns: sst.cloudflare.dns(),
       },
       link: [LastFmApiKey],
