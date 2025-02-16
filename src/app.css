@@ -53,9 +53,11 @@
   --chart-3: hsl(220 91.4893627166748% 53.921568393707275%); /* blue */
   --chart-4: hsl(35 76.98412537574768% 49.41176474094391%); /* yellow */
   --chart-5: hsl(109 57.63546824455261% 39.803922176361084%); /* green */
+
+  --social-white: 0 0% 100%;
 }
 
-.dark {
+[data-kb-theme="dark"] {
   --background: hsl(240 21.052631735801697% 14.901961386203766%); /* base */
   --foreground: hsl(226 63.93442749977112% 88.03921341896057%); /* text */
 
@@ -201,5 +203,8 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
