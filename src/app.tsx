@@ -12,6 +12,7 @@ import {
 import { getCookie } from "vinxi/http";
 
 import ThemeToggle from "~/components/theme-toggle";
+import { Separator } from "~/components/ui/separator";
 import "./app.css";
 
 function getServerCookies() {
@@ -38,7 +39,7 @@ export default function App() {
             <div class="flex min-h-screen flex-col items-center justify-center gap-4">
               <Suspense>{props.children}</Suspense>
               <footer class="text-center text-xs min-w-36">
-                {/* <Separator /> */}
+                <Separator />
                 <p class="mt-4">トー マス＠宇宙</p>
               </footer>
             </div>
