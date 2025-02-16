@@ -34,12 +34,18 @@ const getLastfmData = query(async () => {
   } as LastfmData;
 }, "lastfmData");
 
+import { Socials, SocialsLoading } from "~/components/socials";
+const getPersonalData = query(async () => {
+  return await api.personal.data.query();
+}, "personalData");
+
 export const route = {
   preload: () => getLastfmData(),
 } satisfies RouteDefinition;
 
 export default function Home() {
   const lastfmData = createAsync(() => getLastfmData());
+  const personalData = createAsync(() => getPersonalData());
 
   return (
     <main class="container max-w-screen-md mx-auto flex flex-col justify-center items-center gap-4">
@@ -73,10 +79,17 @@ export default function Home() {
         {/* <Github /> */}
       </section>
 
-      <section class="w-full mb-2">
-        {/* TODO: Pull in socials from trpc and pass to this component to render them dynamically */}
-        {/* https://docs.solidjs.com/concepts/control-flow/dynamic */}
-        {/* <Socials /> */}
+      <section class="w-2/3 mb-2">
+        <ErrorBoundary fallback>
+          <Suspense fallback={<SocialsLoading />}>
+            <Show
+              when={Boolean(personalData()?.contact)}
+              fallback={<SocialsLoading />}
+            >
+              <Socials data={personalData()?.contact} />
+            </Show>
+          </Suspense>
+        </ErrorBoundary>
       </section>
     </main>
   );
