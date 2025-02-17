@@ -4,6 +4,9 @@ import { FileRoutes } from "@solidjs/start/router";
 import { Suspense } from "solid-js";
 import { isServer } from "solid-js/web";
 
+import { QueryClientProvider, QueryClient } from "@tanstack/solid-query";
+import { SolidQueryDevtools } from "@tanstack/solid-query-devtools";
+
 import {
   ColorModeProvider,
   ColorModeScript,
@@ -21,6 +24,14 @@ function getServerCookies() {
   return colorMode ? `kb-color-mode=${colorMode}` : "";
 }
 
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      experimental_prefetchInRender: true,
+    },
+  },
+});
+
 export default function App() {
   const storageManager = cookieStorageManagerSSR(
     isServer ? getServerCookies() : document.cookie,
@@ -30,20 +41,24 @@ export default function App() {
     <Router
       root={(props) => (
         <MetaProvider>
-          <ColorModeScript storageType={storageManager.type} />
-          <ColorModeProvider storageManager={storageManager}>
-            <Title>Tomo@Uchuu</Title>
+          <QueryClientProvider client={client}>
+            <ColorModeScript storageType={storageManager.type} />
+            <ColorModeProvider storageManager={storageManager}>
+              <Title>Tomo@Uchuu</Title>
 
-            <ThemeToggle />
+              <ThemeToggle />
 
-            <div class="flex min-h-screen flex-col items-center justify-center gap-4">
-              <Suspense>{props.children}</Suspense>
-              <footer class="text-center text-xs min-w-36">
-                <Separator />
-                <p class="mt-4">トー マス＠宇宙</p>
-              </footer>
-            </div>
-          </ColorModeProvider>
+              <div class="flex min-h-screen flex-col items-center justify-center gap-4">
+                <Suspense>{props.children}</Suspense>
+                <footer class="text-center text-xs min-w-36">
+                  <Separator />
+                  <p class="mt-4">トー マス＠宇宙</p>
+                </footer>
+              </div>
+            </ColorModeProvider>
+
+            <SolidQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
         </MetaProvider>
       )}
     >

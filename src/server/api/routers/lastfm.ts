@@ -1,12 +1,10 @@
 import { wrap } from "@typeschema/valibot";
 import { object, string } from "valibot";
-import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, publicProcedure } from "../utils";
 
-const url = new URL("http://ws.audioscrobbler.com/2.0/");
-url.searchParams.append("user", `TminatorT`);
-url.searchParams.append("api_key", process.env.LastFmApiKey as string);
-url.searchParams.append("format", "json");
+interface LastFmError {
+  isError: true;
+}
 
 interface LastFmAlbum {
   name: string;
@@ -30,7 +28,7 @@ interface LastFmLatestTrack {
   artist: string;
   album: string;
   track: string;
-  isLive: boolean | undefined;
+  isLive?: boolean;
 }
 
 export interface LastfmData {
@@ -50,8 +48,12 @@ export const lastfmRouter = createTRPCRouter({
         }),
       ),
     )
-    .query(async (opts): Promise<LastFmAlbum> => {
-      url.searchParams.append("method", "album.getinfo");
+    .query(async (opts): Promise<LastFmAlbum | LastFmError> => {
+      const url = new URL("http://ws.audioscrobbler.com/2.0/");
+      url.searchParams.append("user", `TminatorT`);
+      url.searchParams.append("api_key", process.env.LastFmApiKey as string);
+      url.searchParams.append("format", "json");
+      url.searchParams.append("method", "album.getInfo");
       url.searchParams.append("artist", opts.input.artist);
       url.searchParams.append("album", opts.input.album);
 
@@ -64,10 +66,7 @@ export const lastfmRouter = createTRPCRouter({
       const { album } = data;
 
       if (!album) {
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "Could not find album data",
-        });
+        return { isError: true };
       }
 
       return {
@@ -77,31 +76,34 @@ export const lastfmRouter = createTRPCRouter({
       };
     }),
 
-  getArtistInfo: publicProcedure.input(wrap(string())).query(async (opts) => {
-    url.searchParams.append("method", "artist.getinfo");
-    url.searchParams.append("artist", opts.input);
+  getArtistInfo: publicProcedure
+    .input(wrap(string()))
+    .query(async (opts): Promise<LastFmArtist | LastFmError> => {
+      const url = new URL("http://ws.audioscrobbler.com/2.0/");
+      url.searchParams.append("user", `TminatorT`);
+      url.searchParams.append("api_key", process.env.LastFmApiKey as string);
+      url.searchParams.append("format", "json");
+      url.searchParams.append("method", "artist.getInfo");
+      url.searchParams.append("artist", opts.input);
 
-    const response = await fetch(url.href, {
-      headers: {
-        "User-Agent": `Tomo-API/9.0.0 (tomo.uchuu.io)`,
-      },
-    });
-    const data = await response.json();
-    const { artist } = data;
-
-    if (!artist) {
-      throw new TRPCError({
-        code: "NOT_FOUND",
-        message: "Could not find artist data",
+      const response = await fetch(url.href, {
+        headers: {
+          "User-Agent": `Tomo-API/9.0.0 (tomo.uchuu.io)`,
+        },
       });
-    }
+      const data = await response.json();
+      const { artist } = data;
 
-    return {
-      name: data.artist.name as string,
-      playedCount: (data.artist.userplaycount as number) ?? 0,
-      url: data.artist.url as string,
-    };
-  }),
+      if (!artist) {
+        return { isError: true };
+      }
+
+      return {
+        name: data.artist.name,
+        playedCount: data.artist.userplaycount ?? 0,
+        url: data.artist.url,
+      };
+    }),
 
   getTrackInfo: publicProcedure
     .input(
@@ -112,8 +114,12 @@ export const lastfmRouter = createTRPCRouter({
         }),
       ),
     )
-    .query(async (opts) => {
-      url.searchParams.append("method", "track.getinfo");
+    .query(async (opts): Promise<LastFmTrack | LastFmError> => {
+      const url = new URL("http://ws.audioscrobbler.com/2.0/");
+      url.searchParams.append("user", `TminatorT`);
+      url.searchParams.append("api_key", process.env.LastFmApiKey as string);
+      url.searchParams.append("format", "json");
+      url.searchParams.append("method", "track.getInfo");
       url.searchParams.append("artist", opts.input.artist);
       url.searchParams.append("track", opts.input.track);
 
@@ -121,26 +127,29 @@ export const lastfmRouter = createTRPCRouter({
         headers: {
           "User-Agent": `Tomo-API/9.0.0 (tomo.uchuu.io)`,
         },
+        cache: "no-store",
       });
       const data = await response.json();
       const { track } = data;
 
       if (!track) {
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "Could not find track data",
-        });
+        return { isError: true };
       }
 
       return {
-        name: data.track.name as string,
-        playedCount: (data.track.userplaycount as number) ?? 0,
-        url: data.track.url as string,
+        name: data.track.name,
+        playedCount: data.track.userplaycount ?? 0,
+        url: data.track.url,
       };
     }),
 
-  getLatest: publicProcedure.query(async () => {
-    url.searchParams.append("method", "user.getrecenttracks");
+  getLatest: publicProcedure.query(async (): Promise<LastFmLatestTrack> => {
+    const url = new URL("http://ws.audioscrobbler.com/2.0/");
+    url.searchParams.append("user", `TminatorT`);
+    url.searchParams.append("api_key", process.env.LastFmApiKey as string);
+    url.searchParams.append("format", "json");
+    url.searchParams.append("method", "user.getRecentTracks");
+    url.searchParams.append("limit", "1");
 
     const response = await fetch(url.href, {
       headers: {
@@ -152,19 +161,20 @@ export const lastfmRouter = createTRPCRouter({
     const recentTracks = data.recenttracks.track;
 
     if (recentTracks.length <= 0) {
-      throw new TRPCError({
-        code: "NOT_FOUND",
-        message: "Could not find any recent tracks",
-      });
+      return {
+        artist: "",
+        album: "",
+        track: "",
+      };
     }
 
     const latestTrack = data.recenttracks.track[0];
 
     return {
-      artist: latestTrack.artist["#text"] as string,
-      album: latestTrack.album["#text"] as string,
-      track: latestTrack.name as string,
-      isLive: latestTrack["@attr"]?.nowplaying as boolean | undefined,
+      artist: latestTrack.artist["#text"],
+      album: latestTrack.album["#text"],
+      track: latestTrack.name,
+      isLive: latestTrack["@attr"]?.nowplaying,
     };
   }),
 });

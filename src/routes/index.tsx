@@ -1,6 +1,6 @@
-import { ErrorBoundary, Show, Suspense } from "solid-js";
+import { ErrorBoundary, Suspense } from "solid-js";
 import { Title } from "@solidjs/meta";
-import { query, createAsync, type RouteDefinition } from "@solidjs/router";
+import { createQuery } from "@tanstack/solid-query";
 
 import { api } from "~/lib/api";
 
@@ -12,55 +12,61 @@ import {
   LastfmLoading,
 } from "~/components/homepage/lastfm";
 import type { LastfmData } from "~/server/api/routers/lastfm";
-const getLastfmData = query(async () => {
-  const initialData = await api.lastfm.getLatest.query();
-  const allData = await Promise.all([
-    api.lastfm.getAlbumInfo.query({
-      album: initialData.album,
-      artist: initialData.artist,
-    }),
-    api.lastfm.getArtistInfo.query(initialData.artist),
-    api.lastfm.getTrackInfo.query({
-      artist: initialData.artist,
-      track: initialData.track,
-    }),
-  ]);
-
-  return {
-    album: allData[0],
-    artist: allData[1],
-    track: allData[2],
-    isLive: initialData.isLive,
-  } as LastfmData;
-}, "lastfmData");
 
 import {
   Github,
   GithubError,
   GithubLoading,
 } from "~/components/homepage/github";
-const getGithubData = query(async () => {
-  const data = await api.github.event.query();
-  return data;
-}, "githubData");
 
 import { Socials, SocialsLoading } from "~/components/socials";
-const getPersonalData = query(async () => {
-  return await api.personal.data.query();
-}, "personalData");
-
-export const route = {
-  preload: () => {
-    getLastfmData();
-    getGithubData();
-    getPersonalData();
-  },
-} satisfies RouteDefinition;
 
 export default function Home() {
-  const lastfmData = createAsync(() => getLastfmData());
-  const githubData = createAsync(() => getGithubData());
-  const personalData = createAsync(() => getPersonalData());
+  const lastfmData = createQuery(() => ({
+    queryKey: ["lastfmData"],
+    queryFn: async () => {
+      const initialData = await api.lastfm.getLatest.query();
+
+      const albumInfo = await api.lastfm.getAlbumInfo.query({
+        album: initialData.album,
+        artist: initialData.artist,
+      });
+      const artistInfo = await api.lastfm.getArtistInfo.query(
+        initialData.artist,
+      );
+      const trackInfo = await api.lastfm.getTrackInfo.query({
+        artist: initialData.artist,
+        track: initialData.track,
+      });
+
+      return {
+        album: albumInfo,
+        artist: artistInfo,
+        track: trackInfo,
+        isLive: initialData.isLive,
+      } as LastfmData;
+    },
+    staleTime: 1000 * 60 * 2, // 2 minutes
+    throwOnError: true, // Throw an error if the query fails
+  }));
+
+  const githubData = createQuery(() => ({
+    queryKey: ["githubData"],
+    queryFn: async () => {
+      return await api.github.event.query();
+    },
+    staleTime: 1000 * 60 * 10, // 10 minutes
+    throwOnError: true, // Throw an error if the query fails
+  }));
+
+  const personalData = createQuery(() => ({
+    queryKey: ["personalData"],
+    queryFn: async () => {
+      return await api.personal.data.query();
+    },
+    staleTime: 1000 * 60 * 60 * 24, // 1 day
+    throwOnError: true, // Throw an error if the query fails
+  }));
 
   return (
     <main class="container max-w-screen-md mx-auto flex flex-col justify-center items-center gap-4">
@@ -82,22 +88,12 @@ export default function Home() {
       <section class="w-full">
         <ErrorBoundary fallback={<LastfmError />}>
           <Suspense fallback={<LastfmLoading />}>
-            <Show
-              when={Boolean(lastfmData()?.track.name)}
-              fallback={<LastfmLoading />}
-            >
-              <Lastfm data={lastfmData()} />
-            </Show>
+            <Lastfm data={lastfmData.data} />
           </Suspense>
         </ErrorBoundary>
         <ErrorBoundary fallback={<GithubError />}>
           <Suspense fallback={<GithubLoading />}>
-            <Github data={githubData()} />
-            {/* <Show
-              when={Boolean(lastfmData()?.track.name)}
-              fallback={<GithubLoading />}
-            >
-            </Show> */}
+            <Github data={githubData.data} />
           </Suspense>
         </ErrorBoundary>
       </section>
@@ -105,12 +101,7 @@ export default function Home() {
       <section class="w-2/3 mb-2">
         <ErrorBoundary fallback>
           <Suspense fallback={<SocialsLoading />}>
-            <Show
-              when={Boolean(personalData()?.contact)}
-              fallback={<SocialsLoading />}
-            >
-              <Socials data={personalData()?.contact} />
-            </Show>
+            <Socials data={personalData.data?.contact} />
           </Suspense>
         </ErrorBoundary>
       </section>
