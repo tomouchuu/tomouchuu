@@ -36,7 +36,7 @@ const socialIcons = {
 type SocialIcon = keyof typeof socialIcons;
 
 export function Socials({ data }: { data?: ContactInfo }) {
-  if (data === undefined) return;
+  if (data === undefined) return <SocialsLoading />;
 
   return (
     <div class="flex flex-row flex-wrap justify-center items-center gap-4">

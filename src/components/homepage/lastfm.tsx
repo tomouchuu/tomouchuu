@@ -41,7 +41,7 @@ export function LastfmLoading() {
 }
 
 export function Lastfm(props: Props) {
-  if (props.data === undefined) return;
+  if (props.data === undefined) return <LastfmLoading />;
 
   const trackPlayed =
     props.data.track.playedCount === 0

@@ -31,7 +31,8 @@ export function GithubLoading() {
 }
 
 export function Github(props: Props) {
-  if (props.data === undefined) return;
+  if (props.data === undefined) return <GithubLoading />;
+
   const ghevent = props.data;
   const gheventType = ghevent.type as GithubEvents;
 
