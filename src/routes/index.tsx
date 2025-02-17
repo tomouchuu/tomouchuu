@@ -34,17 +34,32 @@ const getLastfmData = query(async () => {
   } as LastfmData;
 }, "lastfmData");
 
+import {
+  Github,
+  GithubError,
+  GithubLoading,
+} from "~/components/homepage/github";
+const getGithubData = query(async () => {
+  const data = await api.github.event.query();
+  return data;
+}, "githubData");
+
 import { Socials, SocialsLoading } from "~/components/socials";
 const getPersonalData = query(async () => {
   return await api.personal.data.query();
 }, "personalData");
 
 export const route = {
-  preload: () => getLastfmData(),
+  preload: () => {
+    getLastfmData();
+    getGithubData();
+    getPersonalData();
+  },
 } satisfies RouteDefinition;
 
 export default function Home() {
   const lastfmData = createAsync(() => getLastfmData());
+  const githubData = createAsync(() => getGithubData());
   const personalData = createAsync(() => getPersonalData());
 
   return (
@@ -75,8 +90,16 @@ export default function Home() {
             </Show>
           </Suspense>
         </ErrorBoundary>
-        {/* TODO: Github component */}
-        {/* <Github /> */}
+        <ErrorBoundary fallback={<GithubError />}>
+          <Suspense fallback={<GithubLoading />}>
+            <Github data={githubData()} />
+            {/* <Show
+              when={Boolean(lastfmData()?.track.name)}
+              fallback={<GithubLoading />}
+            >
+            </Show> */}
+          </Suspense>
+        </ErrorBoundary>
       </section>
 
       <section class="w-2/3 mb-2">
