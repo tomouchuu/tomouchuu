@@ -41,6 +41,9 @@ export default $config({
     if ($app.stage !== "production") domain = `${$app.stage}.tomo.uchuu.io`;
 
     new sst.aws.SolidStart("PortfolioApp", {
+      environment: {
+        APP_STAGE: $app.stage,
+      },
       domain: {
         name: domain,
         dns: sst.cloudflare.dns(),

@@ -1,12 +1,11 @@
 import { createTRPCProxyClient, httpBatchLink, loggerLink } from "@trpc/client";
-import { Resource } from "sst";
 import { AppRouter } from "~/server/api/root";
 
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return "";
 
   if (process.env.NODE_ENV === "production") {
-    const appStage = Resource.App.stage;
+    const appStage = process.env.APP_STAGE;
     if (appStage === "production") return `https://tomo.uchuu.io`;
     return `https://${appStage}.tomo.uchuu.io`;
   }
