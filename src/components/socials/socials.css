@@ -1,0 +1,94 @@
+.socials {
+  transition:
+    background-color 0.7s,
+    color 0.7s;
+}
+.socials:hover {
+  color: hsl(var(--social-white)) !important;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.socials.twitter {
+  background-color: var(--background);
+  color: #55acee;
+}
+.socials.twitter:hover {
+  background-color: #55acee;
+}
+
+.socials.instagram {
+  background-color: var(--background);
+  color: #3f729b;
+}
+.socials.instagram:hover {
+  background-color: #3f729b;
+}
+
+.socials.discord {
+  background-color: var(--background);
+  color: #7289da;
+}
+.socials.discord:hover {
+  background-color: #7289da;
+}
+
+.socials.email {
+  background-color: var(--background);
+  color: #ff4136;
+}
+.socials.email:hover {
+  background-color: #ff4136;
+}
+
+.socials.youtube {
+  background-color: var(--background);
+  color: #ff0000;
+}
+.socials.youtube:hover {
+  background-color: #ff0000;
+}
+
+.socials.twitch {
+  background-color: var(--background);
+  color: #6441a5;
+}
+.socials.twitch:hover {
+  background-color: #6441a5;
+}
+
+.socials.linkedin {
+  background-color: var(--background);
+  color: #0077b5;
+}
+.socials.linkedin:hover {
+  background-color: #0077b5;
+}
+
+.socials.lastfm {
+  background-color: var(--background);
+  color: #d51007;
+}
+.socials.lastfm:hover {
+  background-color: #d51007;
+}
+
+.socials.applemusic {
+  background-color: var(--background);
+  color: #ff2f56;
+}
+.socials.applemusic:hover {
+  background-color: #ff2f56;
+}
+
+.socials.cv,
+.socials.github {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+.socials.cv:hover,
+.socials.github:hover {
+  background-color: var(--foreground);
+  color: var(--background) !important;
+}

@@ -27,15 +27,25 @@ export default $config({
             stage: "production",
           };
         }
+
+        if (event.type === "pull_request") {
+          return { stage: `pr-${event.number}` };
+        }
       },
     },
   },
   async run() {
     const LastFmApiKey = new sst.Secret("LastFmApiKey");
 
-    new sst.aws.Nextjs("PortfolioApp", {
+    let domain = "tomo.uchuu.io";
+    if ($app.stage !== "production") domain = `${$app.stage}.tomo.uchuu.io`;
+
+    new sst.aws.SolidStart("PortfolioApp", {
+      environment: {
+        APP_STAGE: $app.stage,
+      },
       domain: {
-        name: "tomo.uchuu.io",
+        name: domain,
         dns: sst.cloudflare.dns(),
       },
       link: [LastFmApiKey],

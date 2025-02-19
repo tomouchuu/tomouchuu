@@ -1,0 +1,1 @@
+These files can probably be deleted once https://github.com/lucide-icons/lucide/issues/2806 has been addressed
