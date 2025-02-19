@@ -3,7 +3,8 @@ export default $config({
   app(input) {
     return {
       name: "portfolio",
-      removal: input?.stage === "production" ? "retain" : "remove",
+      removal: "remove",
+      // removal: input?.stage === "production" ? "retain" : "remove",
       home: "aws",
       providers: {
         aws: {
