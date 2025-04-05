@@ -28,14 +28,25 @@ export const githubRouter = createTRPCRouter({
           },
         },
       );
+
       const json = await response.json();
       const event = json[0];
 
       if (!event) {
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "Could not find github data",
-        });
+        return {
+          payload: {
+            action: "no-events",
+            issue: {
+              number: "0",
+            },
+            ref: "no-events",
+            ref_type: "no-events",
+          },
+          repo: {
+            name: "no-events",
+          },
+          type: "no-events",
+        };
       }
 
       return event as GithubEvent;

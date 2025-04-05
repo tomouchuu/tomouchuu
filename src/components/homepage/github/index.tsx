@@ -21,6 +21,15 @@ export function GithubError() {
   );
 }
 
+export function GithubNoEvents() {
+  return (
+    <div class="flex justify-center items-center my-2 text-lg w-full">
+      <GithubIcon class="flex-none mr-4" />
+      <p>No public events in last 90 days</p>
+    </div>
+  );
+}
+
 export function GithubLoading() {
   return (
     <div class="flex justify-center items-center my-2 text-lg w-full">
@@ -32,6 +41,8 @@ export function GithubLoading() {
 
 export function Github(props: Props) {
   if (props.data === undefined) return <GithubLoading />;
+
+  if (props.data.type === "no-events") return <GithubNoEvents />;
 
   const ghevent = props.data;
   const gheventType = ghevent.type as GithubEvents;

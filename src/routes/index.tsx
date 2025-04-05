@@ -25,26 +25,30 @@ export default function Home() {
   const lastfmData = createQuery(() => ({
     queryKey: ["lastfmData"],
     queryFn: async () => {
-      const initialData = await api.lastfm.getLatest.query();
+      try {
+        const initialData = await api.lastfm.getLatest.query();
 
-      const albumInfo = await api.lastfm.getAlbumInfo.query({
-        album: initialData.album,
-        artist: initialData.artist,
-      });
-      const artistInfo = await api.lastfm.getArtistInfo.query(
-        initialData.artist,
-      );
-      const trackInfo = await api.lastfm.getTrackInfo.query({
-        artist: initialData.artist,
-        track: initialData.track,
-      });
+        const albumInfo = await api.lastfm.getAlbumInfo.query({
+          album: initialData.album,
+          artist: initialData.artist,
+        });
+        const artistInfo = await api.lastfm.getArtistInfo.query(
+          initialData.artist,
+        );
+        const trackInfo = await api.lastfm.getTrackInfo.query({
+          artist: initialData.artist,
+          track: initialData.track,
+        });
 
-      return {
-        album: albumInfo,
-        artist: artistInfo,
-        track: trackInfo,
-        isLive: initialData.isLive,
-      } as LastfmData;
+        return {
+          album: albumInfo,
+          artist: artistInfo,
+          track: trackInfo,
+          isLive: initialData.isLive,
+        } as LastfmData;
+      } catch (error) {
+        console.error(error);
+      }
     },
     staleTime: 1000 * 60 * 2, // 2 minutes
     throwOnError: true, // Throw an error if the query fails
@@ -53,7 +57,11 @@ export default function Home() {
   const githubData = createQuery(() => ({
     queryKey: ["githubData"],
     queryFn: async () => {
-      return await api.github.event.query();
+      try {
+        return await api.github.event.query();
+      } catch (error) {
+        console.error(error);
+      }
     },
     staleTime: 1000 * 60 * 10, // 10 minutes
     throwOnError: true, // Throw an error if the query fails
@@ -62,7 +70,11 @@ export default function Home() {
   const personalData = createQuery(() => ({
     queryKey: ["personalData"],
     queryFn: async () => {
-      return await api.personal.data.query();
+      try {
+        return await api.personal.data.query();
+      } catch (error) {
+        console.error(error);
+      }
     },
     staleTime: 1000 * 60 * 60 * 24, // 1 day
     throwOnError: true, // Throw an error if the query fails
