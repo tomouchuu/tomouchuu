@@ -16,4 +16,10 @@
   "observability": {
     "enabled": true,
   },
+  "routes": [
+    {
+      "pattern": "tomo.uchuu.io",
+      "custom_domain": true,
+    },
+  ],
 }
