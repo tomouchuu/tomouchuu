@@ -8,7 +8,9 @@
     "build": "vinxi build",
     "start": "vinxi start",
     "prepare": "husky",
-    "sso": "aws sso login --sso-session=uchuu"
+    "version": "vinxi version",
+    "preview": "npm run build && npx wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@kobalte/core": "^0.13.8",
@@ -17,9 +19,8 @@
     "@solidjs/start": "^1.1.0",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/solid-query": "^5.66.4",
-    "@trpc/client": "^10.45.2",
-    "@trpc/server": "^10.45.2",
-    "@typeschema/valibot": "^0.13.4",
+    "@trpc/client": "^11.0.4",
+    "@trpc/server": "^11.0.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-solid": "^0.475.0",
@@ -28,10 +29,12 @@
     "tailwind-merge": "^3.0.1",
     "tailwindcss": "^4.0.6",
     "tailwindcss-animate": "^1.0.7",
-    "valibot": "^0.31.0",
+    "valibot": "^1.0.0",
     "vinxi": "^0.5.3"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.0.5",
+    "@cloudflare/workers-types": "^4.20250410.0",
     "@tanstack/eslint-plugin-query": "^5.66.1",
     "@tanstack/solid-query-devtools": "^5.66.4",
     "@typescript-eslint/parser": "^8.24.0",
@@ -40,7 +43,8 @@
     "eslint-plugin-solid": "^0.14.5",
     "husky": "^9.1.5",
     "lint-staged": "^15.2.9",
-    "prettier": "3.3.3"
+    "prettier": "3.3.3",
+    "wrangler": "^4.10.0"
   },
   "engines": {
     "node": ">=22"

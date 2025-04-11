@@ -1,8 +1,6 @@
-import { ErrorBoundary, Suspense } from "solid-js";
+import { ErrorBoundary, Show, Suspense } from "solid-js";
 import { Title } from "@solidjs/meta";
-import { createQuery } from "@tanstack/solid-query";
-
-import { api } from "~/lib/api";
+import { useQuery } from "@tanstack/solid-query";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
@@ -11,74 +9,22 @@ import {
   LastfmError,
   LastfmLoading,
 } from "~/components/homepage/lastfm";
-import type { LastfmData } from "~/server/api/routers/lastfm";
+import { lastfmQueryOpts } from "~/queries/lastfm";
 
 import {
   Github,
   GithubError,
   GithubLoading,
 } from "~/components/homepage/github";
+import { githubQueryOpts } from "~/queries/github";
 
 import { Socials, SocialsLoading } from "~/components/socials";
+import { personalQueryOpts } from "~/queries/personal";
 
 export default function Home() {
-  const lastfmData = createQuery(() => ({
-    queryKey: ["lastfmData"],
-    queryFn: async () => {
-      try {
-        const initialData = await api.lastfm.getLatest.query();
-
-        const albumInfo = await api.lastfm.getAlbumInfo.query({
-          album: initialData.album,
-          artist: initialData.artist,
-        });
-        const artistInfo = await api.lastfm.getArtistInfo.query(
-          initialData.artist,
-        );
-        const trackInfo = await api.lastfm.getTrackInfo.query({
-          artist: initialData.artist,
-          track: initialData.track,
-        });
-
-        return {
-          album: albumInfo,
-          artist: artistInfo,
-          track: trackInfo,
-          isLive: initialData.isLive,
-        } as LastfmData;
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    staleTime: 1000 * 60 * 2, // 2 minutes
-    throwOnError: true, // Throw an error if the query fails
-  }));
-
-  const githubData = createQuery(() => ({
-    queryKey: ["githubData"],
-    queryFn: async () => {
-      try {
-        return await api.github.event.query();
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    staleTime: 1000 * 60 * 10, // 10 minutes
-    throwOnError: true, // Throw an error if the query fails
-  }));
-
-  const personalData = createQuery(() => ({
-    queryKey: ["personalData"],
-    queryFn: async () => {
-      try {
-        return await api.personal.data.query();
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    staleTime: 1000 * 60 * 60 * 24, // 1 day
-    throwOnError: true, // Throw an error if the query fails
-  }));
+  const lastfmData = useQuery(() => lastfmQueryOpts());
+  const githubData = useQuery(() => githubQueryOpts());
+  const personalData = useQuery(() => personalQueryOpts());
 
   return (
     <main class="container max-w-screen-md mx-auto flex flex-col justify-center items-center gap-4">
@@ -100,12 +46,26 @@ export default function Home() {
       <section class="w-full">
         <ErrorBoundary fallback={<LastfmError />}>
           <Suspense fallback={<LastfmLoading />}>
-            <Lastfm data={lastfmData.data} />
+            <Show
+              when={
+                lastfmData.data?.artist.name !== "Loading..." &&
+                lastfmData.data?.album.name !== "Loading..." &&
+                lastfmData.data?.track.name !== "Loading..."
+              }
+              fallback={<LastfmLoading />}
+            >
+              <Lastfm data={lastfmData?.data} />
+            </Show>
           </Suspense>
         </ErrorBoundary>
         <ErrorBoundary fallback={<GithubError />}>
           <Suspense fallback={<GithubLoading />}>
-            <Github data={githubData.data} />
+            <Show
+              when={githubData.data?.payload.action !== "Loading..."}
+              fallback={<GithubLoading />}
+            >
+              <Github data={githubData.data} />
+            </Show>
           </Suspense>
         </ErrorBoundary>
       </section>

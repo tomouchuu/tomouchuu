@@ -3,10 +3,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   server: {
-    preset: "aws-lambda",
-    awsLambda: {
-      streaming: true,
-    },
+    preset: "cloudflare_module",
+    compatibilityDate: "2025-04-10",
   },
   vite: {
     plugins: [tailwindcss()],

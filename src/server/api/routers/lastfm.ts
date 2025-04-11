@@ -1,6 +1,4 @@
-import { Resource } from "sst";
-import { wrap } from "@typeschema/valibot";
-import { object, string } from "valibot";
+import * as v from "valibot";
 import { createTRPCRouter, publicProcedure } from "../utils";
 
 interface LastFmError {
@@ -42,17 +40,15 @@ export interface LastfmData {
 export const lastfmRouter = createTRPCRouter({
   getAlbumInfo: publicProcedure
     .input(
-      wrap(
-        object({
-          album: string(),
-          artist: string(),
-        }),
-      ),
+      v.object({
+        album: v.string(),
+        artist: v.string(),
+      }),
     )
     .query(async (opts): Promise<LastFmAlbum | LastFmError> => {
       const url = new URL("http://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
-      url.searchParams.append("api_key", Resource.LastFmApiKey.value);
+      url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);
       url.searchParams.append("format", "json");
       url.searchParams.append("method", "album.getInfo");
       url.searchParams.append("artist", opts.input.artist);
@@ -78,11 +74,11 @@ export const lastfmRouter = createTRPCRouter({
     }),
 
   getArtistInfo: publicProcedure
-    .input(wrap(string()))
+    .input(v.string())
     .query(async (opts): Promise<LastFmArtist | LastFmError> => {
       const url = new URL("http://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
-      url.searchParams.append("api_key", Resource.LastFmApiKey.value);
+      url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);
       url.searchParams.append("format", "json");
       url.searchParams.append("method", "artist.getInfo");
       url.searchParams.append("artist", opts.input);
@@ -108,17 +104,15 @@ export const lastfmRouter = createTRPCRouter({
 
   getTrackInfo: publicProcedure
     .input(
-      wrap(
-        object({
-          artist: string(),
-          track: string(),
-        }),
-      ),
+      v.object({
+        artist: v.string(),
+        track: v.string(),
+      }),
     )
     .query(async (opts): Promise<LastFmTrack | LastFmError> => {
       const url = new URL("http://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
-      url.searchParams.append("api_key", Resource.LastFmApiKey.value);
+      url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);
       url.searchParams.append("format", "json");
       url.searchParams.append("method", "track.getInfo");
       url.searchParams.append("artist", opts.input.artist);
@@ -147,7 +141,7 @@ export const lastfmRouter = createTRPCRouter({
   getLatest: publicProcedure.query(async (): Promise<LastFmLatestTrack> => {
     const url = new URL("http://ws.audioscrobbler.com/2.0/");
     url.searchParams.append("user", `TminatorT`);
-    url.searchParams.append("api_key", Resource.LastFmApiKey.value);
+    url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);
     url.searchParams.append("format", "json");
     url.searchParams.append("method", "user.getRecentTracks");
     url.searchParams.append("limit", "1");

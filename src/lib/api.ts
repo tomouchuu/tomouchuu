@@ -1,19 +1,23 @@
-import { createTRPCProxyClient, httpBatchLink, loggerLink } from "@trpc/client";
+import { createTRPCClient, httpLink, loggerLink } from "@trpc/client";
+import { getRequestEvent } from "solid-js/web";
 import { AppRouter } from "~/server/api/root";
 
 const getBaseUrl = () => {
-  if (typeof window !== "undefined") return "";
+  if (typeof window !== "undefined") return "/";
 
-  if (process.env.NODE_ENV === "production") {
-    const appStage = process.env.APP_STAGE;
-    if (appStage === "production") return `https://tomo.uchuu.io`;
-    return `https://${appStage}.tomo.uchuu.io`;
-  }
+  const request = getRequestEvent();
+  const url = request?.request.url;
 
-  return `http://localhost:${process.env.PORT ?? 3000}`;
+  return url ?? `http://localhost:${process.env.PORT ?? 3000}/`;
 };
 
 // create the client, export it
-export const api = createTRPCProxyClient<AppRouter>({
-  links: [loggerLink(), httpBatchLink({ url: `${getBaseUrl()}/api/trpc` })],
+export const api = createTRPCClient<AppRouter>({
+  links: [
+    loggerLink({
+      enabled: () =>
+        process.env.NODE_ENV === "development" && typeof window !== "undefined",
+    }),
+    httpLink({ url: `${getBaseUrl()}api/trpc` }),
+  ],
 });

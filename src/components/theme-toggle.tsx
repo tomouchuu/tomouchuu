@@ -13,7 +13,6 @@ export default function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={() => {
-        console.log({ mode: colorMode() });
         toggleColorMode();
       }}
       class="fixed top-4 right-4 cursor-pointer"

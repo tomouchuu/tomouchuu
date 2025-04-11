@@ -41,42 +41,51 @@ export function LastfmLoading() {
 }
 
 export function Lastfm(props: Props) {
-  if (props.data === undefined) return <LastfmLoading />;
+  const data = () => props?.data;
+
+  if (
+    data() === undefined ||
+    data() === null ||
+    (data()?.album.name === "Loading..." &&
+      data()?.artist.name === "Loading..." &&
+      data()?.track.name === "Loading...")
+  )
+    return <LastfmLoading />;
 
   const trackPlayed =
-    props.data.track.playedCount === 0
+    data()?.track?.playedCount === 0
       ? 1
-      : (props.data.track.playedCount as number);
+      : (data()?.track?.playedCount as number);
 
   return (
     <div class="flex justify-center items-center my-2 text-lg">
       <HeadphonesIcon class="flex-none mr-4" />
       <p>
         <a
-          href={props.data.track.url}
-          title={props.data.track.name}
+          href={data()?.track?.url}
+          title={data()?.track?.name}
           target="_blank"
           rel="noopener"
         >
-          {props.data.track.name}
+          {data()?.track?.name}
         </a>
         {" by "}
         <a
-          href={props.data.artist.url}
-          title={props.data.artist.name}
+          href={data()?.artist?.url}
+          title={data()?.artist?.name}
           target="_blank"
           rel="noopener"
         >
-          {props.data.artist.name}
+          {data()?.artist?.name}
         </a>
         {" from "}
         <a
-          href={props.data.album.url}
-          title={props.data.album.name}
+          href={data()?.album?.url}
+          title={data()?.album?.name}
           target="_blank"
           rel="noopener"
         >
-          {props.data.album.name}
+          {data()?.album?.name}
         </a>
         {` for the `}
         <span class="ordinal">
@@ -84,7 +93,7 @@ export function Lastfm(props: Props) {
           {getOrdinal(trackPlayed)}
         </span>
         {` time`}
-        {props.data.isLive && " right now!"}
+        {data()?.isLive && " right now!"}
       </p>
     </div>
   );
