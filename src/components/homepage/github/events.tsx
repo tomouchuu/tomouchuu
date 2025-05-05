@@ -152,15 +152,7 @@ function GithubReleaseEvent({ ghevent }: { ghevent: GithubEvent }) {
 }
 
 export function GithubWatchEvent({ ghevent }: { ghevent: GithubEvent }) {
-  if (ghevent.payload.action === "watched") {
-    return (
-      <p>
-        Watched <GithubLink repo={ghevent.repo.name} />
-      </p>
-    );
-  }
-
-  if (ghevent.payload.action === "stared") {
+  if (ghevent.payload.action === "started") {
     return (
       <p>
         Stared <GithubLink repo={ghevent.repo.name} />
