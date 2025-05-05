@@ -35,7 +35,7 @@ export default function Home() {
           <AvatarImage src="/images/thomas.jpg" />
           <AvatarFallback>TM</AvatarFallback>
         </Avatar>
-        <h1 class="text-4xl font-bold">Thomas Moore</h1>
+        <h1 class="text-4xl font-bold">Thomas</h1>
         <p class="text-lg">UI Engineer from Essex, UK.</p>
 
         <div class="mt-2 flex h-5 justify-center items-center space-x-4 text-sm">
