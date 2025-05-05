@@ -5,7 +5,9 @@ function GithubLink({ repo }: { repo: string }) {
     <a
       href={`https://github.com/${repo}`}
       target="_blank"
+      rel="noopener"
       title={`View ${repo} on Github`}
+      class="hover:underline"
     >
       {repo}
     </a>

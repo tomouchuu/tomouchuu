@@ -66,6 +66,7 @@ export function Lastfm(props: Props) {
           title={data()?.track?.name}
           target="_blank"
           rel="noopener"
+          class="hover:underline"
         >
           {data()?.track?.name}
         </a>
@@ -75,6 +76,7 @@ export function Lastfm(props: Props) {
           title={data()?.artist?.name}
           target="_blank"
           rel="noopener"
+          class="hover:underline"
         >
           {data()?.artist?.name}
         </a>
@@ -84,6 +86,7 @@ export function Lastfm(props: Props) {
           title={data()?.album?.name}
           target="_blank"
           rel="noopener"
+          class="hover:underline"
         >
           {data()?.album?.name}
         </a>

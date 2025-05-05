@@ -39,7 +39,9 @@ export default function Home() {
         <p class="text-lg">UI Engineer from Essex, UK.</p>
 
         <div class="mt-2 flex h-5 justify-center items-center space-x-4 text-sm">
-          <a href="/about">About</a>
+          <a href="/about" class="hover:underline">
+            About
+          </a>
         </div>
       </section>
 
