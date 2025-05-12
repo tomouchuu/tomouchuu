@@ -25,7 +25,7 @@ export const personalRouter = createTRPCRouter({
           name: "Tomo Translator",
           description:
             "A translator that enables the user to switch between deepl and ai models from openai, google and more",
-          url: "",
+          url: "https://translator.uchuu.io",
         },
         {
           name: "This site (tomo.uchuu.io)",
@@ -43,7 +43,7 @@ export const personalRouter = createTRPCRouter({
           name: "Start",
           description:
             "A custom start page for your browser. It has gone through many iterations but the current approach uses React with NextJS, Typescript + Tailwind",
-          url: "https://start.uchuu.io/",
+          url: "https://github.com/uchuuio/start",
         },
         {
           name: "CHEERZ Archiver",
