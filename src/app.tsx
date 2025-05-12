@@ -52,7 +52,12 @@ export default function App() {
                 <Suspense>{props.children}</Suspense>
                 <footer class="text-center text-xs min-w-36">
                   <Separator />
-                  <p class="mt-4">トー マス＠宇宙</p>
+                  <p class="mt-4">
+                    トーマス＠
+                    <a href="https://uchuu.io" class="hover:underline">
+                      宇宙
+                    </a>
+                  </p>
                 </footer>
               </div>
             </ColorModeProvider>
