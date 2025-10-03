@@ -1,5 +1,10 @@
 {
+  "thomas": "Thomas",
+  "description": "UI Engineer from Essex, UK.",
   "HomePage": {
-    "message": "Hello {name}!"
+    "home": "Home"
+  },
+  "AboutPage": {
+    "about": "About"
   }
 }

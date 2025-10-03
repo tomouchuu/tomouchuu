@@ -1,5 +1,10 @@
 {
+  "thomas": "トーマス",
+  "description": "英国エセックス出身のUIエンジニアをしております。",
   "HomePage": {
-    "message": "こんにちは、{name}さん！"
+    "home": "ホームページ"
+  },
+  "AboutPage": {
+    "about": "概要"
   }
 }
