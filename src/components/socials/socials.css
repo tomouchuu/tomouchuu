@@ -1,4 +1,5 @@
 .socials {
+  background-color: transparent;
   transition:
     background-color 0.7s,
     color 0.7s;
@@ -11,7 +12,6 @@
 }
 
 .socials.twitter {
-  background-color: var(--background);
   color: #55acee;
 }
 .socials.twitter:hover {
@@ -19,7 +19,6 @@
 }
 
 .socials.instagram {
-  background-color: var(--background);
   color: #3f729b;
 }
 .socials.instagram:hover {
@@ -27,7 +26,6 @@
 }
 
 .socials.discord {
-  background-color: var(--background);
   color: #7289da;
 }
 .socials.discord:hover {
@@ -35,7 +33,6 @@
 }
 
 .socials.email {
-  background-color: var(--background);
   color: #ff4136;
 }
 .socials.email:hover {
@@ -43,7 +40,6 @@
 }
 
 .socials.youtube {
-  background-color: var(--background);
   color: #ff0000;
 }
 .socials.youtube:hover {
@@ -51,7 +47,6 @@
 }
 
 .socials.twitch {
-  background-color: var(--background);
   color: #6441a5;
 }
 .socials.twitch:hover {
@@ -59,7 +54,6 @@
 }
 
 .socials.linkedin {
-  background-color: var(--background);
   color: #0077b5;
 }
 .socials.linkedin:hover {
@@ -67,7 +61,6 @@
 }
 
 .socials.lastfm {
-  background-color: var(--background);
   color: #d51007;
 }
 .socials.lastfm:hover {
@@ -75,7 +68,6 @@
 }
 
 .socials.applemusic {
-  background-color: var(--background);
   color: #ff2f56;
 }
 .socials.applemusic:hover {
@@ -84,7 +76,6 @@
 
 .socials.cv,
 .socials.github {
-  background-color: var(--background);
   color: var(--foreground);
 }
 .socials.cv:hover,
