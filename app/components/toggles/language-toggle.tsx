@@ -23,8 +23,6 @@ export default function LanguageToggle() {
     }
   };
 
-  console.log({ locale, pathname });
-
   return (
     <Button
       variant="outline"
