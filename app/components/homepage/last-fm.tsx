@@ -3,7 +3,7 @@
 import { HeadphonesIcon } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { treaty } from "@elysiajs/eden";
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 import type { App } from "@/api/[[...slugs]]/route";
 import type {
@@ -83,20 +83,18 @@ async function fetchLastfmData(): Promise<LastfmResult> {
 }
 
 export default function Lastfm() {
-  const { data, isLoading, isError } = useQuery<LastfmResult | null>({
+  const { data, error } = useSuspenseQuery({
     queryKey: ["lastfm"],
     queryFn: fetchLastfmData,
     refetchInterval: 120000, // 2mins
-    refetchOnWindowFocus: false,
     staleTime: 30000, // 30s
     retry: 1,
   });
 
-  if (isLoading) return <LastfmLoading />;
-  if (isError || !data) return <LastfmError />;
+  if (error) return <LastfmError />;
 
   const trackPlayed =
-    data.track?.playedCount === 0 ? 1 : (data.track?.playedCount as number);
+    data.track?.playedCount === 0 ? 1 : (data.track?.playedCount ?? 1);
 
   return (
     <div className="flex justify-center items-center my-2 text-lg">

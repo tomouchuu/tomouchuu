@@ -55,7 +55,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
 
       return {
         name: data.album.name,
-        playedCount: data.album.userplaycount ?? 0,
+        playedCount: parseInt(data.album.userplaycount ?? "0", 10),
         url: data.album.url,
       };
     },
@@ -94,7 +94,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
 
       return {
         name: data.artist.name,
-        playedCount: data.artist.userplaycount ?? 0,
+        playedCount: parseInt(data.artist.userplaycount ?? "0", 10),
         url: data.artist.url,
       };
     },
@@ -134,7 +134,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
 
       return {
         name: data.track.name,
-        playedCount: data.track.userplaycount ?? 0,
+        playedCount: parseInt(data.track.userplaycount ?? "0", 10),
         url: data.track.url,
       };
     },

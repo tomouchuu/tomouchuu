@@ -24,14 +24,14 @@ export default function Page() {
         </Link>
       </div>
 
-      <section className="my-4">
+      <section className="w-full my-4">
         <Suspense fallback={<LastfmLoading />}>
           <Lastfm />
           {/* Maybe github soon */}
         </Suspense>
       </section>
 
-      <section className="w-2/3 mt-2">
+      <section className="w-2/3 mt-2 mb-4">
         <Suspense fallback={<SocialsLoading />}>
           <Socials />
         </Suspense>
