@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import ThemeToggle from "@/components/theme-toggle";
+import QueryProvider from "@/components/providers/query-provider";
 
 import type { Metadata } from "next";
 
@@ -18,15 +19,17 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ThemeToggle />
-          {children}
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ThemeToggle />
+            {children}
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );

@@ -1,24 +1,24 @@
 import { Elysia, t } from "elysia";
 
-interface LastFmAlbum {
+export interface LastFmAlbum {
   name: string;
   playedCount: number;
   url: string;
 }
 
-interface LastFmArtist {
+export interface LastFmArtist {
   name: string;
   playedCount: number;
   url: string;
 }
 
-interface LastFmTrack {
+export interface LastFmTrack {
   name: string;
   playedCount: number;
   url: string;
 }
 
-interface LastFmLatestTrack {
+export interface LastFmLatestTrack {
   artist: string;
   album: string;
   track: string;
@@ -29,8 +29,6 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
   .post(
     "/album",
     async ({ body }): Promise<LastFmAlbum> => {
-      console.log({ body });
-
       const url = new URL("http://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
       url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);

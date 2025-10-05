@@ -1,21 +1,26 @@
+"use client";
+
 import { HeadphonesIcon } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { treaty } from "@elysiajs/eden";
+import { useQuery } from "@tanstack/react-query";
 
 import type { App } from "@/api/[[...slugs]]/route";
+import type {
+  LastFmAlbum,
+  LastFmArtist,
+  LastFmTrack,
+  LastFmLatestTrack,
+} from "@/api/[[...slugs]]/lastfm";
 
-const app = treaty<App>("localhost:3000");
+const app = treaty<App>("http://localhost:3000");
 
 function getOrdinal(n: number) {
   let ord = "th";
 
-  if (n % 10 == 1 && n % 100 != 11) {
-    ord = "st";
-  } else if (n % 10 == 2 && n % 100 != 12) {
-    ord = "nd";
-  } else if (n % 10 == 3 && n % 100 != 13) {
-    ord = "rd";
-  }
+  if (n % 10 == 1 && n % 100 != 11) ord = "st";
+  else if (n % 10 == 2 && n % 100 != 12) ord = "nd";
+  else if (n % 10 == 3 && n % 100 != 13) ord = "rd";
 
   return ord;
 }
@@ -38,46 +43,57 @@ export function LastfmLoading() {
   );
 }
 
-async function getData() {
-  try {
-    const { data: initialData } = await app.api.lastfm.latest.get();
-    if (!initialData) throw new Error("No initial data");
+type LastfmResult = {
+  album: LastFmAlbum | null;
+  artist: LastFmArtist | null;
+  track: LastFmTrack | null;
+  isLive?: boolean;
+};
 
-    const { data: albumInfo } = await app.api.lastfm.album.post({
-      album: initialData.album,
-      artist: initialData.artist,
-    });
-    const { data: artistInfo } = await app.api.lastfm.artist.post({
-      artist: initialData.artist,
-    });
-    const { data: trackInfo } = await app.api.lastfm.track.post({
-      artist: initialData.artist,
-      track: initialData.track,
-    });
+async function fetchLastfmData(): Promise<LastfmResult> {
+  const latestResp = (await app.api.lastfm.latest.get()) as any;
+  const initial = (latestResp?.data ?? latestResp) as
+    | LastFmLatestTrack
+    | undefined;
 
-    return {
-      album: albumInfo,
-      artist: artistInfo,
-      track: trackInfo,
-      isLive: initialData?.isLive,
-    };
-  } catch (error) {
-    return null;
-  }
+  if (!initial) throw new Error("No initial data");
+
+  const albumResp = (await app.api.lastfm.album.post({
+    album: initial.album,
+    artist: initial.artist,
+  })) as any;
+  const artistResp = (await app.api.lastfm.artist.post({
+    artist: initial.artist,
+  })) as any;
+  const trackResp = (await app.api.lastfm.track.post({
+    artist: initial.artist,
+    track: initial.track,
+  })) as any;
+
+  const album = (albumResp?.data ?? albumResp) as LastFmAlbum | null;
+  const artist = (artistResp?.data ?? artistResp) as LastFmArtist | null;
+  const track = (trackResp?.data ?? trackResp) as LastFmTrack | null;
+
+  return {
+    album: album ?? null,
+    artist: artist ?? null,
+    track: track ?? null,
+    isLive: initial?.isLive,
+  };
 }
 
-export default async function Lastfm() {
-  const data = await getData();
+export default function Lastfm() {
+  const { data, isLoading, isError } = useQuery<LastfmResult | null>({
+    queryKey: ["lastfm"],
+    queryFn: fetchLastfmData,
+    refetchInterval: 120000, // 2mins
+    refetchOnWindowFocus: false,
+    staleTime: 30000, // 30s
+    retry: 1,
+  });
 
-  if (
-    data === undefined ||
-    data === null ||
-    (data.album?.name === "Loading..." &&
-      data.artist?.name === "Loading..." &&
-      data.track?.name === "Loading...") ||
-    (data.album === null && data.artist === null && data.track === null)
-  )
-    return <LastfmLoading />;
+  if (isLoading) return <LastfmLoading />;
+  if (isError || !data) return <LastfmError />;
 
   const trackPlayed =
     data.track?.playedCount === 0 ? 1 : (data.track?.playedCount as number);
