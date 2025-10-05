@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/../i18n/navigation";
 
 import Lastfm, { LastfmLoading } from "@/components/homepage/last-fm";
+import Socials, { SocialsLoading } from "@/components/socials";
 import { Suspense } from "react";
 
 export default function Page() {
@@ -30,7 +31,11 @@ export default function Page() {
         </Suspense>
       </section>
 
-      <section>SOCIALS</section>
+      <section className="w-2/3 mt-2">
+        <Suspense fallback={<SocialsLoading />}>
+          <Socials />
+        </Suspense>
+      </section>
     </main>
   );
 }
