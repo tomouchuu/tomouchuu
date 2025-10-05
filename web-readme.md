@@ -1,3 +1,3 @@
-# TOMO@UCHUU Personal Site V9 - SOLID -
+# TOMO@UCHUU Personal Site V10 - Next/Elysia -
 
-Frontend + API for my personal site to find out more about me
+Pretty much the same, just got lazy and wanted to do stuff with ai in which case react is kinda the best with that.

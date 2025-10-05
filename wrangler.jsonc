@@ -5,13 +5,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "personal",
-  "main": "./.output/server/index.mjs",
+  "main": ".open-next/worker.js",
   "compatibility_date": "2025-04-10",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "binding": "ASSETS",
-    "directory": "./.output/public",
-    "run_worker_first": true,
+    "directory": ".open-next/assets",
   },
   "observability": {
     "enabled": true,
