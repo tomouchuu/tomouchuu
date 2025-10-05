@@ -15,10 +15,11 @@ import {
 import "./socials.css";
 import { treaty } from "@elysiajs/eden";
 import type { App } from "@/api/[[...slugs]]/route";
+import { getBaseUrl } from "@/lib/url";
 
 type ContactInfo = Record<string, string | undefined>;
 
-const app = treaty<App>("http://localhost:3000");
+const app = treaty<App>(getBaseUrl());
 
 export function SocialsLoading() {
   return (
@@ -28,7 +29,10 @@ export function SocialsLoading() {
   );
 }
 
-const socialIcons: Record<string, React.ComponentType<any>> = {
+const socialIcons: Record<
+  string,
+  React.ComponentType<React.SVGProps<SVGSVGElement>>
+> = {
   applemusic: Music,
   cv: FileText,
   discord: Discord,
@@ -97,8 +101,10 @@ export function Socials() {
     let cancelled = false;
     (async () => {
       try {
-        const resp = (await app.api.personal.get()) as any;
-        const personal = resp?.data ?? resp;
+        const resp = (await app.api.personal.get()) as {
+          data?: { contact?: ContactInfo };
+        };
+        const personal = resp?.data;
         const contact = (personal?.contact ?? null) as ContactInfo | null;
         if (!cancelled) setData(contact);
       } catch {

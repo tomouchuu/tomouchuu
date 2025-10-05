@@ -12,8 +12,9 @@ import type {
   LastFmTrack,
   LastFmLatestTrack,
 } from "@/api/[[...slugs]]/lastfm";
+import { getBaseUrl } from "@/lib/url";
 
-const app = treaty<App>("http://localhost:3000");
+const app = treaty<App>(getBaseUrl());
 
 function getOrdinal(n: number) {
   let ord = "th";
@@ -51,7 +52,9 @@ type LastfmResult = {
 };
 
 async function fetchLastfmData(): Promise<LastfmResult> {
-  const latestResp = (await app.api.lastfm.latest.get()) as any;
+  const latestResp = (await app.api.lastfm.latest.get()) as {
+    data?: LastFmLatestTrack;
+  };
   const initial = (latestResp?.data ?? latestResp) as
     | LastFmLatestTrack
     | undefined;
@@ -61,14 +64,14 @@ async function fetchLastfmData(): Promise<LastfmResult> {
   const albumResp = (await app.api.lastfm.album.post({
     album: initial.album,
     artist: initial.artist,
-  })) as any;
+  })) as { data?: LastFmAlbum };
   const artistResp = (await app.api.lastfm.artist.post({
     artist: initial.artist,
-  })) as any;
+  })) as { data?: LastFmArtist };
   const trackResp = (await app.api.lastfm.track.post({
     artist: initial.artist,
     track: initial.track,
-  })) as any;
+  })) as { data?: LastFmTrack };
 
   const album = (albumResp?.data ?? albumResp) as LastFmAlbum | null;
   const artist = (artistResp?.data ?? artistResp) as LastFmArtist | null;
