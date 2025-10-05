@@ -2,6 +2,9 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import Toggles from "@/components/toggles";
 import QueryProvider from "@/components/providers/query-provider";
 
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import type { Metadata } from "next";
 
 import "@/globals.css";
@@ -42,6 +45,8 @@ export default function RootLayout({
             </NextIntlClientProvider>
           </ThemeProvider>
         </QueryProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
