@@ -1,6 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { NextIntlClientProvider } from "next-intl";
-// import type { Metadata } from "next";
+import { useTranslations } from "next-intl";
 
 export const experimental_ppr = true;
 
@@ -9,15 +8,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const t = useTranslations();
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-4">
-      <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      {children}
       <footer className="text-center text-xs min-w-36">
         <Separator />
         <p className="mt-4">
-          トーマス＠
+          {t("thomas")}@
           <a href="https://uchuu.io" className="hover:underline">
-            宇宙
+            {t("uchuu")}
           </a>
         </p>
       </footer>

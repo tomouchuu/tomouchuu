@@ -8,6 +8,18 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Link } from "@/../i18n/navigation";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale });
+
+  return {
+    title: t("AboutPage.about"),
+  };
+}
 
 export default function AboutPage() {
   const t = useTranslations();
@@ -29,16 +41,17 @@ export default function AboutPage() {
       </Breadcrumb>
 
       <section>
-        <p>So hello there, I'm Thomas Moore.</p>
+        <p>So hello there, I&apos;m Thomas Moore.</p>
         <p className="my-4">
-          I'm a UI engineer with experience in React with frameworks like
-          Next.js, Remix(RR) and Tanstack. Right now I'm playing around with
-          Solid, Cloudflare resources and I'm a big fan of TailwindCSS.
+          I&apos;m a UI engineer with experience in React with frameworks like
+          Next.js, Remix(RR) and Tanstack. Right now I&apos;m playing around
+          with Solid, Cloudflare resources and I&apos;m a big fan of
+          TailwindCSS.
         </p>
         <p className="my-4">
-          Outside of coding, I'm a big fan of things japanese but mostly enjoy
-          music (and mostly IDOL at that) and aesthetics. I try to get over
-          there a few times a year at least, but my attempts to learn the
+          Outside of coding, I&apos;m a big fan of things japanese but mostly
+          enjoy music (and mostly IDOL at that) and aesthetics. I try to get
+          over there a few times a year at least, but my attempts to learn the
           language are slow going. Mainly because I rely on machine translations
           (I built my own!) and bad sites like duolingo.
         </p>
