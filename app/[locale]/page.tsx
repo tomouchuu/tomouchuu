@@ -1,10 +1,29 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/../i18n/navigation";
 
 import Lastfm, { LastfmLoading } from "@/components/homepage/last-fm";
 import Socials, { SocialsLoading } from "@/components/socials";
 import { Suspense } from "react";
+
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale });
+
+  return {
+    title: {
+      absolute: t("tag"),
+    },
+    description: t("description"),
+  };
+}
 
 export default function Page() {
   const t = useTranslations();

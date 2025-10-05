@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "../../../i18n/navigation";
+import { usePathname, useRouter } from "@/../i18n/navigation";
 import { Button } from "@/components/ui/button";
 
 export default function LanguageToggle() {
