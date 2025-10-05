@@ -15,7 +15,7 @@ export const personal = new Elysia({ prefix: "/personal" }).get("/", () => ({
     youtube: "https://www.youtube.com/channel/UCl8LE1A9XI5gE_VD47hl8Cg",
     twitch: "https://www.twitch.tv/tomouchuu",
     linkedin: "https://www.linkedin.com/in/thomas-moore-730226121/",
-    cv: "https://tomo.uchuu.io/thomas-moore-resume.pdf",
+    cv: "https://tomo.uchuu.dev/thomas-moore-resume.pdf",
   },
   work: [
     {

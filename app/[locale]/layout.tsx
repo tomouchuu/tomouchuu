@@ -34,7 +34,7 @@ export default async function RootLayout({
         <Separator />
         <p className="mt-4">
           {t("thomas")}@
-          <a href="https://uchuu.io" className="hover:underline">
+          <a href="https://uchuu.dev" className="hover:underline">
             {t("uchuu")}
           </a>
         </p>
