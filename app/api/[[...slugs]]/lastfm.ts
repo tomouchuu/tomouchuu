@@ -47,7 +47,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
 
       if (!album) {
         return {
-          name: "Loading...",
+          name: body.album ?? "Unknown Album :(",
           playedCount: 0,
           url: "",
         };
@@ -86,7 +86,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
 
       if (!artist) {
         return {
-          name: "Loading...",
+          name: body.artist ?? "Unknown Artist :(",
           playedCount: 0,
           url: "",
         };
@@ -126,7 +126,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
 
       if (!track) {
         return {
-          name: "Loading...",
+          name: body.track ?? "Unknown Track :(",
           playedCount: 0,
           url: "",
         };
