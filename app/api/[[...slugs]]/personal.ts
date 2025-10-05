@@ -12,7 +12,7 @@ export const personal = new Elysia({ prefix: "/personal" }).get("/", () => ({
     applemusic: "https://itunes.apple.com/profile/tomouchuu",
     lastfm: "https://www.last.fm/user/TminatorT",
     discord: "discord:tomouchuu",
-    youtube: "https://www.youtube.com/channel/UCl8LE1A9XI5gE_VD47hl8Cg",
+    youtube: "https://www.youtube.com/@Tomouchuu",
     twitch: "https://www.twitch.tv/tomouchuu",
     linkedin: "https://www.linkedin.com/in/thomas-moore-730226121/",
     cv: "https://tomo.uchuu.dev/thomas-moore-resume.pdf",
