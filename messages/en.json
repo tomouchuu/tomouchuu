@@ -1,12 +1,9 @@
 {
+  "$schema": "https://inlang.com/schema/inlang-message-format",
   "thomas": "Thomas",
   "uchuu": "Uchuu",
   "tag": "Thomas@Uchuu",
   "description": "UI Engineer from Essex, UK.",
-  "HomePage": {
-    "home": "Home"
-  },
-  "AboutPage": {
-    "about": "About"
-  }
+  "HomePage": "Home",
+  "AboutPage": "About"
 }
