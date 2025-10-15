@@ -1,6 +1,8 @@
 <script lang="ts">
   import { Avatar, AvatarFallback, AvatarImage } from "$lib/components/ui/avatar/index.js";
   import { m } from '$lib/paraglide/messages.js';
+
+  import LastFm from "$lib/components/homepage/last-fm/index.svelte";
 </script>
 
 <main class="container max-w-screen-md mx-auto flex flex-col justify-center items-center text-center">
@@ -18,7 +20,7 @@
   </div>
 
   <section class="w-full my-4">
-    LASTFM
+    <LastFm />
   </section>
 
   <section class="w-2/3 mt-2 mb-4">

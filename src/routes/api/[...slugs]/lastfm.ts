@@ -1,4 +1,5 @@
 import { Elysia, t } from "elysia";
+import { LASTFM_API_KEY } from "$env/static/private";
 
 export interface LastFmAlbum {
   name: string;
@@ -28,10 +29,10 @@ export interface LastFmLatestTrack {
 export const lastfm = new Elysia({ prefix: "/lastfm" })
   .post(
     "/album",
-    async ({ body }): Promise<LastFmAlbum> => {
+    async ({ body }): Promise<LastFmAlbum | Error> => {
       const url = new URL("http://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
-      url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);
+       url.searchParams.append("api_key", LASTFM_API_KEY);
       url.searchParams.append("format", "json");
       url.searchParams.append("method", "album.getInfo");
       url.searchParams.append("artist", body.artist);
@@ -39,18 +40,14 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
 
       const response = await fetch(url.href, {
         headers: {
-          "User-Agent": `Tomo-API/9.0.0 (tomo.uchuu.io)`,
+          "User-Agent": `Tomo-API/11.0.0 (tomo.uchuu.dev)`,
         },
       });
       const data = await response.json();
       const { album } = data;
 
       if (!album) {
-        return {
-          name: body.album ?? "Unknown Album :(",
-          playedCount: 0,
-          url: "",
-        };
+        throw new Error("Album not found");
       }
 
       return {
@@ -68,28 +65,24 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
   )
   .post(
     "/artist",
-    async ({ body }): Promise<LastFmArtist> => {
+    async ({ body }): Promise<LastFmArtist | Error> => {
       const url = new URL("http://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
-      url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);
+       url.searchParams.append("api_key", LASTFM_API_KEY);
       url.searchParams.append("format", "json");
       url.searchParams.append("method", "artist.getInfo");
       url.searchParams.append("artist", body.artist);
 
       const response = await fetch(url.href, {
         headers: {
-          "User-Agent": `Tomo-API/9.0.0 (tomo.uchuu.io)`,
+          "User-Agent": `Tomo-API/11.0.0 (tomo.uchuu.dev)`,
         },
       });
       const data = await response.json();
       const { artist } = data;
 
       if (!artist) {
-        return {
-          name: body.artist ?? "Unknown Artist :(",
-          playedCount: 0,
-          url: "",
-        };
+        throw new Error("Artist not found");
       }
 
       return {
@@ -106,10 +99,10 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
   )
   .post(
     "/track",
-    async ({ body }): Promise<LastFmTrack> => {
+    async ({ body }): Promise<LastFmTrack | Error> => {
       const url = new URL("http://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
-      url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);
+       url.searchParams.append("api_key", LASTFM_API_KEY);
       url.searchParams.append("format", "json");
       url.searchParams.append("method", "track.getInfo");
       url.searchParams.append("artist", body.artist);
@@ -117,19 +110,14 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
 
       const response = await fetch(url.href, {
         headers: {
-          "User-Agent": `Tomo-API/9.0.0 (tomo.uchuu.io)`,
+          "User-Agent": `Tomo-API/11.0.0 (tomo.uchuu.dev)`,
         },
-        cache: "no-store",
       });
       const data = await response.json();
       const { track } = data;
 
       if (!track) {
-        return {
-          name: body.track ?? "Unknown Track :(",
-          playedCount: 0,
-          url: "",
-        };
+        throw new Error("Track not found");
       }
 
       return {
@@ -145,7 +133,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
       }),
     },
   )
-  .get("/latest", async (): Promise<LastFmLatestTrack> => {
+  .get("/latest", async (): Promise<LastFmLatestTrack | Error> => {
     const url = new URL("http://ws.audioscrobbler.com/2.0/");
     url.searchParams.append("user", `TminatorT`);
     url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);
@@ -155,7 +143,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
 
     const response = await fetch(url.href, {
       headers: {
-        "User-Agent": `Tomo-API/9.0.0 (tomo.uchuu.io)`,
+        "User-Agent": `Tomo-API/11.0.0 (tomo.uchuu.dev)`,
       },
     });
 
@@ -163,11 +151,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
     const recentTracks = data.recenttracks.track;
 
     if (recentTracks.length <= 0) {
-      return {
-        artist: "",
-        album: "",
-        track: "",
-      };
+      throw new Error("No recent tracks found");
     }
 
     const latestTrack = data.recenttracks.track[0];
