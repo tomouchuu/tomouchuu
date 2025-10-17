@@ -8,7 +8,6 @@
   import { m } from '$lib/paraglide/messages.js';
 
   import { QueryClientProvider } from '@tanstack/svelte-query'
-  import { SvelteQueryDevtools } from '@tanstack/svelte-query-devtools'
 
   import { dev } from '$app/environment';
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
@@ -37,9 +36,6 @@
       </p>
     </footer>
   </div>
-  {#if dev}
-    <SvelteQueryDevtools />
-  {/if}
 </QueryClientProvider>
 
 
