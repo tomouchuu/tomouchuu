@@ -1,4 +1,5 @@
 import { treaty } from "@elysiajs/eden"
+import { getBaseUrl } from "$lib/utils";
 import type { App } from "./../../../../routes/api/[...slugs]/+server";
 
 import type {
@@ -8,7 +9,7 @@ import type {
   LastFmLatestTrack,
 } from "./../../../../routes/api/[...slugs]/lastfm";
 
-const app = treaty<App>('http://localhost:5173/');
+const getApp = () => treaty<App>(getBaseUrl());
 
 export type LastfmResult = {
   album: LastFmAlbum | null;
@@ -18,29 +19,30 @@ export type LastfmResult = {
 };
 
 export async function fetchLastfmData(): Promise<LastfmResult> {
-  const latestResp = (await app.api.lastfm.latest.get()) as {
-    data?: LastFmLatestTrack | null;
-  };
-  const initial = (latestResp?.data ?? latestResp) as
-    | LastFmLatestTrack
-    | null
-    | undefined;
+   const app = getApp();
+   const latestResp = (await app.api.lastfm.latest.get()) as {
+     data?: LastFmLatestTrack | null;
+   };
+   const initial = (latestResp?.data ?? latestResp) as
+     | LastFmLatestTrack
+     | null
+     | undefined;
 
-  if (!initial) {
-    throw new Error("No initial data");
-  }
+   if (!initial) {
+     throw new Error("No initial data");
+   }
 
-  const albumResp = (await app.api.lastfm.album.post({
-    album: initial.album,
-    artist: initial.artist,
-  })) as { data?: LastFmAlbum };
-  const artistResp = (await app.api.lastfm.artist.post({
-    artist: initial.artist,
-  })) as { data?: LastFmArtist };
-  const trackResp = (await app.api.lastfm.track.post({
-    artist: initial.artist,
-    track: initial.track,
-  })) as { data?: LastFmTrack };
+   const albumResp = (await app.api.lastfm.album.post({
+     album: initial.album,
+     artist: initial.artist,
+   })) as { data?: LastFmAlbum };
+   const artistResp = (await app.api.lastfm.artist.post({
+     artist: initial.artist,
+   })) as { data?: LastFmArtist };
+   const trackResp = (await app.api.lastfm.track.post({
+     artist: initial.artist,
+     track: initial.track,
+   })) as { data?: LastFmTrack };
 
   const album = (albumResp?.data ?? albumResp) as LastFmAlbum | null;
   const artist = (artistResp?.data ?? artistResp) as LastFmArtist | null;
