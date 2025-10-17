@@ -24,4 +24,4 @@ jobs:
       - name: 'notify vercel'
         uses: 'vercel/repository-dispatch/actions/status@v1'
         with:
-          name: Vercel - personal: test
+          name: "Vercel - personal: test"
