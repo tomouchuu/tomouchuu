@@ -94,7 +94,7 @@
   import * as Icons from './icons/index.js';
 
   let { socials } = $props();
-  let socialArray = Object.keys(socials).map((key) => {
+  let socialArray = Object.keys(socials ?? {}).map((key) => {
     const name = key;
     let href = socials[key];
     let title = `Find me on ${name}`;
