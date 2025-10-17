@@ -1,8 +1,10 @@
 <script lang="ts">
 	import '../app.css';
+  import { ModeWatcher } from "mode-watcher";
 	import favicon from '$lib/assets/favicon.svg';
 
   import { Separator } from "$lib/components/ui/separator/index.js";
+  import Toggles from '$lib/components/toggles/index.svelte';
   import { m } from '$lib/paraglide/messages.js';
 
   import { QueryClientProvider } from '@tanstack/svelte-query'
@@ -22,7 +24,10 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
+<ModeWatcher />
+
 <QueryClientProvider client={data.queryClient}>
+  <Toggles />
   <div class="flex min-h-screen flex-col items-center justify-center gap-4">
     {@render children?.()}
     <footer class="text-center text-xs min-w-36">
