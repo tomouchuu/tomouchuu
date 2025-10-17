@@ -3,6 +3,11 @@
   import { m } from '$lib/paraglide/messages.js';
 
   import LastFm from "$lib/components/homepage/last-fm/index.svelte";
+  import Socials from "$lib/components/socials/index.svelte";
+
+  import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
 </script>
 
 <main class="container max-w-screen-md mx-auto flex flex-col justify-center items-center text-center">
@@ -25,6 +30,6 @@
   </section>
 
   <section class="w-2/3 mt-2 mb-4">
-    SOCIALS
+    <Socials socials={data.socials} />
   </section>
 </main>
