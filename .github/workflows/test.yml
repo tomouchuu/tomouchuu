@@ -24,8 +24,3 @@ jobs:
 
       - name: Run tests
         run: bun run test
-
-      - name: 'notify vercel'
-        uses: 'vercel/repository-dispatch/actions/status@v1'
-        with:
-          name: "Vercel - personal: test"
