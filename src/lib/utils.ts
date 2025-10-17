@@ -11,7 +11,7 @@ export const getBaseUrl = () => {
   }
 
   return (
-    process.env.NEXT_PUBLIC_BASE_URL ||
+    `https://${process.env.VITE_VERCEL_URL}` ||
     `http://localhost:${process.env.PORT ?? 5173}/`
   );
 };
