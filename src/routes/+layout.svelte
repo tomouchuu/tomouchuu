@@ -37,7 +37,9 @@
       </p>
     </footer>
   </div>
-  <SvelteQueryDevtools />
+  {#if dev}
+    <SvelteQueryDevtools />
+  {/if}
 </QueryClientProvider>
 
 
