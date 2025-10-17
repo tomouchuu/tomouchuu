@@ -10,6 +10,7 @@
     <AvatarImage src="/images/thomas.jpg" />
     <AvatarFallback>TM</AvatarFallback>
   </Avatar>
+
   <h1 class="text-4xl font-bold">{m.thomas()}</h1>
   <p class="text-lg">{m.description()}</p>
 
