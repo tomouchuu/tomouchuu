@@ -32,4 +32,11 @@ describe("/+page.svelte", () => {
     const main = page.getByRole("main");
     await expect.element(main).toBeInTheDocument();
   });
+
+  it('should contain a title tag in head', async () => {
+    render(PageTestWrapper);
+
+    const titleElement = document.querySelector('title');
+    expect(titleElement).toBeTruthy();
+  });
 });
