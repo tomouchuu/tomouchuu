@@ -3,6 +3,10 @@
   import { m } from "$lib/paraglide/messages";
 </script>
 
+<svelte:head>
+  <title>{m.AboutPage()} | {m.thomas()}@{m.uchuu()}</title>
+</svelte:head>
+
 <main class="container max-w-screen-md mx-auto flex flex-col gap-4">
   <Breadcrumb.Root>
     <Breadcrumb.List>
