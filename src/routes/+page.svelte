@@ -10,6 +10,10 @@
 	let { data }: PageProps = $props();
 </script>
 
+<svelte:head>
+  <title>{m.thomas()}@{m.uchuu()}</title>
+</svelte:head>
+
 <main class="container max-w-screen-md mx-auto flex flex-col justify-center items-center text-center">
   <Avatar class="w-64 h-64 mb-2">
     <AvatarImage src="/images/thomas.jpg" />
