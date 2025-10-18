@@ -18,4 +18,11 @@ describe("/about/+page.svelte", () => {
     await expect.element(homeLink).toBeInTheDocument();
     await expect.element(homeLink).toHaveAttribute("href", "/");
   });
+
+  it('should contain a title tag in head', async () => {
+    render(About);
+
+    const titleElement = document.querySelector('title');
+    expect(titleElement).toBeTruthy();
+  });
 });
