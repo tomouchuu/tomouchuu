@@ -25,4 +25,18 @@ describe("+layout.svelte", () => {
     const testChild = page.getByText("Test Child Content");
     await expect.element(testChild).toBeInTheDocument();
   });
+
+  it('should contain meta description tag in head', async () => {
+    render(LayoutTestWrapper);
+
+    const descriptionMeta = page.getByTestId('meta-description');
+    await expect.element(descriptionMeta).toBeInTheDocument();
+  });
+
+  it('should contain a favicon link tag in head', async () => {
+    render(LayoutTestWrapper);
+
+    const faviconEl = page.getByTestId('favicon');
+    await expect.element(faviconEl).toBeInTheDocument();
+  });
 });

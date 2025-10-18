@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.css';
   import { ModeWatcher } from "mode-watcher";
-	import favicon from '$lib/assets/favicon.svg';
 
   import { Separator } from "$lib/components/ui/separator/index.js";
   import Toggles from '$lib/components/toggles/index.svelte';
@@ -20,7 +19,8 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+  <link data-testid="favicon" rel="icon" href="/images/thomas.jpg" type="image/jpeg">
+  <meta data-testid="meta-description" name="description" content={m.description()} />
 </svelte:head>
 
 <ModeWatcher />
