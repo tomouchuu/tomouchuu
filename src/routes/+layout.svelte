@@ -1,5 +1,7 @@
 <script lang="ts">
 	import '../app.css';
+  import thomasImage from '$lib/assets/images/thomas.jpg';
+
   import { ModeWatcher } from "mode-watcher";
 
   import { Separator } from "$lib/components/ui/separator/index.js";
@@ -19,7 +21,7 @@
 </script>
 
 <svelte:head>
-  <link data-testid="favicon" rel="icon" href="/images/thomas.jpg" type="image/jpeg">
+  <link data-testid="favicon" rel="icon" href={thomasImage} type="image/jpeg">
   <meta data-testid="meta-description" name="description" content={m.description()} />
 </svelte:head>
 
