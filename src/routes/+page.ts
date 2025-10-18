@@ -5,6 +5,13 @@ import { treaty } from "@elysiajs/eden"
 import { fetchLastfmData } from '$lib/components/homepage/last-fm/index.js'
 import { getBaseUrl } from "$lib/utils";
 
+/** @type {import('@sveltejs/adapter-vercel').Config} */
+export const config = {
+  isr: {
+    expiration: 120,
+  },
+};
+
 export const load: PageLoad = async ({ parent }) => {
   const { queryClient } = await parent()
 
