@@ -1,4 +1,6 @@
 <script lang="ts">
+  import thomasImage from '$lib/assets/images/thomas.jpg';
+
   import { Avatar, AvatarFallback, AvatarImage } from "$lib/components/ui/avatar/index.js";
   import { m } from '$lib/paraglide/messages.js';
 
@@ -16,7 +18,7 @@
 
 <main class="container max-w-screen-md mx-auto px-5 md:px-0 flex flex-col justify-center items-center text-center">
   <Avatar class="w-64 h-64 mb-2">
-    <AvatarImage src="/images/thomas.jpg" />
+    <AvatarImage src={thomasImage} />
     <AvatarFallback>TM</AvatarFallback>
   </Avatar>
 
