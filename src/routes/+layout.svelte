@@ -1,5 +1,7 @@
 <script lang="ts">
 	import '../app.css';
+  import thomasImage from '$lib/assets/images/thomas.jpg';
+
   import { ModeWatcher } from "mode-watcher";
 
   import { Separator } from "$lib/components/ui/separator/index.js";
@@ -8,7 +10,7 @@
 
   import { QueryClientProvider } from '@tanstack/svelte-query'
 
-  import { dev } from '$app/environment';
+  import { browser, dev } from '$app/environment';
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 
@@ -16,10 +18,14 @@
   injectSpeedInsights();
 
 	const { data, children } = $props()
+
+  if (browser) {
+    window.__TANSTACK_QUERY_CLIENT__ = data.queryClient;
+  }
 </script>
 
 <svelte:head>
-  <link data-testid="favicon" rel="icon" href="/images/thomas.jpg" type="image/jpeg">
+  <link data-testid="favicon" rel="icon" href={thomasImage} type="image/jpeg">
   <meta data-testid="meta-description" name="description" content={m.description()} />
 </svelte:head>
 
