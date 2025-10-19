@@ -21,7 +21,11 @@ export const load: PageLoad = async ({ parent }) => {
   });
 
   const app = treaty<App>(getBaseUrl())
-  const socials = (await app.api.personal.get()).data?.contact
+  const socials = (await app.api.personal.get({
+    headers: {
+      'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET!
+    }
+  })).data?.contact
 
   return {
     socials
