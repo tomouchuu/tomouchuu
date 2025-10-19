@@ -10,7 +10,7 @@
 
   import { QueryClientProvider } from '@tanstack/svelte-query'
 
-  import { dev } from '$app/environment';
+  import { dev, browser } from '$app/environment';
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 
@@ -18,6 +18,11 @@
   injectSpeedInsights();
 
 	const { data, children } = $props()
+
+  if (dev && browser) {
+    // @ts-ignore Just for dev
+    window.__TANSTACK_QUERY_CLIENT__ = data.queryClient;
+  }
 </script>
 
 <svelte:head>
