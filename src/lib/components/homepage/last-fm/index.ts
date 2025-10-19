@@ -20,7 +20,11 @@ export type LastfmResult = {
 
 export async function fetchLastfmData(): Promise<LastfmResult> {
    const app = getApp();
-   const latestResp = (await app.api.lastfm.latest.get()) as {
+   const latestResp = (await app.api.lastfm.latest.get({
+    headers: {
+      'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET!
+    }
+   })) as {
      data?: LastFmLatestTrack | null;
    };
    const initial = (latestResp?.data ?? latestResp) as
@@ -35,13 +39,25 @@ export async function fetchLastfmData(): Promise<LastfmResult> {
    const albumResp = (await app.api.lastfm.album.post({
      album: initial.album,
      artist: initial.artist,
+   }, {
+    headers: {
+      'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET!
+    }
    })) as { data?: LastFmAlbum };
    const artistResp = (await app.api.lastfm.artist.post({
      artist: initial.artist,
+   }, {
+    headers: {
+      'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET!
+    }
    })) as { data?: LastFmArtist };
    const trackResp = (await app.api.lastfm.track.post({
      artist: initial.artist,
      track: initial.track,
+   }, {
+    headers: {
+      'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET!
+    }
    })) as { data?: LastFmTrack };
 
   const album = (albumResp?.data ?? albumResp) as LastFmAlbum | null;
