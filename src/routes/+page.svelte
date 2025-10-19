@@ -14,7 +14,7 @@
   <title>{m.thomas()}@{m.uchuu()}</title>
 </svelte:head>
 
-<main class="container max-w-screen-md mx-auto flex flex-col justify-center items-center text-center">
+<main class="container max-w-screen-md mx-auto px-5 md:px-0 flex flex-col justify-center items-center text-center">
   <Avatar class="w-64 h-64 mb-2">
     <AvatarImage src="/images/thomas.jpg" />
     <AvatarFallback>TM</AvatarFallback>
