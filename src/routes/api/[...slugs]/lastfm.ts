@@ -1,5 +1,4 @@
 import { Elysia, t } from "elysia";
-import { LASTFM_API_KEY } from "$env/static/private";
 
 export interface LastFmAlbum {
   name: string;
@@ -32,7 +31,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
     async ({ body }): Promise<LastFmAlbum | Error> => {
       const url = new URL("http://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
-       url.searchParams.append("api_key", LASTFM_API_KEY);
+       url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);
       url.searchParams.append("format", "json");
       url.searchParams.append("method", "album.getInfo");
       url.searchParams.append("artist", body.artist);
@@ -68,7 +67,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
     async ({ body }): Promise<LastFmArtist | Error> => {
       const url = new URL("http://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
-       url.searchParams.append("api_key", LASTFM_API_KEY);
+       url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);
       url.searchParams.append("format", "json");
       url.searchParams.append("method", "artist.getInfo");
       url.searchParams.append("artist", body.artist);
@@ -102,7 +101,7 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
     async ({ body }): Promise<LastFmTrack | Error> => {
       const url = new URL("http://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
-       url.searchParams.append("api_key", LASTFM_API_KEY);
+       url.searchParams.append("api_key", process.env.LASTFM_API_KEY!);
       url.searchParams.append("format", "json");
       url.searchParams.append("method", "track.getInfo");
       url.searchParams.append("artist", body.artist);
