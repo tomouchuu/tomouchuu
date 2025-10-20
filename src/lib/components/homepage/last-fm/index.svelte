@@ -29,8 +29,8 @@
   let trackPlayed = $derived(lastfm.data?.track?.playedCount === 0 ? 1 : (lastfm.data?.track?.playedCount ?? 1));
 </script>
 
-<div class="flex justify-center items-center my-2 text-lg w-full">
-  <HeadphonesIcon class="flex-none mr-4" />
+<div class="flex flex-col sm:flex-row justify-center items-center my-2 text-lg w-full">
+  <HeadphonesIcon class="flex-none sm:mr-4" />
   {#if lastfm.status === 'pending'}
     <Skeleton class="h-8 rounded-lg flex-grow" style="height: ''" />
   {:else if lastfm.status === 'error'}
