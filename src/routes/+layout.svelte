@@ -28,6 +28,9 @@
 <svelte:head>
   <link data-testid="favicon" rel="icon" href={thomasImage} type="image/jpeg">
   <meta data-testid="meta-description" name="description" content={m.description()} />
+
+  <meta name="theme-color" content="hsl(210 90% 98%)" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="hsl(215 40% 12%)" media="(prefers-color-scheme: dark)" />
 </svelte:head>
 
 <ModeWatcher />
