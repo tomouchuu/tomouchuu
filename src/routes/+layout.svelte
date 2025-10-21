@@ -11,6 +11,7 @@
   import { QueryClientProvider } from '@tanstack/svelte-query'
 
   import { dev, browser } from '$app/environment';
+  import { onNavigate } from '$app/navigation';
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 
@@ -23,6 +24,18 @@
     // @ts-ignore Just for dev
     window.__TANSTACK_QUERY_CLIENT__ = data.queryClient;
   }
+
+
+  onNavigate((navigation) => {
+    if (!document.startViewTransition) return;
+
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
 </script>
 
 <svelte:head>

@@ -17,12 +17,12 @@
 </svelte:head>
 
 <main class="container max-w-screen-md mx-auto px-5 md:px-0 flex flex-col justify-center items-center text-center">
-  <Avatar class="w-64 h-64 mb-2">
+  <Avatar class="w-64 h-64 mb-2" style="view-transition-name: thomas-image">
     <AvatarImage src={thomasImage} />
     <AvatarFallback>TM</AvatarFallback>
   </Avatar>
 
-  <h1 class="text-4xl font-bold">{m.thomas()}</h1>
+  <h1 class="text-4xl font-bold" style="view-transition-name: thomas-title">{m.thomas()}</h1>
   <p class="text-lg">{m.description()}</p>
 
   <div class="mt-2 flex h-5 justify-center items-center space-x-4 text-sm">
