@@ -25,7 +25,6 @@
     window.__TANSTACK_QUERY_CLIENT__ = data.queryClient;
   }
 
-
   onNavigate((navigation) => {
     if (!document.startViewTransition) return;
 
@@ -49,10 +48,11 @@
 <ModeWatcher />
 
 <QueryClientProvider client={data.queryClient}>
-  <Toggles />
-  <div class="flex min-h-screen flex-col items-center justify-center gap-4">
-    {@render children?.()}
-    <footer class="text-center text-xs min-w-36">
+  <div class="min-h-screen flex flex-col">
+    <div class="flex flex-col flex-1 pb-10">
+      {@render children?.()}
+    </div>
+    <footer class="mt-auto text-center text-xs min-w-36 max-w-screen-md mx-auto pb-4">
       <Separator />
       <p class="mt-4">
         {m.thomas()}@<a href="https://uchuu.dev" class="hover:underline">{m.uchuu()}</a>

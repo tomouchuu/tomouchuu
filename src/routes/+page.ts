@@ -9,7 +9,7 @@ export const config: Config = {
   },
 };
 
-export const load: PageLoad = async ({ data, parent}) => {
+export const load: PageLoad = async ({ data, parent }) => {
   const { queryClient } = await parent()
 
   await queryClient.prefetchQuery({

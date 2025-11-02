@@ -21,9 +21,9 @@ export const personal = new Elysia({ prefix: "/personal" }).get("/", () => ({
     {
       company: "Web Security",
       date: "March 2022 - Current",
-      description: "",
+      description: "Using EmberJS, building out tools to help analysts triage and investigate threats against their organisation.",
       title: "UI Engineer",
-      url: "#",
+      url: "",
     },
     {
       company: "Essex County Council",

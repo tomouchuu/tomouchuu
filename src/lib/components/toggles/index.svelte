@@ -5,9 +5,9 @@
 </script>
 
 <ButtonGroup.Root
-  orientation="vertical"
+  orientation="horizontal"
   aria-label="Toggles"
-  class="fixed top-4 right-5 cursor-pointer h-fit"
+  class="cursor-pointer"
 >
   <ThemeToggle />
   <LanguageToggle />
