@@ -46,7 +46,7 @@
       >
         {lastfm.data.track?.name}
       </a>
-      {" by "}
+      &nbsp;by&nbsp;
       <a
         href={lastfm.data.artist?.url}
         title={lastfm.data.artist?.name}
@@ -56,7 +56,7 @@
       >
         {lastfm.data.artist?.name}
       </a>
-      {" from "}
+      &nbsp;from&nbsp;
       <a
         href={lastfm.data.album?.url}
         title={lastfm.data.album?.name}
@@ -66,12 +66,14 @@
       >
         {lastfm.data.album?.name}
       </a>
-      {` for the `}
+      &nbsp;for the&nbsp;
       <span class="ordinal">
         {trackPlayed}{getOrdinal(trackPlayed)}
       </span>
-      {` time`}
-       {lastfm.data.isLive && " right now!"}
-     </p>
-   {/if}
- </div>
+      &nbsp;time
+      {#if lastfm.data.isLive}
+        &nbsp;right now!
+      {/if}
+    </p>
+  {/if}
+</div>

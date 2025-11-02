@@ -3,8 +3,8 @@
   import { fetchPersonalData, type WorkItem } from './index.js'
   import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 
-  let status: 'pending' | 'success' | 'error' = 'pending'
-  let work: WorkItem[] = []
+  let status = $state<'pending' | 'success' | 'error'>('pending')
+  let work = $state<WorkItem[]>([])
 
   onMount(async () => {
     try {
@@ -24,7 +24,7 @@
     <div class="space-y-4">
       <Skeleton class="h-6 w-40" />
       <div class="space-y-3">
-        {#each Array(4) as _}
+        {#each Array(4) as _, index (index)}
           <div class="flex items-start space-x-4">
             <div class="w-2 h-2 rounded-full bg-muted-foreground mt-2"></div>
             <div class="flex-1">

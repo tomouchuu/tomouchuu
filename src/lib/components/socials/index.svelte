@@ -149,7 +149,7 @@
 </script>
 
 <div class="flex flex-row flex-wrap justify-center items-center gap-4">
-  {#each socialArray as social}
+  {#each socialArray as social (social.name)}
     <a
       class={`inline-table border-2 border-accent rounded-lg p-3 socials ${social.name.toLowerCase()}`}
       href={social.href}
