@@ -54,6 +54,13 @@
     background-color: #6441a5;
   }
 
+  .socials.letterboxd {
+    color: #202830;
+  }
+  .socials.letterboxd:hover {
+    background-color: #202830;
+  }
+
   .socials.linkedin {
     color: #0077b5;
   }

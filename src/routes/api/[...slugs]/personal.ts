@@ -11,6 +11,7 @@ export const personal = new Elysia({ prefix: "/personal" }).get("/", () => ({
     instagram: "https://instagram.com/tomouchuu",
     applemusic: "https://itunes.apple.com/profile/tomouchuu",
     lastfm: "https://www.last.fm/user/TminatorT",
+    letterboxd: "https://letterboxd.com/tomouchuu/",
     discord: "discord:tomouchuu",
     youtube: "https://www.youtube.com/@Tomouchuu",
     twitch: "https://www.twitch.tv/tomouchuu",
