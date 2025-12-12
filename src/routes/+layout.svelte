@@ -5,7 +5,6 @@
   import { ModeWatcher } from "mode-watcher";
 
   import { Separator } from "$lib/components/ui/separator/index.js";
-  import Toggles from '$lib/components/toggles/index.svelte';
   import { m } from '$lib/paraglide/messages.js';
 
   import { QueryClientProvider } from '@tanstack/svelte-query'
