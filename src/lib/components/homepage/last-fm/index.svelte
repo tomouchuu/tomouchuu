@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createQuery } from '@tanstack/svelte-query'
-  import { fetchLastfmData, type LastfmResult } from './index.js'
+  import { fetchLastfmData, type LastfmResult } from '$lib/queries/last-fm'
 
   import { Skeleton } from '$lib/components/ui/skeleton/index.js';
   import HeadphonesIcon from '@lucide/svelte/icons/headphones';

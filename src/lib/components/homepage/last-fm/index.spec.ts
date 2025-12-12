@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { fetchLastfmData } from "./index";
+import { fetchLastfmData } from '$lib/queries/last-fm';
 
 vi.mock("$lib/utils", () => ({
   getBaseUrl: vi.fn(() => "http://localhost:3000/"),

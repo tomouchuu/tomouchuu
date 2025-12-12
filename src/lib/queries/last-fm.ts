@@ -1,16 +1,12 @@
-import { treaty } from "@elysiajs/eden"
-import { getBaseUrl } from "$lib/utils";
-import type { App } from "./../../../../routes/api/[...slugs]/+server";
+import { browser } from "$app/environment";
+import { getApp } from "$lib/queries/index";
 
 import type {
   LastFmAlbum,
   LastFmArtist,
   LastFmTrack,
   LastFmLatestTrack,
-} from "./../../../../routes/api/[...slugs]/lastfm";
-import { browser } from "$app/environment";
-
-const getApp = () => treaty<App>(getBaseUrl());
+} from "../../routes/api/[...slugs]/lastfm";
 
 export type LastfmResult = {
   album: LastFmAlbum | null;

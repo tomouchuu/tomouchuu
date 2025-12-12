@@ -1,5 +1,5 @@
 import { browser } from "$app/environment";
-import { getBaseUrl } from "$lib/utils";
+import { getApp } from "$lib/queries/index";
 
 export type WorkItem = {
   company: string;
@@ -11,23 +11,26 @@ export type WorkItem = {
 
 export type PersonalData = {
   name: string;
+  image: string;
+  status: any;
   location: string;
-  based: string;
   contact: Record<string, string>;
   work: WorkItem[];
 };
 
 export async function fetchPersonalData(): Promise<PersonalData> {
-  const base = getBaseUrl();
+  const app = getApp();
 
-  let headers: Record<string, string> = {};
+  let headers = {};
   if (!browser) {
     headers = {
-      "x-vercel-protection-bypass": process.env.VERCEL_AUTOMATION_BYPASS_SECRET ?? "",
+      'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET ?? "",
     };
   }
 
-  const resp = await fetch(`${base}api/personal`, { headers });
-  if (!resp.ok) throw new Error("Failed to fetch personal data");
-  return (await resp.json()) as PersonalData;
+  const resp = (await app.api.personal.get({
+    headers: headers,
+  }));
+
+  return resp.data as PersonalData;
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { fetchPersonalData, type WorkItem } from './index.js'
+  import { fetchPersonalData, type WorkItem } from '$lib/queries/personal'
   import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 
   let status = $state<'pending' | 'success' | 'error'>('pending')
@@ -9,7 +9,7 @@
   onMount(async () => {
     try {
       const data = await fetchPersonalData()
-      work = data.work ?? []
+      work = data?.work ?? []
       status = 'success'
     } catch (e) {
       status = 'error'
