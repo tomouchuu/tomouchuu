@@ -1,7 +1,8 @@
 import type { Config } from '@sveltejs/adapter-vercel';
 import type { PageLoad } from './$types'
 
-import { fetchLastfmData } from '$lib/components/homepage/last-fm/index.js'
+import { fetchLastfmData } from '$lib/queries/last-fm.js'
+import { fetchPersonalData } from '$lib/queries/personal';
 
 export const config: Config = {
   isr: {
@@ -9,7 +10,7 @@ export const config: Config = {
   },
 };
 
-export const load: PageLoad = async ({ data, parent }) => {
+export const load: PageLoad = async ({ parent }) => {
   const { queryClient } = await parent()
 
   await queryClient.prefetchQuery({
@@ -17,7 +18,8 @@ export const load: PageLoad = async ({ data, parent }) => {
     queryFn: () => fetchLastfmData(),
   });
 
-  return {
-    socials: data?.socials
-  }
+  await queryClient.prefetchQuery({
+    queryKey: ['personal'],
+    queryFn: () => fetchPersonalData(),
+  });
 }
