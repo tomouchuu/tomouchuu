@@ -11,11 +11,14 @@ describe("/+page.svelte", () => {
     await expect.element(heading).toBeInTheDocument();
   });
 
-  it("should render description paragraph", async () => {
+  it("should render description paragraphs with work title and location", async () => {
     render(PageTestWrapper);
 
-    const paragraph = page.getByRole("paragraph");
-    await expect.element(paragraph).toBeInTheDocument();
+    const workTitle = page.getByText("Software Engineer");
+    const location = page.getByText("Tokyo, Japan");
+
+    await expect.element(workTitle).toBeInTheDocument();
+    await expect.element(location).toBeInTheDocument();
   });
 
   it("should render link to about page", async () => {
