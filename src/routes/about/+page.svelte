@@ -11,7 +11,7 @@
   <title>{m.AboutPage()} | {m.thomas()}@{m.uchuu()}</title>
 </svelte:head>
 
-<main class="container max-w-screen-lg mx-auto p-5 pb-0 flex flex-col gap-4">
+<main class="container max-w-5xl mx-auto p-5 pb-0 flex flex-col gap-4">
   <div class="flex items-center justify-between">
     <Breadcrumb.Root>
       <Breadcrumb.List>

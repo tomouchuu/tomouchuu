@@ -32,7 +32,7 @@
 <div class="flex flex-col sm:flex-row justify-center items-center my-2 text-lg w-full">
   <HeadphonesIcon class="flex-none sm:mr-4" />
   {#if lastfm.status === 'pending'}
-    <Skeleton class="h-8 rounded-lg flex-grow" style="height: ''" />
+    <Skeleton class="h-8 rounded-lg grow" style="height: ''" />
   {:else if lastfm.status === 'error'}
     <p>Could not load lastfm data</p>
   {:else}
