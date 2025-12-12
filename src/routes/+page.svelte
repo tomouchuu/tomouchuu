@@ -4,6 +4,7 @@
 
   import LastFm from "$lib/components/homepage/last-fm/index.svelte";
   import Socials from "$lib/components/socials/index.svelte";
+  import Status from "$lib/components/homepage/status/index.svelte";
   import Toggles from '$lib/components/toggles/index.svelte';
 
 	import { createQuery } from '@tanstack/svelte-query'
@@ -33,10 +34,15 @@
 </div>
 
 <main class="container max-w-3xl mx-auto px-5 md:px-0 min-h-full flex flex-1 flex-col justify-center items-center text-center">
-  <Avatar class="w-64 h-64 mb-2" style="view-transition-name: thomas-image">
-    <AvatarImage src={personal.data?.image} />
-    <AvatarFallback>TM</AvatarFallback>
-  </Avatar>
+  <section class="relative">
+    <Avatar class="size-64 mb-2" style="view-transition-name: thomas-image">
+      <AvatarImage src={personal.data?.image} />
+      <AvatarFallback>TM</AvatarFallback>
+    </Avatar>
+    {#if personal.data?.status}
+      <Status class="absolute top-5 right-1/9" status={personal.data.status} />
+    {/if}
+  </section>
 
   <h1 class="text-4xl font-bold mb-2">{m.thomas()}</h1>
   <p class="text-lg">{personal.data?.work[0].title}</p>

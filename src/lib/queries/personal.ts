@@ -12,7 +12,7 @@ export type WorkItem = {
 export type PersonalData = {
   name: string;
   image: string;
-  status: any;
+  status: "online" | "idle" | "dnd" | "offline";
   location: string;
   contact: Record<string, string>;
   work: WorkItem[];
