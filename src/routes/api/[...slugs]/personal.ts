@@ -56,7 +56,7 @@ export const personal = new Elysia({ prefix: "/personal" }).get("/", async () =>
         description:
           "I handled a lot of the front end tasks such as slicing sites and some back end tasks using PHP and MySQL to integrate designs into our custom CMS, Wordpress or a bespoke control panel depending on the client.",
         title: "Web Developer",
-        url: "https://www.ahead4.co.uk",
+        url: "https://www.ahead4.com",
       },
       {
         company: "Progressive Marketing / DB Training",
