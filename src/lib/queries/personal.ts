@@ -1,4 +1,3 @@
-import { browser } from "$app/environment";
 import { getApp } from "$lib/queries/index";
 
 export type WorkItem = {
@@ -18,19 +17,12 @@ export type PersonalData = {
   work: WorkItem[];
 };
 
-export async function fetchPersonalData(): Promise<PersonalData> {
-  const app = getApp();
-
-  let headers = {};
-  if (!browser) {
-    headers = {
-      'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET ?? "",
-    };
-  }
-
-  const resp = (await app.api.personal.get({
-    headers: headers,
-  }));
+export async function fetchPersonalData(
+  baseUrl?: string,
+  fetcher?: typeof globalThis.fetch,
+): Promise<PersonalData> {
+  const app = getApp(baseUrl, fetcher);
+  const resp = await app.api.personal.get();
 
   return resp.data as PersonalData;
 }

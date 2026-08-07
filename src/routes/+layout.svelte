@@ -9,13 +9,8 @@
 
   import { QueryClientProvider } from '@tanstack/svelte-query'
 
-  import { dev, browser } from '$app/environment';
+  import { browser, dev } from '$app/environment';
   import { onNavigate } from '$app/navigation';
-  import { injectAnalytics } from '@vercel/analytics/sveltekit';
-  import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-
-  injectAnalytics({ mode: dev ? 'development' : 'production' });
-  injectSpeedInsights();
 
 	const { data, children } = $props()
 
@@ -59,5 +54,4 @@
     </footer>
   </div>
 </QueryClientProvider>
-
 

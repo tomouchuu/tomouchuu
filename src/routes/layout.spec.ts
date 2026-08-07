@@ -7,14 +7,6 @@ vi.mock("$app/environment", () => ({
   dev: false,
 }));
 
-vi.mock("@vercel/analytics/sveltekit", () => ({
-  injectAnalytics: vi.fn(),
-}));
-
-vi.mock("@vercel/speed-insights/sveltekit", () => ({
-  injectSpeedInsights: vi.fn(),
-}));
-
 describe("+layout.ts", () => {
   it("should create and return QueryClient", () => {
     const result = (load({} as any) as unknown as { queryClient: QueryClient }).queryClient;
