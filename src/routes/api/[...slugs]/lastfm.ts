@@ -34,15 +34,13 @@ export interface LastFmLatestTrack {
   isLive?: boolean;
 }
 
-export const lastfm = new Elysia({ prefix: "/lastfm" })
+export const lastfm = new Elysia({
+  aot: false,
+  normalize: "typebox",
+  prefix: "/lastfm",
+})
   .post(
     "/album",
-    {
-      body: t.Object({
-        album: t.String(),
-        artist: t.String(),
-      }),
-    },
     async ({ body }): Promise<LastFmAlbum | Error> => {
       const url = new URL("https://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
@@ -70,14 +68,15 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
         url: data.album.url,
       };
     },
-  )
-  .post(
-    "/artist",
     {
       body: t.Object({
+        album: t.String(),
         artist: t.String(),
       }),
     },
+  )
+  .post(
+    "/artist",
     async ({ body }): Promise<LastFmArtist | Error> => {
       const url = new URL("https://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
@@ -104,15 +103,14 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
         url: data.artist.url,
       };
     },
-  )
-  .post(
-    "/track",
     {
       body: t.Object({
         artist: t.String(),
-        track: t.String(),
       }),
     },
+  )
+  .post(
+    "/track",
     async ({ body }): Promise<LastFmTrack | Error> => {
       const url = new URL("https://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
@@ -139,6 +137,12 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
         playedCount: parseInt(data.track.userplaycount ?? "0", 10),
         url: data.track.url,
       };
+    },
+    {
+      body: t.Object({
+        artist: t.String(),
+        track: t.String(),
+      }),
     },
   )
   .get("/latest", async (): Promise<LastFmLatestTrack | Error> => {

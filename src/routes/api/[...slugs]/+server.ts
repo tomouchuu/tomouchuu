@@ -1,8 +1,4 @@
-import { Elysia } from "elysia";
-import { lastfm } from "./lastfm";
-import { personal } from "./personal";
-
-const app = new Elysia({ prefix: "/api" }).use(personal).use(lastfm);
+import { app } from "$lib/server/api";
 
 export type App = typeof app;
 

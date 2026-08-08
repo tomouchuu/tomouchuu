@@ -1,4 +1,5 @@
 <script lang="ts">
+  import thomasImage from "$lib/assets/images/thomas.jpg";
   import { Avatar, AvatarFallback, AvatarImage } from "$lib/components/ui/avatar/index.js";
   import { m } from '$lib/paraglide/messages.js';
 
@@ -36,7 +37,7 @@
 <main class="container max-w-3xl mx-auto px-5 md:px-0 min-h-full flex flex-1 flex-col justify-center items-center text-center">
   <section class="relative">
     <Avatar class="size-64 mb-2" style="view-transition-name: thomas-image">
-      <AvatarImage src={personal.data?.image} />
+      <AvatarImage src={thomasImage} />
       <AvatarFallback>TM</AvatarFallback>
     </Avatar>
     {#if personal.data?.status}

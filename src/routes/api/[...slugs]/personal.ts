@@ -1,6 +1,10 @@
 import { Elysia } from "elysia";
 
-export const personal = new Elysia({ prefix: "/personal" }).get("/", async () => {
+export const personal = new Elysia({
+  aot: false,
+  normalize: "typebox",
+  prefix: "/personal",
+}).get("/", async () => {
   const discordId = "105753535659921408";
   const discordPresence = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
   const discordPresenceData = await discordPresence.json();
