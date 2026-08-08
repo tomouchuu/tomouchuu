@@ -37,6 +37,12 @@ export interface LastFmLatestTrack {
 export const lastfm = new Elysia({ prefix: "/lastfm" })
   .post(
     "/album",
+    {
+      body: t.Object({
+        album: t.String(),
+        artist: t.String(),
+      }),
+    },
     async ({ body }): Promise<LastFmAlbum | Error> => {
       const url = new URL("https://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
@@ -64,15 +70,14 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
         url: data.album.url,
       };
     },
-    {
-      body: t.Object({
-        album: t.String(),
-        artist: t.String(),
-      }),
-    },
   )
   .post(
     "/artist",
+    {
+      body: t.Object({
+        artist: t.String(),
+      }),
+    },
     async ({ body }): Promise<LastFmArtist | Error> => {
       const url = new URL("https://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
@@ -99,14 +104,15 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
         url: data.artist.url,
       };
     },
-    {
-      body: t.Object({
-        artist: t.String(),
-      }),
-    },
   )
   .post(
     "/track",
+    {
+      body: t.Object({
+        artist: t.String(),
+        track: t.String(),
+      }),
+    },
     async ({ body }): Promise<LastFmTrack | Error> => {
       const url = new URL("https://ws.audioscrobbler.com/2.0/");
       url.searchParams.append("user", `TminatorT`);
@@ -133,12 +139,6 @@ export const lastfm = new Elysia({ prefix: "/lastfm" })
         playedCount: parseInt(data.track.userplaycount ?? "0", 10),
         url: data.track.url,
       };
-    },
-    {
-      body: t.Object({
-        artist: t.String(),
-        track: t.String(),
-      }),
     },
   )
   .get("/latest", async (): Promise<LastFmLatestTrack | Error> => {

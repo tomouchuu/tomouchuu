@@ -2,7 +2,7 @@ import { Elysia } from "elysia";
 import { lastfm } from "./lastfm";
 import { personal } from "./personal";
 
-const app = new Elysia({ aot: false, prefix: "/api" }).use(personal).use(lastfm);
+const app = new Elysia({ prefix: "/api" }).use(personal).use(lastfm);
 
 export type App = typeof app;
 
