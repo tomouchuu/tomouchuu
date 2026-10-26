@@ -28,7 +28,8 @@ export const personal = new Elysia({
       youtube: "https://www.youtube.com/@Tomouchuu",
       twitch: "https://www.twitch.tv/tomouchuu",
       linkedin: "https://www.linkedin.com/in/thomas-moore-730226121/",
-      cv: "https://tomo.uchuu.dev/thomas-moore-resume.pdf",
+      // Hidden until the resume is updated
+      // cv: "https://tomo.uchuu.dev/thomas-moore-resume.pdf",
     },
     work: [
       {
